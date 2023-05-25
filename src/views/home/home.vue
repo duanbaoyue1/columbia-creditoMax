@@ -121,6 +121,7 @@ export default {
     },
   },
   async created() {
+    console.log(2);
     this.setTabBar({
       show: false,
     });
