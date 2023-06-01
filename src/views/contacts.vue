@@ -5,46 +5,46 @@
     </div>
 
     <div class="edit-area-wrapper" v-for="(item, index) in familyContacts">
-      <div class="edit-area-header">Emergency Contact {{ index + 1 }}</div>
+      <div class="edit-area-header">Contacto de emergencia {{ index + 1 }}</div>
       <div class="edit-area">
-        <div class="line-item">
-          <label>Family Member</label>
-          <select-item :items="ALL_ATTRS.RELATION_SHIPS" title="Select Family Member" :itemAttrs="index" @choose="chooseRelation" />
+        <div class="line-item line-item-rela">
+          <div class="desc">Elige el parentesco del contacto</div>
+          <select-item :items="ALL_ATTRS.RELATION_SHIPS" title="Elige el parentesco del contacto" :itemAttrs="index" @choose="chooseRelation" />
         </div>
 
         <div class="line-item phone-select-wrapper" @click="choosePhone('familyPhone', index)">
-          <label>Contact {{ index + 1 }} Phone No.</label>
+          <label>Número de contacto</label>
           <div>
-            <input id="familyPhone" v-model="item.mobile" disabled placeholder="Please select" />
-            <m-icon class="icon" type="handy/phone" :width="16" :height="16" />
+            <input id="familyPhone" v-model="item.mobile" disabled placeholder="Por favor, elija" />
+            <m-icon class="icon" type="creditomax/通讯录" :width="16" :height="16" />
           </div>
         </div>
         <div class="line-item">
-          <label>Contact {{ index + 1 }} Name</label>
-          <input v-model="item.name" placeholder="Please enter" />
+          <label>Nombre</label>
+          <input v-model="item.name" placeholder="Por favor escribe" />
         </div>
       </div>
     </div>
 
     <div class="edit-area-wrapper" v-for="(item, index) in friendContacts">
-      <div class="edit-area-header">Emergency Contact {{ index + 1 + familyContacts.length }}</div>
+      <div class="edit-area-header">Contacto de emergencia {{ index + 1 + familyContacts.length }}</div>
       <div class="edit-area">
         <div class="line-item phone-select-wrapper" @click="choosePhone('friendPhone', index)">
           <label>Friends Phone No.</label>
           <div>
-            <input id="fiendPhone" v-model="item.mobile" disabled placeholder="Please select" />
-            <m-icon class="icon" type="handy/phone" :width="16" :height="16" />
+            <input id="fiendPhone" v-model="item.mobile" disabled placeholder="Por favor, elija" />
+            <m-icon class="icon" type="creditomax/通讯录" :width="16" :height="16" />
           </div>
         </div>
         <div class="line-item">
           <label>Friends Name</label>
-          <input v-model="item.name" placeholder="Please enter" />
+          <input v-model="item.name" placeholder="Por favor escribe" />
         </div>
       </div>
     </div>
 
     <div class="submit">
-      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Submit</button>
+      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Enviar</button>
     </div>
 
     <div class="submit-success" v-show="submitSuccess">
@@ -95,26 +95,26 @@ export default {
       // 1. 验证号码是否有效
       if (mobile.length < 10 || mobile.length > 15) {
         this.showMessageBox({
-          content: 'The format of cell phone number is not correct, please choose again',
+          content: 'El número de móvil del contacto no está en el formato correcto, por favor, vuelva a seleccionarlo',
           confirmBtnText: 'Ok',
           confirmCallback: () => {
             this.hideMessageBox();
           },
-          iconPath: 'handy/银行账户验证失败@2x',
+          iconPath: 'creditomax/银行账户验证失败',
           showClose: false,
         });
         return;
       }
       // 2. 验证是否有重复的
       let currentPhone = [...this.familyContacts, ...this.friendContacts].map(t => t.mobile);
-      if(currentPhone.includes(mobile)) {
-         this.showMessageBox({
-          content: 'Duplicate cell phone number, please re-select another contact.',
+      if (currentPhone.includes(mobile)) {
+        this.showMessageBox({
+          content: 'Número de móvil duplicado, seleccione otro contacto',
           confirmBtnText: 'Ok',
           confirmCallback: () => {
             this.hideMessageBox();
           },
-          iconPath: 'handy/银行账户验证失败-重复',
+          iconPath: 'creditomax/银行账户验证失败-重复',
           showClose: false,
         });
         return;
@@ -178,13 +178,13 @@ export default {
       if (!isGettedPhone) {
         localStorage.setItem(FIRST_GET_PHONE_KEY, 'true');
         this.showMessageBox({
-          content: 'Please make sure that you choose a real cell phone number, otherwise the money will not be released.',
+          content: 'Por favor, asegúrate de elegir un número de móvil real o el dinero no será liberado',
           confirmBtnText: 'Ok',
           confirmCallback: () => {
             this.hideMessageBox();
             this.toAppMethod('getContactsContent', { fuName: 'choosePhoneCallback' });
           },
-          iconPath: 'handy/银行账户验证',
+          iconPath: 'creditomax/银行账户验证',
           showClose: false,
         });
       } else {
@@ -297,6 +297,14 @@ export default {
       align-items: center;
       border-bottom: 2px solid #e3e3e3;
       height: 52px;
+      &.line-item-rela {
+        display: block;
+        height: 74px;
+        .desc {
+          padding-top: 16px;
+          padding-bottom: 8px;
+        }
+      }
       &:last-child {
         border-bottom: none;
       }

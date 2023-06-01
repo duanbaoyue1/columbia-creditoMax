@@ -1,95 +1,95 @@
 <template>
   <div id="mine" class="content-area">
     <div class="user">
-      <img :src="require('@/assets/img/handy/默认头像.png')" />
+      <img :src="require('@/assets/img/creditomax/默认头像.png')" />
       <span class="name">{{ userInfo.mobile | phoneHideFilter }}</span>
     </div>
 
     <div class="menu">
       <div @click="innerJump('order-list')">
         <div>
-          <m-icon class="icon" type="handy/All orders" :width="30" :height="30" />
-          All orders
+          <m-icon class="icon" type="creditomax/All orders" :width="30" :height="30" />
+          Pedido de préstamo
         </div>
-        <m-icon type="handy/进入" :width="8" :height="12" />
+        <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div>
 
       <div @click="innerJump('complete-bank', { from: 'mine' })" v-if="userInfo.remittanceAccountAuth">
         <div>
-          <m-icon class="icon" type="handy/Receipt Account" :width="30" :height="30" />
-          Receipt Account
+          <m-icon class="icon" type="creditomax/Receipt Account" :width="30" :height="30" />
+          Tarjeta bancaria
         </div>
-        <m-icon type="handy/进入" :width="8" :height="12" />
+        <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div>
 
       <div @click="goHelpCenter">
         <div>
-          <m-icon class="icon" type="handy/Help Center" :width="30" :height="30" />
-          Help Center
+          <m-icon class="icon" type="creditomax/Help Center" :width="30" :height="30" />
+          Centro de ayuda
         </div>
-        <m-icon type="handy/进入" :width="8" :height="12" />
+        <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div>
 
       <div @click="innerJump('about')">
         <div>
-          <m-icon class="icon" type="handy/About Us" :width="30" :height="30" />
-          About Us
+          <m-icon class="icon" type="creditomax/About Us" :width="30" :height="30" />
+          Sobre nosotros
         </div>
-        <m-icon type="handy/进入" :width="8" :height="12" />
+        <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div>
 
       <div @click="innerJump('settings')">
         <div>
-          <m-icon class="icon" type="handy/Set Up" :width="30" :height="30" />
-          Set Up
+          <m-icon class="icon" type="creditomax/Set Up" :width="30" :height="30" />
+          Configuración
         </div>
-        <m-icon type="handy/进入" :width="8" :height="12" />
+        <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div>
 
       <div @click="showDeleteConfirm" v-if="isTestAccount">
         <div>
-          <m-icon class="icon" type="handy/Delete Account" :width="30" :height="30" />
-          Delete Account
+          <m-icon class="icon" type="creditomax/Delete Account" :width="30" :height="30" />
+          Eliminar cuenta
         </div>
-        <m-icon type="handy/进入" :width="8" :height="12" />
+        <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div>
 
       <div @click="logout">
         <div>
-          <m-icon class="icon" type="handy/Log Out" :width="30" :height="30" />
-          Log Out
+          <m-icon class="icon" type="creditomax/Log Out" :width="30" :height="30" />
+          Cerrar sesión
         </div>
-        <m-icon type="handy/进入" :width="8" :height="12" />
+        <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div>
 
       <!-- <div @click="goTestb">
         <div>
-          <m-icon class="icon" type="handy/Log Out" :width="30" :height="30" />
+          <m-icon class="icon" type="creditomax/Log Out" :width="30" :height="30" />
           testb
         </div>
-        <m-icon type="handy/进入" :width="8" :height="12" />
+        <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div> -->
 
       <!-- <div @click="innerJump('testb')">
         <div>
-          <m-icon class="icon" type="handy/Log Out" :width="30" :height="30" />
+          <m-icon class="icon" type="creditomax/Log Out" :width="30" :height="30" />
           testb
         </div>
-        <m-icon type="handy/进入" :width="8" :height="12" />
+        <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div>
 
       <div @click="innerJump('order-detail')">
         <div>
-          <m-icon class="icon" type="handy/Log Out" :width="30" :height="30" />
+          <m-icon class="icon" type="creditomax/Log Out" :width="30" :height="30" />
           Order Detail
         </div>
-        <m-icon type="handy/进入" :width="8" :height="12" />
+        <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div> -->
     </div>
 
     <van-overlay :show="showLogOut" @click="showLogOut = false">
       <div class="logout" @click.stop>
-        <img :src="require('@/assets/img/handy/个人中心推出弹窗.png')" />
+        <img :src="require('@/assets/img/creditomax/个人中心推出弹窗.png')" />
         <div class="content">
           <div>Are you sure you want to log out?</div>
           <button @click="logout">Yes</button>

@@ -15,23 +15,23 @@
 
       <van-tabbar route name="fade" v-if="$route.meta.showTab">
         <van-tabbar-item replace to="/home">
-          <span>Loans</span>
+          <span>Préstamos</span>
           <template #icon="props">
-            <m-icon :type="props.active ? 'handy/Loans点击' : 'handy/Loans未点击'" class="nav-icon" :width="24" :height="24" />
+            <m-icon :type="props.active ? 'creditomax/Prstamos' : 'creditomax/Loans未选中'" class="nav-icon" :width="24" :height="24" />
           </template>
         </van-tabbar-item>
 
         <van-tabbar-item replace to="/repayment" :badge="repaymentNum > 0 ? repaymentNum : ''" v-if="showRepayment">
           <span>Repayment</span>
           <template #icon="props">
-            <m-icon :type="props.active ? 'handy/Repayment点击' : 'handy/Repayment未点击'" class="nav-icon" :width="22" :height="24" />
+            <m-icon :type="props.active ? 'creditomax/Reembolsando选中' : 'creditomax/Reembolsando未点击'" class="nav-icon" :width="22" :height="24" />
           </template>
         </van-tabbar-item>
 
         <van-tabbar-item replace to="/mine">
-          <span>Me</span>
+          <span>Mi</span>
           <template #icon="props">
-            <m-icon :type="props.active ? 'handy/Me点击' : 'handy/Me未点击'" class="nav-icon" :width="22" :height="24" />
+            <m-icon :type="props.active ? 'creditomax/Mi点击' : 'creditomax/Mi未点击'" class="nav-icon" :width="24" :height="24" />
           </template>
         </van-tabbar-item>
       </van-tabbar>

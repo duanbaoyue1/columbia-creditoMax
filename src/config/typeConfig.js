@@ -1,142 +1,142 @@
 const EDUCATION = [
   {
-    label: 'Primary School',
-    value: 'Primary School',
+    label: 'Escuela primaria',
+    value: 'Escuela primaria',
   },
   {
-    label: 'Senior School',
-    value: 'Senior School',
+    label: 'Escuelas secundarias',
+    value: 'Escuelas secundarias',
   },
   {
-    label: 'High School',
-    value: 'High School',
+    label: 'Secundaria',
+    value: 'Secundaria',
   },
   {
-    label: 'Bachelors',
-    value: 'Bachelors',
+    label: 'Licenciados',
+    value: 'Licenciados',
   },
   {
-    label: 'Masters',
-    value: 'Masters',
+    label: 'Másters',
+    value: 'Másters',
   },
   {
-    label: 'Doctors',
-    value: 'Doctors',
+    label: 'Doctorado',
+    value: 'Doctorado',
   },
   {
-    label: 'Not Educated',
-    value: 'Not Educated',
+    label: 'Sin estudios',
+    value: 'Sin estudios',
   },
 ];
 
 const OCCUPATION = [
   {
-    label: 'Salaried',
-    value: 'Salaried',
+    label: 'Salario',
+    value: 'Salario',
   },
   {
-    label: 'Self-employed',
-    value: 'Self-employed',
+    label: 'Privado',
+    value: 'Privado',
   },
   {
-    label: 'Student',
-    value: 'Student',
+    label: 'Estudiante',
+    value: 'Estudiante',
   },
   {
-    label: 'Retired',
-    value: 'Retired',
+    label: 'Jubilación',
+    value: 'Jubilación',
   },
   {
-    label: 'Unemployed',
-    value: 'Unemployed',
+    label: 'Sin trabajo',
+    value: 'Sin trabajo',
   },
   {
-    label: 'others',
-    value: 'others',
+    label: 'A tiempo parcial',
+    value: 'A tiempo parcial',
   },
 ];
 
 const SALARY = [
   {
-    label: 'less than 15000',
-    value: 'less than 15000',
+    label: 'Menos de $1,000,000',
+    value: 'Menos de $1,000,000',
   },
   {
-    label: '15000-25000',
-    value: '15000-25000',
+    label: '$1,000,001 - $2,000,000',
+    value: '$1,000,001 - $2,000,000',
   },
   {
-    label: '25001-35000',
-    value: '25001-35000',
+    label: '$2,000,001 - $3,000,000',
+    value: '$2,000,001 - $3,000,000',
   },
   {
-    label: '35001-45000',
-    value: '35001-45000',
+    label: '$3,000,001 - $4,000,000',
+    value: '$3,000,001 - $4,000,000',
   },
   {
-    label: '45001-55000',
-    value: '45001-55000',
+    label: '$4,000,001 - $5,000,000',
+    value: '$4,000,001 - $5,000,000',
   },
   {
-    label: 'more than 55000',
-    value: 'more than 55000',
+    label: 'Más de $5,000,001',
+    value: 'Más de $5,000,001',
   },
 ];
 
 const MARITAL_STATUS = [
   {
-    label: 'Single',
-    value: 'Single',
+    label: 'Soltero',
+    value: 'Soltero',
   },
   {
-    label: 'Married',
-    value: 'Married',
+    label: 'Casado',
+    value: 'Casado',
   },
   {
-    label: 'divorce',
-    value: 'divorce',
+    label: 'Divorcio',
+    value: 'Divorcio',
   },
   {
-    label: 'widowed',
-    value: 'widowed',
+    label: 'Viudo',
+    value: 'Viudo',
   },
 ];
 
 const LOAN_PURPOSE = [
   {
-    label: 'Family fuction',
-    value: 'Family fuction',
+    label: 'Función familiar',
+    value: 'Función familiar',
   },
   {
-    label: 'Holiday/Travel',
-    value: 'Holiday/Travel',
+    label: 'Vacaciones / viajes',
+    value: 'Vacaciones / viajes',
   },
   {
-    label: 'Education',
-    value: 'Education',
+    label: 'Educación',
+    value: 'Educación',
   },
   {
-    label: 'Health',
-    value: 'Health',
+    label: 'Salud',
+    value: 'Salud',
   },
   {
-    label: 'Other personal use',
-    value: 'Other personal use',
+    label: 'Otros',
+    value: 'Otros',
   },
 ];
 
 const ACCOMMODATION = [
   {
-    label: 'Own house',
-    value: 'Own house',
+    label: 'Su propia casa',
+    value: 'Su propia casa',
   },
   {
-    label: 'Rented',
-    value: 'Rented',
+    label: 'Alquilado',
+    value: 'Alquilado',
   },
   {
-    label: 'Others',
-    value: 'Others',
+    label: 'Otros',
+    value: 'Otros',
   },
 ];
 
@@ -180,35 +180,35 @@ const PAY_METHOD = [
 
 const RELATION_SHIPS = [
   {
-    label: 'Father',
-    value: 'Father',
+    label: 'Padre/Madre',
+    value: 'Padre/Madre',
   },
   {
-    label: 'Mother',
-    value: 'Mother',
+    label: 'sposo/ Esposa',
+    value: 'sposo/ Esposa',
   },
   {
-    label: 'Spouse',
-    value: 'Spouse',
+    label: 'Hijo/ Hija',
+    value: 'Hijo/ Hija',
   },
   {
-    label: 'Brother',
-    value: 'Brother',
+    label: 'Amigo',
+    value: 'Amigo',
   },
   {
-    label: 'Sister',
-    value: 'Sister',
+    label: 'Hermanos',
+    value: 'Hermanos',
   },
 ];
 
 const GENDER = [
   {
-    label: 'Male',
-    value: 'Male',
+    label: 'Masculino',
+    value: 'Masculino',
   },
   {
-    label: 'Female',
-    value: 'Female',
+    label: 'Femenino',
+    value: 'Femenino',
   },
 ];
 

@@ -1,10 +1,12 @@
 <template>
   <div class="complete-step">
     <div class="step" v-for="(step, index) in steps" :class="{ active: actionIndex >= index }">
-      <div class="red-bot">
-        <img :src="actionIndex >= index ? require('@/assets/img/handy/进度条点亮.png') : require('@/assets/img/handy/进度条未点亮.png')" />
+      <div class="stat-img-wrapper">
+        <img class="stat-img" :src="actionIndex >= index ? step.activeImg : step.noActiveImg" />
       </div>
-      <img class="stat-img" :src="actionIndex >= index ? step.activeImg : step.noActiveImg" />
+      <div class="red-bot" :class="actionIndex >= index ? 'active' : ''">
+        <!-- <img :src="actionIndex >= index ? require('@/assets/img/handy/进度条点亮.png') : require('@/assets/img/handy/进度条未点亮.png')" /> -->
+      </div>
       <div class="text">{{ step.text }}</div>
     </div>
   </div>
@@ -17,24 +19,24 @@ export default {
     return {
       steps: [
         {
-          text: 'Identity Info',
-          activeImg: require('@/assets/img/handy/Identity Info.png'),
-          noActiveImg: require('@/assets/img/handy/Identity Info.png'),
+          text: '$500,000',
+          activeImg: require('@/assets/img/creditomax/金币1点亮.png'),
+          noActiveImg: require('@/assets/img/creditomax/金币1点亮.png'),
         },
         {
-          text: 'Personal Info',
-          activeImg: require('@/assets/img/handy/Personal Info.png'),
-          noActiveImg: require('@/assets/img/handy/Personal Info灰.png'),
+          text: '$1,000,000',
+          activeImg: require('@/assets/img/creditomax/金币2点亮.png'),
+          noActiveImg: require('@/assets/img/creditomax/金币2未点亮.png'),
         },
         {
-          text: 'Contacts Info',
-          activeImg: require('@/assets/img/handy/Contacts Info.png'),
-          noActiveImg: require('@/assets/img/handy/Contacts Info灰.png'),
+          text: '$1,500,000',
+          activeImg: require('@/assets/img/creditomax/金币3点亮.png'),
+          noActiveImg: require('@/assets/img/creditomax/金币3未点亮.png'),
         },
         {
-          text: 'Payment method',
-          activeImg: require('@/assets/img/handy/Payment method.png'),
-          noActiveImg: require('@/assets/img/handy/Payment method灰.png'),
+          text: '$2,000,000',
+          activeImg: require('@/assets/img/creditomax/金币4未点亮.png'),
+          noActiveImg: require('@/assets/img/creditomax/金币4未点亮.png'),
         },
       ],
     };
@@ -54,20 +56,20 @@ export default {
     flex-direction: column;
     align-items: center;
     white-space: nowrap;
-    font-size: 10px;
+    font-size: 12px;
     font-family: Roboto-Medium, Roboto;
     font-weight: 500;
     line-height: 16px;
     position: relative;
     &::before {
       position: absolute;
-      width: 52px;
-      height: 2px;
-      background: #cccccc;
-      border-radius: 4px;
+      width: 72px;
+      height: 4px;
+      background: #e3e3e3;
       content: ' ';
-      top: 3px;
-      left: -26px;
+      top: 53px;
+      left: -36px;
+      z-index: 0;
     }
 
     &:first-child {
@@ -77,13 +79,29 @@ export default {
       }
     }
 
-    .stat-img {
-      width: 30px;
-      display: block;
-      margin-bottom: 4px;
+    &.active {
+      &::before {
+        background: #434af9 !important;
+      }
+      .red-bot {
+        background: #434af9;
+        outline: 3px solid #b3b6fc;
+      }
     }
+
+    .stat-img-wrapper {
+      height: 50px;
+      display: flex;
+      align-items: center;
+    }
+
     .red-bot {
-      margin-bottom: 10px;
+      margin-bottom: 13px;
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      background: #e3e3e3;
+      z-index: 1;
       img {
         width: 10px;
         display: block;
@@ -91,14 +109,13 @@ export default {
     }
     .text {
       color: #999999;
-      transform: scale(.9);
     }
     &.active {
       .text {
-        color: #fc3122;
+        color: #434af9;
       }
       &::before {
-        background: #fc3122;
+        background: #434af9;
       }
     }
   }

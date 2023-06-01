@@ -4,22 +4,33 @@
       <complete-step :actionIndex="0"></complete-step>
     </div>
     <div class="edit-area">
-      <div class="head-top">Pan Card</div>
+      <div class="head-top">Subir C.C.ID</div>
       <div class="pan-img-wrapper">
         <div class="pan-img" @click="getCapture(3)">
           <template v-if="panFrontBase64Src">
             <img class="back user-pic" :src="panFrontBase64Src" />
-            <img class="btn" :src="require('@/assets/img/handy/完成.png')" />
+            <img class="btn" :src="require('@/assets/img/creditomax/完成.png')" />
           </template>
           <template v-else>
-            <img class="back" :src="require('@/assets/img/handy/Pan Front.png')" />
-            <img class="btn" :src="require('@/assets/img/handy/相机.png')" />
+            <img class="back" :src="require('@/assets/img/creditomax/C.C.ID正.png')" />
+            <img class="btn" :src="require('@/assets/img/creditomax/相机.png')" />
           </template>
         </div>
-        <div class="pan-text">
-          Pan
-          <span>Front</span>
+        <div class="pan-text">Frente de C.C.ID</div>
+      </div>
+
+      <div class="pan-img-wrapper">
+        <div class="pan-img" @click="getCapture(3)">
+          <template v-if="panBackBase64Src">
+            <img class="back user-pic" :src="panBackBase64Src" />
+            <img class="btn" :src="require('@/assets/img/creditomax/完成.png')" />
+          </template>
+          <template v-else>
+            <img class="back" :src="require('@/assets/img/creditomax/C.C.ID反.png')" />
+            <img class="btn" :src="require('@/assets/img/creditomax/相机.png')" />
+          </template>
         </div>
+        <div class="pan-text">Reverso de C.C.ID</div>
       </div>
 
       <!-- <div class="pan-demo">
@@ -41,13 +52,13 @@
         </div>
       </div> -->
       <div class="pan-tips">
-        1.Ensure that all the documents uploaded are clear and not blurred
+        1. Asegúrate de que el C.C.ID que subes es auténtico y válido
         <br />
-        2.Incomplete information may prevent you from passing thecetification successfully
+        2. Asegúrese de que la foto C.C.ID cargada es clara y completa, de lo contrario no pasará la verificación.
       </div>
     </div>
     <div class="submit">
-      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Submit</button>
+      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Enviar</button>
     </div>
 
     <div class="submit-success" v-show="submitSuccess">
@@ -57,9 +68,7 @@
           <div class="tips" :style="{ left: curPercent + '%' }">{{ curPercent }}%</div>
         </div>
         <div class="tips">
-          Please be patient and wait for the
-          <br />
-          upload to unlock the credit
+          Por favor, sea paciente y espere a la carga para desbloquear el crédito
         </div>
       </div>
     </div>
@@ -109,6 +118,7 @@ export default {
       canSubmit: false, // 是否可以提交
       submitSuccess: false,
       panFrontBase64Src: '',
+      panBackBase64Src: '',
       editData: {},
       curPercent: 0,
       saving: false,
@@ -277,7 +287,7 @@ export default {
     background: #fff;
     padding: 16px 44px;
     border-radius: 8px;
-    margin-bottom: 34px;
+
     .pan-img {
       position: relative;
 
@@ -312,7 +322,7 @@ export default {
     bottom: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 2;
+    z-index: 99;
 
     &-content {
       width: 320px;
@@ -374,6 +384,8 @@ export default {
       }
       .tips {
         text-align: center;
+        margin: 0 24px;
+        word-break: break-word;
       }
     }
   }
@@ -383,7 +395,6 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    background: #fff;
   }
   .step {
     padding-top: 10px;

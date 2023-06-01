@@ -27,7 +27,7 @@ const routes = [
         name: 'information',
         component: () => import(/* webpackChunkName: "information" */ '../views/information.vue'),
         meta: {
-          title: 'Complete information',
+          title: 'Información básica',
         },
       },
       {

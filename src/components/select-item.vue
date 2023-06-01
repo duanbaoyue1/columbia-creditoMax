@@ -35,7 +35,21 @@ export default {
     },
     placeHolder: {
       type: String,
-      default: 'Please select',
+      default: 'Por favor, elija',
+    },
+    defaultOpen: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  created() {
+    this.openSelect = this.defaultOpen;
+  },
+
+  watch: {
+    defaultOpen() {
+      this.openSelect = this.defaultOpen;
     },
   },
 
@@ -94,7 +108,7 @@ export default {
               content: ' ';
               width: 100%;
               height: 4px;
-              background: #fc3122;
+              background: #434af9;
               border-radius: 20px;
               bottom: -2px;
               left: 0;

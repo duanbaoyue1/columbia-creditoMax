@@ -3,15 +3,15 @@
     <div class="home-content">
       <div class="loan-wrapper" :class="'multiple_' + isMultiple">
         <div class="inner">
-          <div class="available-text">Available Amount (₹)</div>
+          <div class="available-text">Préstamo máximo($)</div>
           <div class="number">{{ isMultiple ? multipleCredit.remaining : curAvailableAmount }}</div>
           <div class="total-used">
             <div>
-              <div class="label">Total Credit (₹)</div>
+              <div class="label">Crédito total($)</div>
               <div class="number">{{ isMultiple ? multipleCredit.sumQuota : appMode.totalCredit }}</div>
             </div>
             <div>
-              <div class="label">Used Credit (₹)</div>
+              <div class="label">Crédito usado ($)</div>
               <div class="number">{{ isMultiple ? multipleCredit.usedQuota : appMode.usedCredit }}</div>
             </div>
           </div>
@@ -386,7 +386,7 @@ export default {
 .home {
   height: 100%;
   box-sizing: border-box;
-  background-image: url(../../assets/img/handy/首页背景带字.png);
+  background-image: url(../../assets/img/creditomax/首页背景图.png);
   background-attachment: local;
   background-position: top;
   background-repeat: no-repeat;
@@ -405,7 +405,7 @@ export default {
       margin: 0 auto;
 
       &.multiple_false {
-        background-image: url(../../assets/img/handy/Money.png);
+        background-image: url(../../assets/img/creditomax/Money.png);
         background-position: bottom;
         background-repeat: no-repeat;
         background-size: 343px 94px;
@@ -485,8 +485,8 @@ export default {
         .action-btn {
           width: 295px;
           height: 44px;
-          background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-          box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+          background: linear-gradient(180deg, #696FFB 0%, #434AF9 100%);
+          box-shadow: 0px 8px 20px 0px rgba(67,74,249,0.4), inset 0px 2px 8px 0px #434AF9;
           border-radius: 23px;
           font-size: 20px;
           font-family: PingFangSC-Semibold, PingFang SC;

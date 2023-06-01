@@ -50,9 +50,10 @@ export default {
     initInfoBackControl() {
       window.infoBtnCallBack = () => {
         this.showMessageBox({
-          content: 'Receive the money immediately after submitting the information. Do you really want to quit?',
-          confirmBtnText: 'No',
-          cancelBtnText: 'Leave',
+          content: '¡Espere, todavía queda un paso para obtener el dinero!',
+          confirmBtnText: 'OK',
+          cancelBtnText: 'Renunciar',
+          class: 'back-control',
           confirmCallback: () => {
             this.hideMessageBox();
           },
@@ -60,7 +61,6 @@ export default {
             this.hideMessageBox();
             this.goAppBack();
           },
-          iconPath: 'handy/确定退出嘛',
         });
       };
       this.setTabBar({

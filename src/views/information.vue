@@ -16,57 +16,57 @@
         <label>Last Name</label>
         <input v-model="editData.lastName" placeholder="Please enter" />
       </div> -->
-      <div class="line-item">
-        <label>Email</label>
+      <!-- <div class="line-item">
+        <label>Correo electrónico</label>
         <input v-model="editData.email" placeholder="Please enter" />
-      </div>
+      </div> -->
 
       <div class="line-item">
-        <label>Gender</label>
-        <select-item :items="ALL_ATTRS.GENDER" title="Gender" itemAttrs="gender" @choose="chooseEditData" />
+        <label>Género</label>
+        <select-item :items="ALL_ATTRS.GENDER" :defaultOpen="curOpenFields == 'gender'" title="Género" itemAttrs="gender" @choose="chooseEditData" />
       </div>
       <div class="line-item">
-        <label>Educational Qualification</label>
-        <select-item :items="ALL_ATTRS.EDUCATION" title="Educational Qualification" itemAttrs="education" @choose="chooseEditData" />
+        <label>Formación académica</label>
+        <select-item :items="ALL_ATTRS.EDUCATION" :defaultOpen="curOpenFields == 'education'" title="Formación académica" itemAttrs="education" @choose="chooseEditData" />
       </div>
       <div class="line-item">
-        <label>Occupation</label>
-        <select-item :items="ALL_ATTRS.OCCUPATION" title="Occupation" itemAttrs="occupation" @choose="chooseEditData" />
+        <label>Ocupación</label>
+        <select-item :items="ALL_ATTRS.OCCUPATION" :defaultOpen="curOpenFields == 'occupation'" title="Ocupación" itemAttrs="occupation" @choose="chooseEditData" />
       </div>
       <div class="line-item">
-        <label>Salary Range</label>
-        <select-item :items="ALL_ATTRS.SALARY" title="Salary Range" itemAttrs="monthlyIncome" @choose="chooseEditData" />
+        <label>Ingresos mensuales</label>
+        <select-item :items="ALL_ATTRS.SALARY" :defaultOpen="curOpenFields == 'monthlyIncome'" title="Ingresos mensuales" itemAttrs="monthlyIncome" @choose="chooseEditData" />
       </div>
       <div class="line-item">
-        <label>Marital Status</label>
-        <select-item :items="ALL_ATTRS.MARITAL_STATUS" title="Marital Status" itemAttrs="marital" @choose="chooseEditData" />
+        <label>Estado civil</label>
+        <select-item :items="ALL_ATTRS.MARITAL_STATUS" :defaultOpen="curOpenFields == 'marital'" title="Estado civil" itemAttrs="marital" @choose="chooseEditData" />
       </div>
       <div class="line-item">
-        <label>Loan Purpose</label>
-        <select-item :items="ALL_ATTRS.LOAN_PURPOSE" title="Loan Purpose" itemAttrs="loanPurpose" @choose="chooseEditData" />
+        <label>Finalidad del préstamo</label>
+        <select-item :items="ALL_ATTRS.LOAN_PURPOSE" :defaultOpen="curOpenFields == 'loanPurpose'" title="Finalidad del préstamo" itemAttrs="loanPurpose" @choose="chooseEditData" />
       </div>
       <div class="line-item">
-        <label>Type of Accommodation</label>
-        <select-item :items="ALL_ATTRS.ACCOMMODATION" title="Contacts Info" itemAttrs="houseType" @choose="chooseEditData" />
+        <label>Tipo de alojamiento</label>
+        <select-item :items="ALL_ATTRS.ACCOMMODATION" :defaultOpen="curOpenFields == 'houseType'" title="Tipo de alojamiento" itemAttrs="houseType" @choose="chooseEditData" />
       </div>
-      <div class="line-item">
+      <!-- <div class="line-item">
         <label>Number of Children</label>
         <select-item :items="ALL_ATTRS.CHILDREN" title="Number of Children" itemAttrs="childNum" @choose="chooseEditData" />
       </div>
       <div class="line-item">
         <label>Pay Method</label>
         <select-item :items="ALL_ATTRS.PAY_METHOD" title="Pay Method" itemAttrs="incomeWay" @choose="chooseEditData" />
-      </div>
+      </div> -->
     </div>
     <div class="submit">
-      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Submit</button>
+      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Enviar</button>
     </div>
 
     <div class="submit-success" v-show="submitSuccess">
       <span>
-        Congratulations!
+        ¡Enhorabuena!
         <br />
-        Your personal information has been verified
+        Su información personal ha sido verificada
       </span>
     </div>
   </div>
@@ -76,6 +76,7 @@
 import selectItem from '@/components/select-item';
 import CompleteStep from '@/components/complete-step.vue';
 import * as ALL_ATTRS from '@/config/typeConfig';
+const ALL_FIELD = ['gender', 'education', 'occupation', 'monthlyIncome', 'marital', 'loanPurpose', 'houseType'];
 export default {
   components: {
     selectItem,
@@ -84,7 +85,7 @@ export default {
   watch: {
     editData: {
       handler() {
-        this.canSubmit = Object.values(this.editData).length == 10;
+        this.canSubmit = Object.values(this.editData).length == 7;
       },
       deep: true,
     },
@@ -94,12 +95,13 @@ export default {
       show: true,
       transparent: false,
       fixed: true,
-      title: 'Complete information',
+      title: 'Información básica',
       backCallback: null,
     });
   },
   data() {
     return {
+      curOpenFields: 'gender',
       ALL_ATTRS: ALL_ATTRS,
       canSubmit: false, // 是否可以提交
       submitSuccess: false,
@@ -115,6 +117,12 @@ export default {
   methods: {
     chooseEditData(data) {
       this.$set(this.editData, data.attr, data.value);
+      let index = ALL_FIELD.indexOf(data.attr);
+      if (index == ALL_FIELD.length - 1) {
+        this.curOpenFields = '';
+      } else {
+        this.curOpenFields = ALL_FIELD[index + 1];
+      }
     },
     async submit() {
       if (this.saving) return;
@@ -151,7 +159,7 @@ export default {
   padding-bottom: 110px;
   background: #f6f6f6;
   padding-top: 0;
-  
+
   .submit-success {
     position: fixed;
     z-index: 222;

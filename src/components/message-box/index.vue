@@ -1,6 +1,6 @@
 <template>
   <transition>
-    <div v-show="show" class="message-container">
+    <div v-show="show" class="message-container" :class="prop.class">
       <div class="container">
         <div class="icon" v-if="prop.iconPath">
           <img :src="require('@/assets/img/' + prop.iconPath + '.png')" />
@@ -55,7 +55,6 @@ export default {
   right: 0;
   z-index: 9999;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 2;
   .container {
     width: 295px;
     background: #ffffff;
@@ -85,7 +84,7 @@ export default {
       transform: translateX(-50%);
     }
     .content {
-      margin-bottom: 32px;
+      margin-bottom: 40px;
       font-size: 16px;
       font-family: Roboto-Medium, Roboto;
       font-weight: 500;
@@ -95,8 +94,8 @@ export default {
     }
     .actions {
       .confirm {
-        background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-        box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+        background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+        box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
         border-radius: 20px;
         width: 247px;
         height: 40px;
@@ -109,13 +108,37 @@ export default {
         align-items: center;
       }
       .cancel {
+        height: 40px;
         font-size: 16px;
         font-family: Roboto-Regular, Roboto;
+        border: 1px solid #e3e3e3;
         font-weight: 400;
         color: #999999;
+        border-radius: 20px;
         line-height: 20px;
         margin-top: 16px;
         text-align: center;
+      }
+    }
+  }
+  &.back-control {
+    .container {
+      padding: 40px 16px 16px;
+      .actions {
+        display: flex;
+        flex-direction: row-reverse;
+        .confirm {
+          width: 149px;
+        }
+        .cancel {
+          width: 106px;
+          margin-top: 0;
+          margin-right: 8px;
+          line-height: 24px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }

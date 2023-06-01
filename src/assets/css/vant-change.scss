@@ -36,12 +36,13 @@
 
   .van-tabbar-item--active {
     .van-tabbar-item__text {
-      color: #fc3122;
+      color: #434af9;
     }
   }
 }
 
 .van-nav-bar {
+  z-index: 9;
   &.transparent {
     background-color: transparent;
   }
@@ -83,4 +84,26 @@
 
 .van-action-sheet__content {
   overflow-y: initial !important;
+}
+
+.van-picker-column__item--selected {
+  .pick-value {
+    > div {
+      font-size: 12px !important;
+      font-weight: 400;
+      color: #434af9 !important;
+      line-height: 16px !important;
+      text-align: center !important;
+      transform: scale(1) !important;
+      .recommend {
+        opacity: 1 !important;
+      }
+      &:first-child {
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        color: #333333 !important;
+        line-height: 20px !important;
+      }
+    }
+  }
 }

@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="submit">
-      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Submit</button>
+      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Enviar</button>
     </div>
 
     <div class="submit-success" v-show="submitSuccess">
