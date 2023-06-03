@@ -55,15 +55,6 @@ const routes = [
         },
       },
       {
-        path: 'loan-success',
-        name: 'loan-success',
-        component: () => import(/* webpackChunkName: "loan-success" */ '../views/loan-success.vue'),
-        meta: {
-          title: 'Loan Application',
-          backgroundFFF: true, // 页面白色
-        },
-      },
-      {
         path: 'loan-success-multi',
         name: 'loan-success-multi',
         component: () => import(/* webpackChunkName: "loan-success-multi" */ '../views/loan-success-multi.vue'),
@@ -78,6 +69,15 @@ const routes = [
         component: () => import(/* webpackChunkName: "loan-fail" */ '../views/loan-fail.vue'),
         meta: {
           title: 'Loan Application',
+          backgroundFFF: true, // 页面白色
+        },
+      },
+      {
+        path: 'payment-fail',
+        name: 'payment-fail',
+        component: () => import(/* webpackChunkName: "loan-fail" */ '../views/payment-fail.vue'),
+        meta: {
+          title: 'Solicitud de préstam',
           backgroundFFF: true, // 页面白色
         },
       },

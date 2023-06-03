@@ -2,11 +2,11 @@
   <div class="help-center content-area">
     <div class="hour-email">
       <div>
-        <div class="head">Working Hours</div>
-        <div class="item">Monday to Friday (9am - 7pm)</div>
+        <div class="head">Horario de trabajo</div>
+        <div class="item">De lunes a viernes (de 9.00 a 19.00 horas)</div>
       </div>
       <div>
-        <div class="head">E-mail</div>
+        <div class="head">Correo electrónico</div>
         <div class="item">{{ feedEmail }}</div>
       </div>
     </div>
@@ -65,7 +65,7 @@ export default {
       show: true,
       fixed: true,
       transparent: false,
-      title: 'Help Center',
+      title: 'Centro de ayuda',
     });
   },
   mounted() {

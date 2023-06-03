@@ -1,25 +1,25 @@
 <template>
   <div class="loan multi content-area">
     <div class="loan-tips">
-      <m-icon class="icon" type="handy/成功" :width="130" :height="130" />
+      <m-icon class="icon" type="creditomax/申请成功" :width="130" :height="130" />
       <div class="title" v-if="this.loans.length > 0">
-        Congratulations
+        Enhorabuena
         <br />
-        Your application is successful
+        ha enviado correctamente su solicitud
       </div>
-      <div v-if="!this.loans.length" class="apply" @click="check">View all orders</div>
-      <div v-else class="apply" @click="applyMulti">Increase ₹{{ totalAmount }} Amount</div>
+      <div v-if="!this.loans.length" class="apply" @click="check">Ver todos los pedidos</div>
+      <div v-else class="apply" @click="applyMulti">Aumento $ {{ totalAmount }} Importe</div>
     </div>
 
     <div class="other-loans" v-if="loans.length > 0">
-      <div class="tips">You are in our special VIP exclusive channel in view of your good qualification.</div>
-      <div class="checked-num">Already Select {{ checkedNums }} products</div>
+      <div class="tips">Usted está en nuestro canal exclusivo VIP en vista de su buena calificación.</div>
+      <div class="checked-num">Ya Seleccionar {{ checkedNums }} productos</div>
       <div v-for="(loan, index) in loans" :key="loan.id" class="loan-item" :class="{ active: !loan.unChecked }" @click="checkLoan(index)">
         <img class="icon" :src="loan.icon" />
         <div class="info">
           <div class="name">{{ loan.productName }}</div>
           <div class="value">
-            Loan Amount (₹):
+            Importe de préstamo ($):
             <span>{{ loan.minAmount }}</span>
           </div>
         </div>
@@ -32,19 +32,19 @@
 
     <div class="control-back" v-if="showBackControl">
       <div class="content">
-        <m-icon class="close" type="handy/路径" :width="20" :height="20" @click="leave" />
+        <m-icon class="close" type="creditomax/关闭白" :width="20" :height="20" @click="leave" />
         <div class="head">
-          <img :src="require('@/assets/img/handy/倒计时10s弹窗.png')" />
+          <img :src="require('@/assets/img/creditomax/倒计时10s弹窗.png')" />
         </div>
         <div class="content">
-          You are just one step away from a ₹{{ totalAmount }} credit limit, are you sure you want to give up your eligibility?
+          Estás a un paso de un límite de crédito de $ {{ totalAmount }}, ¿estás seguro de que quieres renunciar a tu derecho?
           <div class="count">
-            Auto Abort after
+            Terminación automática después de
             <span>{{ count }}S</span>
           </div>
         </div>
         <div class="action">
-          <button class="btn-default" @click="showBackControl = false">Think again</button>
+          <button class="btn-default" @click="showBackControl = false">Piénsalo otra vez</button>
         </div>
       </div>
     </div>
@@ -103,7 +103,7 @@ export default {
       totalAmount: 0,
       checkedNums: 0,
       nextStep: '',
-      showBackControl: false,
+      showBackControl: true,
       backInterval: null, // 回退倒计时
       showGoogleFeed: false,
       isSysNeedGoogle: false,
@@ -282,22 +282,22 @@ export default {
         margin-top: 80px;
 
         .count {
-          font-size: 20px;
+          font-size: 14px;
           font-family: Roboto-Bold, Roboto;
           font-weight: bold;
-          color: #000601;
+          color: #434af9;
           line-height: 24px;
           text-align: center;
           margin-top: 16px;
           span {
             width: 68px;
             height: 40px;
-            background: #ffeae8;
+            background: #ededff;
             border-radius: 20px;
             font-size: 20px;
             font-family: Roboto-Bold, Roboto;
             font-weight: bold;
-            color: #fc2214;
+            color: #434af9;
             line-height: 24px;
             display: flex;
             align-items: center;
@@ -311,8 +311,8 @@ export default {
         .btn-default {
           width: 247px;
           height: 40px;
-          background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-          box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+          background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+          box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
           border-radius: 20px;
           border: none;
           color: #fff;
@@ -367,7 +367,7 @@ export default {
 
     .tips {
       width: 327px;
-      background: #ffe48a;
+      background: #ededff;
       border-radius: 8px;
       font-size: 15px;
       font-weight: bold;
@@ -392,7 +392,6 @@ export default {
       background: #ffffff;
       border-radius: 8px;
       border: 2px solid #f3f3f3;
-
       padding: 16px;
       box-sizing: border-box;
       margin-bottom: 16px;
@@ -434,15 +433,15 @@ export default {
         right: 16px;
         width: 24px;
         height: 24px;
-        background-image: url(../assets/img/handy/未选中.png);
+        background-image: url(../assets/img/creditomax/多推未选中.png);
         background-repeat: no-repeat;
         background-size: contain;
       }
 
       &.active {
-        border: 2px solid #fc2214;
+        border: 2px solid #434af9;
         &::after {
-          background-image: url(../assets/img/handy/选中.png);
+          background-image: url(../assets/img/creditomax/多推选中.png);
         }
       }
     }
@@ -454,7 +453,7 @@ export default {
       margin: 0 auto;
     }
     .title {
-      margin-top: 40px;
+      margin-top: 16px;
       font-size: 16px;
       font-weight: 400;
       color: #333333;
@@ -464,8 +463,8 @@ export default {
     .apply {
       width: 327px;
       height: 48px;
-      background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-      box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+      background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+      box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
       border-radius: 24px;
       margin: 0 auto;
       display: flex;

@@ -1,10 +1,10 @@
 <template>
   <div class="about content-area">
     <div class="app-info">
-      <img src="../assets/img/handy/logo.png" />
+      <img src="../assets/img/creditomax/logo/512_512.png" />
       <div class="name">{{ appGlobal.appName }}</div>
       <div id="version">Version: {{ appGlobal.appVersionV }}</div>
-      <div class="desc">Hello, we are the {{ appGlobal.appName }} development team and thank you for using our product. HandyCash is an online loan platform in India that provides diverse loan services to Indian mobile internet users. Customers can apply for loans anytime, anywhere through a smart online loan process. The computer review process saves the user from worrying about the loan application.</div>
+      <div class="desc">CreditoMax es una plataforma digital de crédito personal segura y conveniente que ofrece préstamos personales a usuarios en Colombia que necesitan fondos con urgencia. Sin necesidad de aval, con aprobación instantánea y un funcionamiento sencillo, ¡todo el proceso es tan fácil como ir de compras!</div>
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
       show: true,
       fixed: true,
       transparent: false,
-      title: 'About us',
+      title: 'Sobre nosotros',
     });
   },
   mounted() {

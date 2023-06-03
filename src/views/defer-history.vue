@@ -1,25 +1,26 @@
 <template>
   <div class="defer-history content-area">
     <div class="items" v-for="(item, index) in lists" :key="index">
-      <div class="head fs-18">Deferment {{ index + 1 }}</div>
-      <div class="flex-between">
-        <span>Deferment term</span>
-        <span>{{ item.extendedTerm }} days</span>
-      </div>
+      <div class="head fs-18">Plazo de aplazamiento</div>
 
       <div class="flex-between">
-        <span>Application date</span>
+        <span>Fecha de aplicacion</span>
         <span>{{ item.approvalDate }}</span>
       </div>
 
       <div class="flex-between">
-        <span>Updated due date</span>
-        <span>{{ item.updatedDueDate }}</span>
+        <span>Importe del reembolso</span>
+        <span>${{ item.amount }}</span>
       </div>
 
       <div class="flex-between">
-        <span>Repayment amount</span>
-        <span>₹ {{ item.amount }}</span>
+        <span>Plazo de aplazamiento</span>
+        <span>{{ item.extendedTerm }} días</span>
+      </div>
+
+      <div class="flex-between">
+        <span>Fecha de vencimiento actualizada</span>
+        <span>{{ item.updatedDueDate }}</span>
       </div>
     </div>
   </div>
@@ -32,10 +33,10 @@ export default {
       show: true,
       fixed: true,
       transparent: false,
-      title: 'Deferment',
+      title: 'Historial de reembolso diferido',
     });
   },
-  
+
   data() {
     return {
       lists: [],

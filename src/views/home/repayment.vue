@@ -5,7 +5,7 @@
     </div>
     <div class="no-order" v-else-if="!loading">
       <m-icon class="icon" type="handy/订单空状态" :width="140" :height="107" />
-      <button @click="goHome">Apply Now</button>
+      <button @click="goHome">Aplicar ahora</button>
     </div>
   </div>
 </template>
@@ -73,8 +73,8 @@ export default {
   button {
     width: 327px;
     height: 50px;
-    background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-    box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+    background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+    box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
     border-radius: 25px;
     margin: 0 auto;
     display: flex;

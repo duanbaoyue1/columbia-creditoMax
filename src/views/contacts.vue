@@ -1,7 +1,7 @@
 <template>
   <div class="information content-area">
     <div class="step">
-      <complete-step :actionIndex="2"></complete-step>
+      <complete-step :actionIndex="1"></complete-step>
     </div>
 
     <div class="edit-area-wrapper" v-for="(item, index) in familyContacts">
@@ -16,7 +16,7 @@
           <label>Número de contacto</label>
           <div>
             <input id="familyPhone" v-model="item.mobile" disabled placeholder="Por favor, elija" />
-            <m-icon class="icon" type="creditomax/通讯录" :width="16" :height="16" />
+            <m-icon class="icon" type="creditomax/telephone" :width="16" :height="16" />
           </div>
         </div>
         <div class="line-item">
@@ -33,7 +33,7 @@
           <label>Friends Phone No.</label>
           <div>
             <input id="fiendPhone" v-model="item.mobile" disabled placeholder="Por favor, elija" />
-            <m-icon class="icon" type="creditomax/通讯录" :width="16" :height="16" />
+            <m-icon class="icon" type="creditomax/telephone" :width="16" :height="16" />
           </div>
         </div>
         <div class="line-item">

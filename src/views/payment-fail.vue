@@ -2,8 +2,9 @@
   <div class="loan content-area">
     <div class="loan-tips">
       <m-icon class="icon" type="creditomax/申请失败" :width="130" :height="130" />
-      <div class="title">Lo sentimos, el envío de la solicitud ha fallado, ¡esta solicitud está llena</div>
-      <div class="apply" @click="goHome">Volver a la página de inicio</div>
+      <div class="error">Error de transferencia</div>
+      <div class="title">Error en la solicitud del servicio de transferencia, inténtelo de nuevo más tarde</div>
+      <div class="apply" @click="goHome">Por favor, inténtelo de nuevo</div>
     </div>
   </div>
 </template>
@@ -28,13 +29,24 @@ export default {
     .icon {
       margin: 0 auto;
     }
-    .title {
+    .error {
       font-size: 16px;
+      font-family: Roboto-Regular, Roboto;
       font-weight: 400;
       color: #333333;
       line-height: 20px;
+      margin-top: 40px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .title {
       text-align: center;
       margin: 10px 24px 40px;
+      font-size: 14px;
+      font-family: Roboto-Regular, Roboto;
+      font-weight: 400;
+      color: #999999;
+      line-height: 20px;
     }
     .apply {
       width: 327px;

@@ -91,8 +91,8 @@
       <div class="logout" @click.stop>
         <img :src="require('@/assets/img/creditomax/个人中心推出弹窗.png')" />
         <div class="content">
-          <div>Are you sure you want to log out?</div>
-          <button @click="logout">Yes</button>
+          <div>¿Está seguro de cerrar sesión?</div>
+          <button @click="logout">Cancelar</button>
         </div>
       </div>
     </van-overlay>
@@ -182,8 +182,8 @@ export default {
       button {
         width: 247px;
         height: 40px;
-        background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-        box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+        background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+        box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
         border-radius: 20px;
         font-size: 16px;
         font-family: Roboto-Bold, Roboto;

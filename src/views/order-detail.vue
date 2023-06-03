@@ -1,50 +1,100 @@
 <template>
   <div class="order-detail content-area" :class="'order_' + detail.orderStatus">
     <div class="status-text">{{ orderStatusText }}</div>
+    <div class="order-info" v-if="detail.orderStatus >= 80">
+      <div class="flex-between" v-if="detail.orderStatus >= 80">
+        <span>Monto de reembolso</span>
+        <span class="font-bold color-orange align-end" style="line-height: 26px">
+          ₹
+          <span class="fs-24">{{ detail.estimatedRepaymentAmount }}</span>
+        </span>
+      </div>
+      <div class="flex-between" v-if="showDate">
+        <span>Fecha de vencimiento</span>
+        <span>{{ detail.expectedRepaymentTime }}</span>
+      </div>
+    </div>
 
     <div class="order-info">
       <div class="flex-between">
+        <span>ID del préstamo</span>
+        <span>{{ detail.orderNo }}</span>
+      </div>
+      <div class="flex-between">
+        <span>Monto de prestamo</span>
+        <span class="font-bold color-000">
+          $
+          <span>{{ detail.approvalAmount }}</span>
+        </span>
+      </div>
+      <div class="flex-between" v-if="detail.orderStatus >= 80">
+        <span>Importe real recibid</span>
+        <span class="font-bold color-blue">
+          $
+          <span>{{ detail.actualAmount }}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="order-info" v-if="detail.penaltyInterest > 0">
+      <div class="flex-between">
+        <span>Tarifa de servicio</span>
+        <span class="font-bold color-blue">
+          $
+          <span>{{ detail.incidentalAmount }}</span>
+        </span>
+      </div>
+      <div class="flex-between" v-if="detail.penaltyInterest > 0">
+        <span>Tarifa vencida</span>
+        <span class="font-bold color-blue">
+          $
+          <span>{{ detail.penaltyInterest }}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="order-info" v-if="detail.orderStatus >= 80">
+      <div class="flex-between" v-if="deferTimes > 0 || (detail.orderStatus >= 80 && detail.showExtension == 1)" @click="goDeferHis">
+        <span>Historial de reembolso diferido</span>
+        <div class="color-blue">
+          {{ deferTimes }} veces
+          <m-icon class="icon" type="blue-right" :width="8" :height="12" />
+        </div>
+      </div>
+    </div>
+
+    <div class="order-info">
+      <div class="flex-between">
+        <span>Forma de pago</span>
+        <span>{{ detail.bankCardName }}</span>
+      </div>
+      <div class="flex-between">
+        <span>Número de cuenta receptora</span>
+        <span>{{ detail.bankCardNo }}</span>
+      </div>
+    </div>
+
+    <div class="order-info">
+      <!-- <div class="flex-between">
         <span>Product</span>
         <span>{{ detail.productName }}</span>
       </div>
       <div class="flex-between">
         <span>Lending Company</span>
         <span>{{ detail.companyName }}</span>
-      </div>
+      </div> -->
       <div class="flex-between">
-        <span>Application Date</span>
+        <span>Fecha de aplicacion</span>
         <span>{{ detail.applyTime }}</span>
       </div>
 
       <div class="flex-between" v-if="showDate">
-        <span>Due Date</span>
+        <span>Fecha de recibo</span>
         <span>{{ detail.actualRepaymentTime || detail.expectedRepaymentTime }}</span>
       </div>
     </div>
 
-    <div class="order-info">
-      <div class="flex-between">
-        <span>Disbursal Bank</span>
-        <span>{{ detail.bankCardName }}</span>
-      </div>
-      <div class="flex-between">
-        <span>Account No.</span>
-        <span>{{ detail.bankCardNo }}</span>
-      </div>
-      <div class="flex-between">
-        <span>Loan ID</span>
-        <span>{{ detail.orderNo }}</span>
-      </div>
-    </div>
-
-    <div class="order-info">
-      <div class="flex-between">
-        <span>Loan Amount</span>
-        <span class="font-bold color-000">
-          ₹
-          <span>{{ detail.approvalAmount }}</span>
-        </span>
-      </div>
+    <!-- <div class="order-info">
       <div class="flex-between" v-if="detail.orderStatus >= 80">
         <span>Loan agreement</span>
         <div class="color-blue" @click="checkAgreement">
@@ -52,35 +102,7 @@
           <m-icon class="icon" type="blue-right" :width="8" :height="12" />
         </div>
       </div>
-      <div class="flex-between" v-if="detail.orderStatus >= 80">
-        <span>Received</span>
-        <span class="font-bold color-blue">
-          ₹
-          <span>{{ detail.actualAmount }}</span>
-        </span>
-      </div>
-      <div class="flex-between" v-if="detail.penaltyInterest > 0">
-        <span>Overdue fee</span>
-        <span class="font-bold color-blue">
-          ₹
-          <span>{{ detail.penaltyInterest }}</span>
-        </span>
-      </div>
-      <div class="flex-between" v-if="detail.orderStatus >= 80">
-        <span>Repayment</span>
-        <span class="font-bold color-orange align-end" style="line-height: 26px">
-          ₹
-          <span class="fs-24">{{ detail.estimatedRepaymentAmount }}</span>
-        </span>
-      </div>
-      <div class="flex-between" v-if="deferTimes > 0 || (detail.orderStatus >= 80 && detail.showExtension == 1)" @click="goDeferHis">
-        <span>History of deferment</span>
-        <div class="color-blue">
-          {{ deferTimes }} times
-          <m-icon class="icon" type="blue-right" :width="8" :height="12" />
-        </div>
-      </div>
-    </div>
+    </div> -->
 
     <div class="modal" v-if="showPaymentTips">
       <div class="modal-content payment-success-container">
@@ -111,13 +133,13 @@
 
     <div class="actions">
       <div class="btns" v-if="detail.orderStatus == 100 || detail.orderStatus == 101 || detail.orderStatus == 40 || detail.orderStatus == 80 || detail.orderStatus == 90">
-        <button class="btn-default" v-if="detail.orderStatus == 100 || detail.orderStatus == 101 || detail.orderStatus == 40" @click="goHome">More Loan Products</button>
+        <button class="btn-default" v-if="detail.orderStatus == 100 || detail.orderStatus == 101 || detail.orderStatus == 40" @click="goHome">Cambio de cuenta de cobro</button>
         <template v-else-if="detail.orderStatus == 80 || detail.orderStatus == 90">
-          <button class="btn-line" v-if="detail.showExtension == 1" @click="applyDefer">Apply deferment</button>
-          <button class="btn-default" @click="showPaymentTips = true">Repay Now</button>
+          <button class="btn-line" v-if="detail.showExtension == 1" @click="applyDefer">Reembolso diferido</button>
+          <button class="btn-default" @click="showPaymentTips = true">Ir a reembolsar</button>
         </template>
       </div>
-      <div class="help-center" @click="goHelpCenter">Help Center?</div>
+      <div class="help-center" @click="goHelpCenter">Centro de ayuda</div>
     </div>
   </div>
 </template>
@@ -131,25 +153,25 @@ export default {
     orderStatusText() {
       switch (this.detail.orderStatus) {
         case 20:
-          return 'Reviewing';
+          return 'Bajo revisión';
         case 21:
-          return 'Reviewing';
+          return 'Bajo revisión';
         case 30:
-          return 'Disbursing';
+          return 'Está pagando';
         case 40:
-          return 'Rejected';
+          return 'Rechazad';
         case 70:
-          return 'Disbursing';
+          return 'Está pagando';
         case 80:
-          return 'Pending Repayment';
+          return 'Pendiente de reembolso';
         case 90:
-          return 'Overdue';
+          return 'Atrasado';
         case 100:
-          return 'Repayment Successful';
+          return 'Completado';
         case 101:
-          return 'Repayment Successful';
+          return 'Completado';
         default:
-          return 'Reviewing';
+          return 'Bajo revisión';
       }
     },
   },
@@ -158,7 +180,8 @@ export default {
       show: true,
       transparent: true,
       fixed: true,
-      title: 'Order Details',
+      black: false,
+      title: 'Detalles del pedido',
       backCallback: () => {
         this.goAppBack();
       },
@@ -507,7 +530,7 @@ export default {
     .help-center {
       font-size: 14px;
       font-weight: 500;
-      color: #fc2214;
+      color: #434af9;
       line-height: 18px;
       text-align: center;
       text-decoration: underline;

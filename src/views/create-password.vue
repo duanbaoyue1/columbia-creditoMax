@@ -2,18 +2,18 @@
   <div class="password content-area">
     <div class="edit-area">
       <div class="line-item">
-        <div class="label">Phone Number</div>
+        <div class="label">Número de teléfono</div>
         <input v-model="userInfo.mobile" disabled />
       </div>
       <div class="line-item">
-        <div class="label">New Password</div>
-        <input v-model="editData.passwd" placeholder="Set new password" :type="passwordType" />
+        <div class="label">Nueva contraseña</div>
+        <input v-model="editData.passwd" placeholder="Introduzca una nueva contraseña" :type="passwordType" />
         <m-icon class="eye" :type="passwordType != 'text' ? 'password/eye-hide' : 'password/eye-show'" :width="32" :height="20" @click="togglePassword('passwordType')" />
       </div>
 
       <div class="line-item">
-        <div class="label">Confirm Password</div>
-        <input v-model="editData.passwordAgain" placeholder="Set new password again" :type="passwordAgainType" />
+        <div class="label">Confirmar contraseña</div>
+        <input v-model="editData.passwordAgain" placeholder="Introduzca de nuevo la contraseña" :type="passwordAgainType" />
         <m-icon class="eye" :type="passwordAgainType != 'text' ? 'password/eye-hide' : 'password/eye-show'" :width="32" :height="20" @click="togglePassword('passwordAgainType')" />
       </div>
     </div>
@@ -47,7 +47,7 @@ export default {
       show: true,
       fixed: true,
       transparent: false,
-      title: 'Create password',
+      title: 'Crear una contraseña',
     });
   },
   data() {

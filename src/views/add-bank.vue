@@ -8,7 +8,7 @@
     <div class="edit-area">
       <div class="line-item select-bank" @click="openSelect = true">
         <div class="label">Forma de pago</div>
-        <input v-model="editData.accountNumberConfirm" disabled placeholder="Por favor, elija" />
+        <input v-model="selectBank.text" disabled placeholder="Por favor, elija" />
         <m-icon class="right" type="creditomax/黑下" :width="14" :height="12" />
       </div>
       <!-- <div class="line-item">
@@ -24,7 +24,7 @@
       </div>
       <div class="line-item">
         <div class="label">Nombre del beneficia</div>
-        <input v-model="userInfo.panName" disabled placeholder="Please enter your name" />
+        <input v-model="editData.userName" placeholder="Please enter your name" />
       </div>
     </div>
     <div class="tips">
@@ -36,16 +36,11 @@
       </div>
     </div>
     <div class="submit">
-      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Enviar</button>
+      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="showConfirmModal = true">Enviar</button>
     </div>
-    <!-- <van-action-sheet v-model="showIfsc" title="Select Your IFSC" close-on-click-action>
-      <div class="pop-content">
-        <ifsc-select @complete="completeIfsc" />
-      </div>
-    </van-action-sheet> -->
 
-    <van-action-sheet v-model="openSelect" title="Forma de pago" close-on-click-action>
-      <van-picker :columns="banks" @confirm="onConfirm" @cancel="onCancel" :item-height="75" @change="onChange">
+    <van-action-sheet class="bank-picker-sheet" v-model="openSelect" title="Elegir banco" close-on-click-action>
+      <van-picker ref="bankPicker" class="bank-picker" :columns="banks" :item-height="75">
         <template #option="PickerOption">
           <div class="pick-value">
             <div>
@@ -56,17 +51,29 @@
           </div>
         </template>
       </van-picker>
+      <div class="submit">
+        <button class="bottom-submit-btn" @click="confirmSelect">Enviar</button>
+      </div>
     </van-action-sheet>
 
-    <!-- <van-action-sheet v-model="openSelect" title="Forma de pago" close-on-click-action>
-      <div class="pop-content">
-        <div class="items">
-          <div class="item" v-for="item in ALL_ATTRS.MARITAL_STATUS" :class="{ active: item.value == value }" @click="chooseValue(item)">
-            <span>{{ item.label }}</span>
-          </div>
+    <van-popup v-model="showConfirmModal">
+      <div class="confirm-data">
+        <header>Confirmar la información de la cuenta receptora</header>
+        <div class="content">
+          <div class="label">Forma de pago</div>
+          <div class="value">{{ selectBank.text }}</div>
+          <div class="label">Número de cuenta receptora</div>
+          <div class="value">{{ editData.accountNumber }}</div>
+          <div class="label">Nombre del beneficiario</div>
+          <div class="value">{{ editData.userName }}</div>
         </div>
+        <div class="actions">
+          <button class="cancel" @click="showConfirmModal = false">Cancelar</button>
+          <button @click="submit">Ok</button>
+        </div>
+        <div class="tips">Asegúrese de que la información es correcta, No se puede cambiar después de la confirmación.</div>
       </div>
-    </van-action-sheet> -->
+    </van-popup>
   </div>
 </template>
 
@@ -83,7 +90,7 @@ export default {
   watch: {
     editData: {
       handler() {
-        this.canSubmit = Object.values(this.editData).length >= 3;
+        this.canSubmit = this.selectBank.value && this.editData.accountNumber && this.editData.userName;
       },
       deep: true,
     },
@@ -95,6 +102,9 @@ export default {
       fixed: true,
       title: 'Añadir método de pag',
     });
+    setTimeout(() => {
+      this.editData.userName = this.userInfo.panName;
+    }, 1000);
   },
   data() {
     return {
@@ -102,59 +112,15 @@ export default {
       openSelect: false,
       canSubmit: false, // 是否可以提交
       submitSuccess: false,
-      editData: {
-        ifsc: '',
+      selectBank: {
+        text: '',
+        value: '',
       },
-      banks: [
-        { text: 'Nequi', value: '18', recommend: true, desc: 'Llegada en 24 horas' },
-        { text: 'Bancolombia', value: '0', desc: 'Llegada en 24 horas' },
-        { text: 'Daviplata', value: '19' },
-        { text: 'Davivienda', value: '2' },
-        { text: 'Banco de Bogota', value: '1' },
-        { text: 'BBVA', value: '3' },
-        { text: 'Banco de Occidente', value: '4' },
-        { text: 'Colpatria', value: '5' },
-        { text: 'Banco popular', value: '6' },
-        { text: 'Banco Agrario', value: '8' },
-        { text: 'Citibank', value: '11' },
-        { text: 'Banco AV Villas', value: '12' },
-        { text: 'Banco Pichincha', value: '14' },
-        { text: 'Bancoomeva', value: '15' },
-        { text: 'Banco Santander de Negocios Colombia S.A.', value: '16' },
-        { text: 'Banco Falabella', value: '17' },
-        { text: 'Banco Itaú', value: '21' },
-        { text: 'BANCO GNB SUDAMERIS', value: '1012' },
-        { text: 'BANCOLDEX S.A.s', value: '1031' },
-        { text: 'BANCO CAJA SOCIAL', value: '1032' },
-        { text: 'BANCO MUNDO MUJER', value: '1047' },
-        { text: 'BANCO W S.A.', value: '1053' },
-        { text: 'BANCAMIA S.A.', value: '1059' },
-        { text: 'BANCO FINANDINA S.A.', value: '1063' },
-        { text: 'BANCO COOPERATIVO COOPCENTRAL', value: '1066' },
-        { text: 'MIBANCO S.A.', value: '1067' },
-        { text: 'BANCO SERFINANZA', value: '1069' },
-        { text: 'LULO BANK', value: '1070' },
-        { text: 'BANCO J.P. MORGAN COLOMBIA S.A.', value: '1071' },
-        { text: 'ASOPAGOS S.A.S', value: '1086' },
-        { text: 'DALE', value: '1097' },
-        { text: 'FINANCIERA JURISCOOP S.A. COMPAÑIA DEFINANCIAMIENTO', value: '1121' },
-        { text: 'RAPPIPAY DAVIPLATA', value: '1151' },
-        { text: 'CFA COOPERATIVA FINANCIERA', value: '1283' },
-        { text: 'JFK COOPERATIVA FINANCIERA', value: '1286' },
-        { text: 'COTRAFA', value: '1289' },
-        { text: 'COOFINEP COOPERATIVA FINANCIERA', value: '1291' },
-        { text: 'CONFIAR COOPERATIVA FINANCIERA', value: '1292' },
-        { text: 'BANCO UNION S.A', value: '1303' },
-        { text: 'COLTEFINANCIERA', value: '1370' },
-        { text: 'BANCO CREDIFINANCIERA SA.', value: '1558' },
-        { text: 'IRIS', value: '1637' },
-        { text: 'MOVII S.A.', value: '1801' },
-        { text: 'DING TECNIPAGOS SA', value: '1802' },
-        { text: 'UALA', value: '1804' },
-        { text: 'BANCO BTG PACTUAL', value: '1805' },
-        { text: 'RAPPIPAY', value: '1811' },
-        { text: 'ITAU antes Corpbanca', value: '5600065' },
-      ],
+      editData: {
+        userName: '',
+      },
+      showConfirmModal: true,
+      banks: ALL_ATTRS.BANKS,
       saving: false,
     };
   },
@@ -165,33 +131,17 @@ export default {
   },
 
   methods: {
-    onConfirm() {},
-    onChange(picker, value, index) {
-      console.log(value, index);
-    },
-    onCancel() {},
-    chooseValue() {},
-    completeIfsc(data) {
-      this.editData.ifsc = data.choosedIfsc;
-      this.showIfsc = false;
+    confirmSelect() {
+      this.selectBank = this.$refs.bankPicker.getValues()[0];
+      this.openSelect = false;
     },
     async submit() {
       if (this.saving) return;
       this.saving = true;
       try {
         this.eventTracker('bank_add_submit');
-        if (this.editData.accountNumber != this.editData.accountNumberConfirm) {
-          this.$toast('Account number is not consistent');
-          return;
-        }
         let saveData = { ...this.editData };
         saveData.name = this.userInfo.panName;
-        delete saveData.accountNumberConfirm;
-
-        if (saveData.ifsc.length != 11) {
-          this.$toast('Please enter correct IFSC');
-          return;
-        }
         if (saveData.accountNumber.length < 7 || saveData.accountNumber.length > 22) {
           this.$toast('Please enter correct account number');
           return;
@@ -217,6 +167,94 @@ export default {
   padding: 10px 20px;
   padding-bottom: 110px;
 
+  .bank-picker-sheet {
+    height: 560px;
+  }
+  .bank-picker {
+    position: absolute;
+    bottom: 88px;
+    left: 0;
+    right: 0;
+    top: 0;
+    .van-picker__columns {
+      height: 420px !important;
+    }
+  }
+
+  .confirm-data {
+    width: 300px;
+    height: 476px;
+    background: #ffffff;
+    border-radius: 8px;
+    header {
+      font-size: 16px;
+      font-weight: 900;
+      color: #333333;
+      line-height: 24px;
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      border-bottom: 4px solid #f6f6f6;
+      padding: 0 50px;
+    }
+    .content {
+      padding: 24px;
+      .label {
+        font-size: 14px;
+        font-weight: 400;
+        color: #333333;
+        line-height: 18px;
+        margin-bottom: 8px;
+      }
+      .value {
+        width: 247px;
+        height: 26px;
+        box-sizing: border-box;
+        background: #f6f6f6;
+        border-radius: 4px;
+        padding: 4px 16px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #333333;
+        line-height: 18px;
+        margin-bottom: 16px;
+      }
+    }
+    .actions {
+      margin: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      button {
+        width: 159px;
+        height: 48px;
+        background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+        box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
+        border-radius: 25px;
+        border: 1px solid #434af9;
+        font-size: 18px;
+        font-weight: 900;
+        color: #ffffff;
+        line-height: 24px;
+        &.cancel {
+          width: 96px;
+          border: 1px solid #999999;
+          color: #999;
+          background: transparent;
+          box-shadow: none;
+        }
+      }
+    }
+    .tips {
+      font-size: 12px;
+      font-family: Roboto-Regular, Roboto;
+      font-weight: 400;
+      color: #ff4b3f;
+      line-height: 18px;
+      margin: 16px 12px 0;
+    }
+  }
+
   .submit {
     position: fixed;
     bottom: 0;
@@ -233,7 +271,7 @@ export default {
       line-height: 16px;
       text-align: center;
       transform: scale(0.9);
-      transition: all .3s;
+      transition: all 0.3s;
       &:first-child {
         font-size: 14px;
         font-family: Roboto-Regular, Roboto;

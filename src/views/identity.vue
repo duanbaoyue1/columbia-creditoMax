@@ -1,7 +1,7 @@
 <template>
   <div class="information content-area">
     <div class="step">
-      <complete-step :actionIndex="0"></complete-step>
+      <complete-step :actionIndex="2"></complete-step>
     </div>
     <div class="edit-area">
       <div class="head-top">Subir C.C.ID</div>

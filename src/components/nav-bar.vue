@@ -1,7 +1,8 @@
 <template>
-  <van-nav-bar :class="{'transparent': tabBar.transparent}" :fixed="tabBar.fixed" :title="tabBar.title" @click-left="onBack">
+  <van-nav-bar :class="{ transparent: tabBar.transparent, 'title-trans': !tabBar.black }" :fixed="tabBar.fixed" :title="tabBar.title" @click-left="onBack">
     <template #left>
-      <m-icon type="handy/返回" :width="16" :height="16" />
+      <m-icon class="left" v-if="!tabBar.black" type="creditomax/返回白" :width="16" :height="16" />
+      <m-icon class="left" v-else type="creditomax/返回" :width="16" :height="16" />
     </template>
   </van-nav-bar>
 </template>
@@ -11,16 +12,19 @@ export default {
   mounted() {},
   methods: {
     onBack() {
-      console.log('onclick back');
       if (this.tabBar.backCallback) {
-        console.log('on tabBar.backCallback');
         this.tabBar.backCallback();
         return;
       } else {
-        console.log('on goAppBack');
         this.goAppBack();
       }
     },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.left {
+  margin-left: 5px;
+}
+</style>

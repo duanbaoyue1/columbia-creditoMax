@@ -8,11 +8,11 @@
     padding: 0;
     height: 22px;
     line-height: 1;
-    top: 24px;
+    top: 29px;
     right: 24px;
   }
   .van-action-sheet__header {
-    margin-top: 60px;
+    margin-top: 24px;
     line-height: 1;
     font-size: 20px;
     font-family: Roboto-Medium, Roboto;
@@ -20,6 +20,14 @@
     color: #000000;
     line-height: 30px;
   }
+}
+
+.van-action-sheet__header {
+  z-index: 9;
+}
+
+.van-action-sheet__content {
+  position: relative;
 }
 
 .van-tabbar {
@@ -45,6 +53,11 @@
   z-index: 9;
   &.transparent {
     background-color: transparent;
+  }
+  &.title-trans {
+    .van-nav-bar__title {
+      color: #fff;
+    }
   }
   .van-nav-bar__content {
     height: 52px;

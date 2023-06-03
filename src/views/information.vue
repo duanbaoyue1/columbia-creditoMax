@@ -1,7 +1,7 @@
 <template>
   <div class="information content-area">
     <div class="step">
-      <complete-step :actionIndex="1"></complete-step>
+      <complete-step :actionIndex="0"></complete-step>
     </div>
     <div class="edit-area">
       <!-- <div class="line-item">
@@ -20,10 +20,9 @@
         <label>Correo electrónico</label>
         <input v-model="editData.email" placeholder="Please enter" />
       </div> -->
-
       <div class="line-item">
-        <label>Género</label>
-        <select-item :items="ALL_ATTRS.GENDER" :defaultOpen="curOpenFields == 'gender'" title="Género" itemAttrs="gender" @choose="chooseEditData" />
+        <label>Estado civil</label>
+        <select-item :items="ALL_ATTRS.MARITAL_STATUS" :defaultOpen="curOpenFields == 'marital'" title="Estado civil" itemAttrs="marital" @choose="chooseEditData" />
       </div>
       <div class="line-item">
         <label>Formación académica</label>
@@ -38,13 +37,13 @@
         <select-item :items="ALL_ATTRS.SALARY" :defaultOpen="curOpenFields == 'monthlyIncome'" title="Ingresos mensuales" itemAttrs="monthlyIncome" @choose="chooseEditData" />
       </div>
       <div class="line-item">
-        <label>Estado civil</label>
-        <select-item :items="ALL_ATTRS.MARITAL_STATUS" :defaultOpen="curOpenFields == 'marital'" title="Estado civil" itemAttrs="marital" @choose="chooseEditData" />
-      </div>
-      <div class="line-item">
         <label>Finalidad del préstamo</label>
         <select-item :items="ALL_ATTRS.LOAN_PURPOSE" :defaultOpen="curOpenFields == 'loanPurpose'" title="Finalidad del préstamo" itemAttrs="loanPurpose" @choose="chooseEditData" />
       </div>
+      <!-- <div class="line-item">
+        <label>Género</label>
+        <select-item :items="ALL_ATTRS.GENDER" :defaultOpen="curOpenFields == 'gender'" title="Género" itemAttrs="gender" @choose="chooseEditData" />
+      </div> -->
       <div class="line-item">
         <label>Tipo de alojamiento</label>
         <select-item :items="ALL_ATTRS.ACCOMMODATION" :defaultOpen="curOpenFields == 'houseType'" title="Tipo de alojamiento" itemAttrs="houseType" @choose="chooseEditData" />
@@ -76,7 +75,7 @@
 import selectItem from '@/components/select-item';
 import CompleteStep from '@/components/complete-step.vue';
 import * as ALL_ATTRS from '@/config/typeConfig';
-const ALL_FIELD = ['gender', 'education', 'occupation', 'monthlyIncome', 'marital', 'loanPurpose', 'houseType'];
+const ALL_FIELD = ['marital', 'education', 'occupation', 'monthlyIncome', 'loanPurpose', 'houseType'];
 export default {
   components: {
     selectItem,
@@ -85,7 +84,7 @@ export default {
   watch: {
     editData: {
       handler() {
-        this.canSubmit = Object.values(this.editData).length == 7;
+        this.canSubmit = Object.values(this.editData).length == ALL_FIELD.length;
       },
       deep: true,
     },
@@ -101,7 +100,7 @@ export default {
   },
   data() {
     return {
-      curOpenFields: 'gender',
+      curOpenFields: '',
       ALL_ATTRS: ALL_ATTRS,
       canSubmit: false, // 是否可以提交
       submitSuccess: false,
@@ -111,6 +110,9 @@ export default {
     };
   },
   mounted() {
+    setTimeout(() => {
+      this.curOpenFields = ALL_FIELD[0];
+    }, 500);
     this.eventTracker('basic_access');
     this.initInfoBackControl();
   },
@@ -130,10 +132,10 @@ export default {
       try {
         this.eventTracker('basic_submit');
         let saveData = { ...this.editData };
-        if (!this.validateEmail(saveData.email)) {
-          this.$toast('Please enter the correct email address.');
-          return;
-        }
+        // if (!this.validateEmail(saveData.email)) {
+        //   this.$toast('Please enter the correct email address.');
+        //   return;
+        // }
         let data = await this.$http.post(`/api/user/basicInfo/save`, saveData);
         if (data.returnCode == 2000) {
           this.eventTracker('basic_submit_success');

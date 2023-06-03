@@ -32,6 +32,7 @@ export default new Vuex.Store({
       title: '',
       transparent: false,
       fixed: false,
+      black: true, // 标题白色还是黑色
       backCallback: null,
     },
     repaymentNum: 0,
@@ -75,6 +76,9 @@ export default new Vuex.Store({
     setTabBar(state, data) {
       if(!data.backCallback) {
         data.backCallback = null;
+      }
+      if(typeof data.black == 'undefined') {
+        data.black = true;
       }
       state.tabBar = {
         ...state.tabBar,

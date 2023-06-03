@@ -1,13 +1,13 @@
 <template>
   <div class="settings content-area">
-    <div v-if="!hasPassword" class="btn" @click="$router.push({ name: 'create-password' })">Create password</div>
-    <div v-else class="btn" @click="$router.push({ name: 'retrieve-password' })">Change Login Password</div>
+    <div v-if="!hasPassword" class="btn" @click="$router.push({ name: 'create-password' })">Crear una contraseña</div>
+    <div v-else class="btn" @click="$router.push({ name: 'retrieve-password' })">Cambiar contraseña</div>
     <div class="btn" @click="showLegal = true">Legal</div>
 
     <div class="legal-modal" v-if="showLegal">
       <div class="content">
-        <div @click="goTerms">Terms of Use</div>
-        <div @click="goPrivacy">Privacy Policy</div>
+        <div @click="goTerms">Condiciones del servicio</div>
+        <div @click="goPrivacy">Política de privacidad</div>
         <m-icon class="close" type="message/close" :width="24" :height="24" @click="showLegal = false" />
       </div>
     </div>
@@ -21,7 +21,7 @@ export default {
       show: true,
       fixed: true,
       transparent: false,
-      title: 'Set up',
+      title: 'Configuración',
     });
   },
   data() {
@@ -49,7 +49,7 @@ export default {
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 2;
+    z-index: 999;
     .content {
       position: absolute;
       top: 50%;

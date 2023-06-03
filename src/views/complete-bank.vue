@@ -16,7 +16,7 @@
               <div class="number">{{ card.accountNumber | phoneHideFilter }}</div>
             </div>
           </div>
-          <m-icon class="choose" :type="chooseBankId == card.id ? 'handy/选中' : 'handy/形状'" :width="18" :height="18" />
+          <m-icon class="choose" :type="chooseBankId == card.id ? 'creditomax/登陆页选中' : 'creditomax/登陆页未选中'" :width="18" :height="18" />
         </div>
       </div>
       <div v-else>
@@ -24,7 +24,7 @@
       </div>
       <div class="add-card" @click="goAddCard">
         <m-icon class="icon" type="handy/添加" :width="14" :height="14" />
-        Add New Accounts
+        Agregar un nuevo método
       </div>
     </div>
 
@@ -55,7 +55,7 @@ export default {
       show: true,
       transparent: false,
       fixed: true,
-      title: 'Complete information',
+      title: 'Tarjeta bancaria',
       backCallback: null,
     });
   },
@@ -200,7 +200,7 @@ export default {
       margin: 44px auto 40px;
     }
     .add-card {
-      width: 210px;
+      width: 255px;
       height: 40px;
       font-size: 16px;
       font-weight: 500;
@@ -212,8 +212,8 @@ export default {
       padding: 0 28px;
       justify-content: space-between;
       box-sizing: border-box;
-      background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-      box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+      background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+      box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
       border-radius: 20px;
       white-space: nowrap;
       img {
