@@ -1,5 +1,5 @@
 <template>
-  <div class="add-bank content-area">
+  <div class="add-bank content-area" :class="{ 'from-order': from == 'order' }">
     <template v-if="from != 'mine'">
       <div class="step">
         <complete-step :actionIndex="3"></complete-step>
@@ -11,13 +11,6 @@
         <input v-model="selectBank.text" disabled placeholder="Por favor, elija" />
         <m-icon class="right" type="creditomax/黑下" :width="14" :height="12" />
       </div>
-      <!-- <div class="line-item">
-        <div class="label">
-          <span>IFSC Code</span>
-          <span class="color-red" @click="showIfsc = true">Dont't remember your IFSC?</span>
-        </div>
-        <input v-model="editData.ifsc" autocomplete="off" maxlength="11" onKeyUp="value=value.replace(/[\W]/g,'')" placeholder="Please enter IFSC code" />
-      </div> -->
       <div class="line-item">
         <div class="label">Número de cuenta rec</div>
         <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="20" v-model="editData.accountNumber" placeholder="Por favor escribe" />
@@ -119,7 +112,8 @@ export default {
       editData: {
         userName: '',
       },
-      showConfirmModal: true,
+      from: this.$route.query.from,
+      showConfirmModal: false,
       banks: ALL_ATTRS.BANKS,
       saving: false,
     };
@@ -166,6 +160,16 @@ export default {
 .add-bank {
   padding: 10px 20px;
   padding-bottom: 110px;
+
+  &.from-order {
+    .edit-area {
+      margin: 24px 0;
+      background: #fff;
+      border-radius: 8px;
+      padding: 0px 16px;
+      padding-bottom: 16px;
+    }
+  }
 
   .bank-picker-sheet {
     height: 560px;
@@ -372,7 +376,7 @@ export default {
     }
     .line-item {
       font-size: 14px;
-      margin-top: 23px;
+      padding-top: 23px;
       &.select-bank {
         position: relative;
         .right {

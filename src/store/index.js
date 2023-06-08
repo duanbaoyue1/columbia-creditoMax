@@ -11,8 +11,9 @@ export default new Vuex.Store({
     appGlobal: {
       // https://pro.easy--money.com
       // apiHost: 'http://test.easy--money.com',
-      apiHost: 'http://test.fin-handycash.com',
-      appName: 'handyCash',
+      // apiHost: 'http://test.fin-handycash.com',
+      apiHost: 'http://columbia-loan-test.6688-epoch.com',
+      appName: 'creditoMax',
       token: '63fdfd55e4b0f6a603fac657',
       debug: '', // 是否调试模式
       mobileType: '2', // 手机类型

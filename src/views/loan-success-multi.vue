@@ -202,7 +202,7 @@ export default {
           syncRes = await this.startSyncData();
         } catch (error) {
           this.hideLoading();
-          this.$toast('Your message verification failed, please wait a minute and try again');
+          this.$toast('Carga fallida, inténtelo más tarde');
           return;
         }
         if (syncRes.success) {

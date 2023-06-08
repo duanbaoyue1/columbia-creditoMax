@@ -1,29 +1,20 @@
 <template>
   <div class="complete-bank content-area">
-    <template v-if="from != 'mine'">
-      <div class="step">
-        <complete-step :actionIndex="3"></complete-step>
-      </div>
-    </template>
-
     <div class="cards">
-      <div v-if="cards.length" class="cards-list">
+      <div class="cards-list">
         <div v-for="card in cards" class="cards-item" :key="card.id" @click="chooseBank(card)">
           <div class="card-name">
-            <m-icon class="bank" type="bank/bank" :width="24" :height="24" />
             <div>
               <div class="name">{{ card.bank }}</div>
               <div class="number">{{ card.accountNumber | phoneHideFilter }}</div>
             </div>
           </div>
-          <m-icon class="choose" :type="chooseBankId == card.id ? 'creditomax/登陆页选中' : 'creditomax/登陆页未选中'" :width="18" :height="18" />
+          <m-icon class="choose" :type="chooseBankId == card.id ? 'creditomax/多推选中' : 'creditomax/多推未选中'" :width="24" :height="24" />
+          <span class="default-tips" v-if="chooseBankId == card.id">Tarjeta bancaria por defecto</span>
         </div>
       </div>
-      <div v-else>
-        <m-icon class="none" type="handy/银行卡空状态" :width="140" :height="107" />
-      </div>
       <div class="add-card" @click="goAddCard">
-        <m-icon class="icon" type="handy/添加" :width="14" :height="14" />
+        <m-icon class="icon" type="creditomax/添加" :width="14" :height="14" />
         Agregar un nuevo método
       </div>
     </div>
@@ -194,6 +185,7 @@ export default {
 
   .cards {
     background: #fff;
+    margin-top: 24px;
     padding: 16px 16px 24px;
     border-radius: 8px;
     .none {
@@ -251,6 +243,25 @@ export default {
       }
       &:nth-child(4n + 4) {
         background-image: url('../assets/img/handy/银行卡4.png');
+      }
+
+      .choose {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+      }
+      .default-tips {
+        font-size: 10px;
+        font-family: Roboto-Black, Roboto;
+        font-weight: 900;
+        color: #333333;
+        line-height: 1;
+        background: #ffdc62;
+        border-radius: 100px 0px 0px 100px;
+        position: absolute;
+        padding: 7px 8px;
+        bottom: 8px;
+        right: 0;
       }
       &:last-child {
         margin-bottom: 0;

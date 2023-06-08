@@ -1,207 +1,146 @@
 <template>
   <div class="h5-content content-area">
-    <div class="title">Terms of Service</div>
+    <div class="title">Condiciones del servicio</div>
+    El presente acuerdo describe las condiciones generales de uso y privacidad ("Condiciones Generales") aplicables al uso de los servicios prestados por CreditoMax ("Servicios y Contenidos"). A los efectos del presente documento, se entenderá por Usuario a toda persona que acceda, navegue, descargue y se registre en el Sitio Web y/o en la Aplicación para acceder a los servicios financieros CreditoMax. El Usuario deberá leer, entender y aceptar todas las condiciones establecidas en los presentes Términos y Condiciones Generales, la Declaración de Privacidad y demás documentos incorporados por referencia en los mismos antes de registrarse como cliente en el sitio web y/o aplicación CreditoMax. creditoMax se regirá por las leyes vigentes en la República de Colombia.
+    <br />
+    <br />
+    <br />
+    <br />
+    Los productos y servicios financieros de CreditoMax están dirigidos únicamente a personas naturales colombianas con capacidad legal contractual, excluyendo expresamente a menores de edad, personas declaradas en estado de interdicción, personas sujetas a otro contrato, convenio o relación comercial. Esto incluye, pero no se limita a, usuarios que hayan sido prohibidos permanente o temporalmente por CreditoMax debido a su comportamiento crediticio. Por lo tanto, al acceder al sitio web y/o utilizar la aplicación CreditoMax, el usuario declara y garantiza que ha alcanzado la mayoría de edad de conformidad con la legislación de la República de Colombia.
+    <br />
+    <br />
+    <br />
+    <br />
+    1. Reconocimiento y Términos del Acuerdo
+    <br />
+    <br />
+    Al completar su registro, usted reconoce que ha leído, entendido y acordado aceptar los términos de este Acuerdo en su totalidad y voluntariamente firma este Acuerdo, que tendrá efecto legal entre usted y la Plataforma.
+    <br />
+    <br />
+    El presente Acuerdo incluye todos los términos del mismo y todas las normas y avisos que la Plataforma haya emitido o pueda emitir en el futuro. Todas las normas y avisos forman parte integrante de este acuerdo y tienen el mismo efecto legal que el cuerpo de este acuerdo.
+    <br />
+    <br />
+    <br />
+    <br />
+    2. Descripción del producto
+    <br />
+    <br />
+    Se requiere que el usuario sea mayor de edad, tenga nacionalidad colombiana, posea una cuenta bancaria personal, diligencie un formulario de solicitud de producto con información de datos reales y verificables, autorice el acceso a su historial crediticio y apruebe el análisis de riesgo que realizamos.
+    <br />
+    <br />
+    <br />
+    <br />
+    Todos nuestros productos están denominados en pesos colombianos, moneda de curso legal en Colombia, y serán cotizados únicamente en la República de Colombia.
+    <br />
+    <br />
+    <br />
+    <br />
+    3. Información facilitada
+    <br />
+    <br />
+    Debe proporcionar información veraz, válida y completa cuando presente su solicitud en la Plataforma. Si la información que facilita es falsa, inexacta, incompleta o no refleja la situación real actual, la Plataforma se reserva el derecho a rechazar su solicitud y a denegarle el uso de los servicios de la Plataforma de cualquier forma, ahora o en el futuro, y no le dará ninguna compensación ni le reembolsará ninguna tasa de servicio cobrada.
+    <br />
+    <br />
+    <br />
+    <br />
+    Usted debe actualizar su información de manera oportuna para que sea verdadera, precisa, completa y refleje la situación actual, de lo contrario no podrá ejercer plena y efectivamente sus derechos y se le considerará responsable, y la Plataforma tiene derecho a cancelar sus calificaciones y reseñas y a no compensar ni reembolsar las tarifas de servicio cobradas.
+    <br />
+    <br />
+    <br />
+    <br />
+    Si suplantas, robas o utilizas de cualquier otro modo la información de otra persona de forma no autorizada para registrarte, serás responsable de todas las consecuencias derivadas de ello. Si la Plataforma descubre o sospecha que usted ha utilizado la información de otra persona para registrarse sin autorización, podrá tomar medidas como suspender o poner fin a los servicios que se le prestan y cancelar inmediatamente su cuenta. No se aceptará ninguna responsabilidad.
+    <br />
+    <br />
+    <br />
+    <br />
+    Cuando usted se registra en la Plataforma, se considera que acepta que la Plataforma envíe mensajes SMS relacionados con los servicios de la Plataforma al número de teléfono móvil que ha introducido durante el registro.
+    <br />
+    <br />
+    <br />
+    <br />
 
-    This document is an electronic record for the purposes of the Information Technology Act 2000 and its applicable rules and the amendments to electronic records in the various regulations as amended by the Information Technology Act 2000. This electronic record is generated by a computer system and does not require any physical or digital signature.
+    4. Seguridad de la cuenta
     <br />
     <br />
-    These terms and conditions ("Terms") apply to the use of its smartphone application ("App") named "HandyCash" (the App and the Website are hereinafter collectively referred to as the "Platform") and to the All information, advice and/or services made available to you through the Customer Support (“CS”) services provided by HandyCash via the , Apps, or through the Customer Support (“CS”) services provided by HandyCash by telephone or any form of electronic communication, including communications via any social media. The term "you" refers to the user of our services through the website, application and CS ("User").
+    Debe mantener la seguridad de su cuenta y contraseña para garantizar la confidencialidad y seguridad de su cuenta. No debe transferir ni ceder su cuenta a terceros.
     <br />
     <br />
-    These Terms set forth the terms and conditions applicable to Subscriber's use of this website and all subsites under this website (collectively, the "Site"). These Terms are governed by the provisions, rules, regulations, guidelines and instructions made thereunder of the applicable laws of India, including but not limited to:
     <br />
     <br />
-    Indian Contract Act, 1872;
+
+    Debe proporcionar información de registro completa y correcta cuando solicite su contraseña por olvido o robo.
     <br />
     <br />
-    Information Technology Act, 2000;
     <br />
     <br />
-    Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Information) Rules, 2011; and
+    Si descubre que otra persona ha utilizado fraudulentamente o robado su cuenta y contraseña, debe notificarlo inmediatamente a la Plataforma y solicitar la suspensión de los servicios correspondientes. Al mismo tiempo, usted entiende que la Plataforma tardará un tiempo razonable en actuar en respuesta a su solicitud y que usted será responsable del uso del Servicio, en su totalidad o en parte, por personas no autorizadas o no autorizadas hasta que la Plataforma tome medidas efectivas. El uso del Servicio con fines no autorizados no hará responsable a la Plataforma de las instrucciones ejecutadas y/o de sus pérdidas.
     <br />
     <br />
-    Information Technology (Intermediary Guidelines) Rules, 2011.
     <br />
     <br />
-    These Terms, together with the Company's Privacy Policy as amended and updated from time to time, constitute between the User and the Company with respect to the access and use of the Website/App/CS and Services (defined below), superseding any prior written or oral contract relating to the same subject matter herein.
+    La Plataforma y sus entidades legalmente autorizadas se reservan el derecho de perseguir la responsabilidad legal del usuario real por el uso fraudulento o robo de la cuenta y contraseña de otra persona.
     <br />
     <br />
-    If you do not accept these terms, please do not use the HandyCash website, application, CS or services.
     <br />
     <br />
+    La Plataforma no solicitará su número de cuenta, contraseña y otros datos de seguridad por teléfono, SMS, correo electrónico, etc. Si recibe una solicitud suplantando la identidad de la Plataforma, no responda a la solicitud. De lo contrario, usted será responsable de cualquier pérdida resultante.
     <br />
     <br />
-    Services
     <br />
     <br />
-    HandyCash is an online loan platform in India that provides diverse loan services to Indian mobile internet users. Customers can apply for loans anytime, anywhere through a smart online loan process. The computer review process saves the user from worrying about the loan application.
+    5. Fallos en la red
     <br />
     <br />
+    CreditoMax no se hace responsable de los daños que pudieran ocasionarse al usuario por fallos en el servidor o en la red. cualquier otra circunstancia ajena a CreditoMax que provoque que el sistema quede potencialmente inutilizable; en estos casos se procurará restablecerlo lo antes posible sin asumir ningún tipo de responsabilidad por ello.
     <br />
     <br />
-    User Qualification
     <br />
     <br />
-    User means an individual who uses and has the right to use the services provided by HandyCash. Our services are only available to individuals who hold Indian citizenship and are able to enter into legally binding contracts under applicable laws. Therefore, a user cannot be a minor, unsound or insolvent under Indian law; i.e. a user must be at least 18 years of age to be eligible to use our services and must be able to enter into a valid contract. Users must hold Indian citizenship and HandyCash may require users to provide valid documentation to prove this.
+    6. Privacidad de la información personal
     <br />
     <br />
+    Para utilizar los servicios y contenidos ofrecidos por CreditoMax, los usuarios deben proporcionar ciertos datos personales. Sus datos personales se procesan y almacenan encriptados en servidores que mantienen altos niveles de seguridad y protección, tanto física como técnicamente. Para obtener una descripción de la privacidad de los datos personales y la protección de la información personal, puede consultar nuestra declaración de privacidad.
     <br />
     <br />
-    HandyCash hereby reminds you that you must observe/comply with all applicable laws when accessing the website/app. HandyCash is not responsible for the consequences of your acts or omissions, misconduct or malfeasance while using the website/app/CS services. By registering on the platform, the user hereby undertakes to agree to and abide by the terms and conditions detailed here. If a User violates any of these terms and conditions, or otherwise violates an agreement entered into through the medium of the Platform, HandyCash may terminate the User's membership, delete his/her profile and any content or information posted online by the User on the Platform and/or or prohibit users from using or accessing the platform at any time in its sole discretion, with or without notice
     <br />
     <br />
+    7. Advertencia
     <br />
     <br />
-    Accept terms and conditions
+    - El incumplimiento de las condiciones del préstamo conllevará un recargo por demora.
     <br />
     <br />
-    As a user of the Platform, you have agreed to the terms and conditions provided in this Agreement or anywhere else on the Platform, including but not limited to the Disclaimers of the Platform. You are advised to read and understand the above terms and conditions and if you do not wish to agree to these terms and conditions, please do not use the platform.
+    - El incumplimiento de las condiciones del préstamo puede afectar a tu historial crediticio.
     <br />
     <br />
+    -Sea consciente de su capacidad de pago, en general, los pagos de su crédito no deben superar el 35% de la totalidad de sus ingresos regulares, el coste del impago es muy elevado.
     <br />
     <br />
-    HandyCash reserves the right, in its sole discretion, to change, modify, add or remove portions of these terms and conditions at any time. Any changes to these terms and conditions will be updated on our website from time to time. HandyCash is not responsible if the email address provided by the user is incorrect or does not belong to the user. The user's continued use of the platform after receiving notice of the modification of these terms and conditions will be construed as the user's acceptance of the modified terms and conditions.
     <br />
     <br />
+    8. Modificación de los términos y condiciones
     <br />
     <br />
-    User account
+    CreditoMax podrá modificar los términos y condiciones en cualquier momento haciendo públicos los términos y condiciones modificados en la aplicación o en el sitio web. Si el usuario no se opone, se considerará que acepta los nuevos términos y condiciones. Si el usuario se opone a los cambios realizados, deberá enviarlos en un plazo de 5 días por correo electrónico a la siguiente cuenta: creditomax01@outlook.com
     <br />
     <br />
-    If you wish to use the platform, you will need to maintain an account and will be required to provide certain information and details including your name, email id, contact number and any other information that HandyCash deems necessary and further detailed in Privacy policy. You are responsible for maintaining the confidentiality and security of your account, password, and the activities that occur on or through your account, and for restricting access to your computer to prevent unauthorized access to your account. You agree to be responsible for all activities that occur under your account or password. You shall take all necessary steps to keep your password confidential and secure and notify us immediately if you have any reason to believe that your password has become known to anyone else,
     <br />
     <br />
+    9. Conducta prohibida
     <br />
     <br />
-    Please ensure that the details you provide to us are true, correct, accurate and complete. HandyCash will immediately terminate your account without notice should HandyCash learn or have any reasonable suspicion that the information you have provided is false, inaccurate or incorrect. In the event of any changes to the information you shared while registering with the Platform, it is your responsibility to notify us of such changes immediately.
+    Se le prohíbe utilizar la Plataforma a menos que a) la utilice para cualquier fin ilícito; b) solicite a otros que realicen o participen en cualquier acto ilícito; c) infrinja cualquier estatuto, norma, ley u ordenanza local internacional, federal, provincial o estatal; d) infrinja o viole nuestros derechos de propiedad intelectual o los derechos de propiedad intelectual de un tercero; e) acose, abuse, insulte, dañe, difame, calumnie, degrade, intimide o discrimine por motivos de género, orientación sexual, religión, etnia, raza, edad, nacionalidad o discapacidad; f) proporcionar información falsa o engañosa; g) cargar o transmitir virus o cualquier otro tipo de código malicioso; h) recopilar o rastrear información personal de otros; i) prácticas informáticas censurables como spamming, phishing, crawling; j) utilizar para cualquier fin obsceno o inmoral; nos reservamos el derecho a poner fin a su uso de los Servicios o de cualquier sitio web relacionado que infrinja cualquier uso prohibido.
     <br />
     <br />
     <br />
     <br />
-    You shall at all times comply with the terms and conditions set forth herein and any breach of these conditions may also result in termination of your account by HandyCash and appropriate civil and criminal remedies will be sought from you in accordance with the laws of India.
+    10. Datos de contacto
     <br />
     <br />
+    Correo electrónico: creditomax01@outlook.com
     <br />
     <br />
-    Privacy
-    <br />
-    <br />
-    HandyCash collects certain information from you to provide the Services. HandyCash's use of your personal information is governed by the Privacy Policy.
-    <br />
-    <br />
-    <br />
-    <br />
-    Licensing and Access
-    <br />
-    <br />
-    HandyCash grants you a limited license to access and use the Platform to take advantage of the Services, but not to download any material from the Platform (other than page caching) or modify the Platform, or any portion thereof, except with the express written consent of HandyCash and/or its affiliates, as the case may be depends. Any unauthorized access to the Platform or any network, server or computer system connected to the Platform, and any attempt to modify, adapt, translate or reverse engineer any part of the Platform or reformat or construct any part of the pages of the Platform, is governed by these Terms To the extent expressly permitted by the conditions and conditions, it is not permitted. This license is non-transferable and does not permit any resale or commercial use of the Platform or its contents; downloading or copying of account information for the benefit of others other than your use; use of data mining, robots or similar data gathering and extraction tools any use. The Platform or any part of the Platform (including without limitation any copyrighted material, trademarks or other proprietary information) may not be reproduced, reproduced, reproduced,
-    sold, resold for any commercial purpose without expressly stated , access, distribute or otherwise exploit with the written consent of HandyCash and/or its affiliates, as the case may be. Any unauthorized use of the Platform will terminate or revoke the license granted by Melbright. Distribute or otherwise exploit for any commercial purpose without the express written consent of HandyCash and/or its affiliates, as the case may be. Any unauthorized use of the Platform will terminate or revoke the license granted by Melbright. Distribute or otherwise exploit for any commercial purpose without the express written consent of HandyCash and/or its affiliates, as the case may be. Any unauthorized use of the Platform will terminate or revoke the license granted by Melbright.
-    <br />
-    <br />
-    <br />
-    <br />
-    You may only use content on the Services that is made available to you through the Services. You may not copy, reproduce, distribute or create derivative works from this content. In addition, you agree not to reverse engineer or decompile any Service technology.
-    <br />
-    <br />
-    <br />
-    <br />
-    Monitoring the platform and your account
-    <br />
-    <br />
-    HandyCash has the right and freedom to monitor the Platform content at any time, which shall include the information provided in your account. Monitoring of the platform/platform is important to determine the accuracy of the information you provide and whether each user complies with the terms and conditions provided here. Subject to the terms and conditions mentioned here, HandyCash also reserves the right to remove any objectionable content that violates the terms and conditions hereof, or to share such information temporarily with any government agency in accordance with the procedures prescribed by law in force in India.
-    <br />
-    <br />
-    <br />
-    <br />
-    Service suspension
-    <br />
-    <br />
-    HandyCash may stop providing the Services and may terminate use of the Services at any time without notice to you of termination. Unless HandyCash notifies User otherwise, upon termination (a) the rights and licenses granted to you by these Terms will terminate; and (b) User must immediately cease using the Platform. HandyCash reserves the right to suspend or cease the provision of any service and, if it chooses to do so, shall not be liable or liable to users in any way.
-    <br />
-    <br />
-    <br />
-    <br />
-    Forbidden to use
-    <br />
-    <br />
-    In addition to other prohibitions set forth in the Terms and Conditions, you may not use the Platform to:
-    <br />
-    <br />
-    (a) for any unlawful purpose;
-    <br />
-    <br />
-    (b) solicit others to do or participate in any illegal activity;
-    <br />
-    <br />
-    (c) violate any international, federal, provincial or state statute, rule, law or local ordinance;
-    <br />
-    <br />
-    (d) infringe or violate our intellectual property rights or those of others;
-    <br />
-    <br />
-    (e) harass, abuse, insult, hurt, defame, libel, demean, intimidate or discriminate on the basis of gender, sexual orientation, religion, race, ethnicity, age, national origin or disability;
-    <br />
-    <br />
-    (f) submit false or misleading information;
-    <br />
-    <br />
-    (g) upload or transmit viruses or any other type of malicious code which is or may be used in any way to affect the functionality or operation of the Services or any related website, other websites or the Internet;
-    <br />
-    <br />
-    (h) collect or track personal information about others;
-    <br />
-    <br />
-    (i) spam, phishing, phishing, excuses, spidering, crawling or scraping;
-    <br />
-    <br />
-    (j) for any obscene or immoral purpose;
-    <br />
-    <br />
-    k) Interfere with or circumvent the security features of the Services or any related website, other websites or the Internet. We reserve the right to terminate your use of the Service or any related website for your violation of any prohibited use.
-    <br />
-    <br />
-    <br />
-    <br />
-    Trademark
-    <br />
-    <br />
-    All related icons and logos are registered trademarks or trademarks or service marks of HandyCash in various jurisdictions and are protected by applicable copyright, trademark and other proprietary laws. Unauthorized copying, modification, use or distribution of these marks is strictly prohibited.
-    <br />
-    <br />
-    <br />
-    <br />
-    Compensation
-    <br />
-    <br />
-    You hereby agree to be harmless from any and all claims, damages, obligations, losses, liabilities, costs or liabilities, and expenses (including, without limitation, attorneys' fees) arising out of: (i) your use of the App; (ii) your breach of any provision of these Terms; (iii) your breach of any third party rights, including without limitation any copyright, property or right of privacy; (iv) your breach of the terms of your contract with the Lender. This indemnification obligation shall survive these Terms and use of the Application.
-    <br />
-    <br />
-    <br />
-    <br />
-    Applicable Law and Arbitration
-    <br />
-    <br />
-    These Terms shall be governed by and construed in accordance with the laws of the Republic of India, without regard to its conflict of laws provisions.
-    <br />
-    <br />
-    <br />
-    <br />
-    The app is controlled and provided from the company's facilities in India. If you are a user outside India, please note that the Company is governed solely by Indian laws and Indian courts. Company makes no representations that the application is suitable or available for use in other locations. Therefore, if you are a user outside India, you may use the app exactly as you wish and at your own risk. You are solely responsible for compliance with local laws.
-    <br />
-    <br />
-    <br />
-    <br />
-    Disputes, if any, shall attempt to be resolved amicably within thirty (30) days. Unresolved disputes shall be referred to an independent sole arbitrator in Bangalore appointed by the Company pursuant to the procedure laid down in the Arbitration and Mediation Act 1996. Subject to the foregoing, you hereby consent to the exclusive jurisdiction of the Bangalore City Courts.
-    <br />
-    <br />
-    <br />
-    <br />
-    Contact information
-    <br />
-    <br />
-    We are happy to address any of your queries, concerns or questions relating to processing (including storing and using) of your information which you can raise by writing to us at handycash01@outlook.com.
-    <br />
-    <br />
+    Horario de atención al público: De lunes a sábado de 10:00 a 19:00
     <br />
     <br />
   </div>
@@ -216,7 +155,7 @@ export default {
         show: true,
         fixed: true,
         transparent: false,
-        title: 'Terms',
+        title: 'Condiciones del servicio',
       });
     } else {
       this.setTabBar({

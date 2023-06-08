@@ -4,7 +4,10 @@
       <div class="loan-wrapper" :class="'multiple_' + isMultiple">
         <div class="inner">
           <div class="available-text">Préstamo máximo($)</div>
-          <div class="number">{{ isMultiple ? multipleCredit.remaining : curAvailableAmount }}</div>
+          <div class="number">
+            {{ isMultiple ? multipleCredit.remaining : curAvailableAmount }}
+            <!-- <m-icon v-if="appMode" class="lock" type="creditomax/锁" :width="17" :height="20" /> -->
+          </div>
           <div class="total-used">
             <div>
               <div class="label">Crédito total($)</div>
@@ -25,7 +28,7 @@
           <span>Customized Solutions</span>
           <div>
             <span :class="{ 'has-num': selectItems.length > 0 }">{{ selectItems.length }} products</span>
-            <m-icon type="handy/蓝右" :width="12" :height="14" />
+            <m-icon type="creditomax/蓝右@2x" :width="12" :height="14" />
           </div>
         </div>
       </div>
@@ -33,7 +36,7 @@
 
     <van-action-sheet v-model="showRecommend" :safe-area-inset-bottom="false" close-on-click-action class="home-recommend">
       <div class="pop-content">
-        <m-icon class="close" type="handy/关闭弹窗" :width="20" :height="20" @click="showRecommend = false" />
+        <m-icon class="close" type="creditomax/关闭弹窗" :width="20" :height="20" @click="showRecommend = false" />
         <multi-recommend @update="updateMultiSelect" :list="multiRecommendList"></multi-recommend>
       </div>
     </van-action-sheet>
@@ -59,7 +62,7 @@ export default {
         screenWidth: window.screen.width,
         availWidth: window.screen.availWidth,
         deviceXDPI: window.screen.deviceXDPI,
-        devicePixelRatio: window.devicePixelRatio
+        devicePixelRatio: window.devicePixelRatio,
       });
     };
 
@@ -215,7 +218,7 @@ export default {
                   syncRes = await this.startSyncData();
                 } catch (error) {
                   this.hideLoading();
-                  this.$toast('Your message verification failed, please wait a minute and try again');
+                  this.$toast('Carga fallida, inténtelo más tarde');
                   return;
                 }
                 // 2. 真正提交
@@ -258,27 +261,27 @@ export default {
           };
         }
       } else if (this.appMode.maskModel == 3 || this.appMode.maskModel == 0) {
-        this.actionText = 'Apply';
+        this.actionText = 'Aplicar ahora';
         //未认证跳转
-        if (this.appMode.identityAuth == 0) {
-          this.btnTips = 'Almost:95%';
-          this.actionCallback = () => {
-            this.innerJump('identity', { orderId: this.appMode.orderId });
-          };
-        } else if (this.appMode.basicInfoAuth == 0) {
-          this.btnTips = 'Almost:96%';
+        if (this.appMode.basicInfoAuth == 0) {
+          this.btnTips = 'Casi:95%';
           this.actionCallback = () => {
             this.innerJump('information', { orderId: this.appMode.orderId });
           };
         } else if (this.appMode.addInfoAuth == 0) {
-          this.btnTips = 'Almost:97%';
+          this.btnTips = 'Casi:96%';
           this.actionCallback = () => {
             this.innerJump('contacts', { orderId: this.appMode.orderId });
           };
-        } else if (this.appMode.remittanceAccountAuth == 0) {
-          this.btnTips = 'Almost:98%';
+        } else if (this.appMode.identityAuth == 0) {
+          this.btnTips = 'Casi:97%';
           this.actionCallback = () => {
-            this.innerJump('complete-bank', { orderId: this.appMode.orderId, from: 'order' });
+            this.innerJump('identity', { orderId: this.appMode.orderId });
+          };
+        } else if (this.appMode.remittanceAccountAuth == 0) {
+          this.btnTips = 'Casi:98%';
+          this.actionCallback = () => {
+            this.innerJump('add-bank', { orderId: this.appMode.orderId, from: 'order' });
           };
         } else if (this.appMode.orderId && typeof this.appMode.orderStatus != 'undefined') {
           // 默认都跳订单详情页
@@ -303,7 +306,7 @@ export default {
             // 放款中
             this.actionText = 'Disbursing';
           } else {
-            this.btnTips = 'Almost:99%';
+            this.btnTips = 'Casi:99%';
             this.actionCallback = () => {
               this.innerJump('loan-confirm', { orderId: this.appMode.orderId });
             };
@@ -371,6 +374,7 @@ export default {
 <style lang="scss" scoped>
 .home-recommend {
   height: 80%;
+  background: #F6F6F6;
   .pop-content {
     position: relative;
     height: 100%;
@@ -480,13 +484,19 @@ export default {
           line-height: 54px;
           text-align: center;
           height: 54px;
+          display: flex;
+          align-items: baseline;
+          justify-content: center;
+          .lock {
+            margin-left: 8px;
+          }
         }
 
         .action-btn {
           width: 295px;
           height: 44px;
-          background: linear-gradient(180deg, #696FFB 0%, #434AF9 100%);
-          box-shadow: 0px 8px 20px 0px rgba(67,74,249,0.4), inset 0px 2px 8px 0px #434AF9;
+          background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+          box-shadow: 0px 8px 20px 0px rgba(67, 74, 249, 0.4), inset 0px 2px 8px 0px #434af9;
           border-radius: 23px;
           font-size: 20px;
           font-family: PingFangSC-Semibold, PingFang SC;
@@ -515,8 +525,8 @@ export default {
             font-weight: 400;
             color: #333333;
             line-height: 12px;
-            right: -14px;
-            top: -26px;
+            right: -4px;
+            top: -20px;
             transform: scale(0.9);
           }
         }

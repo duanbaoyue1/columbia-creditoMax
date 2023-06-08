@@ -4,9 +4,7 @@
       <div class="stat-img-wrapper">
         <img class="stat-img" :src="actionIndex >= index ? step.activeImg : step.noActiveImg" />
       </div>
-      <div class="red-bot" :class="actionIndex >= index ? 'active' : ''">
-        <!-- <img :src="actionIndex >= index ? require('@/assets/img/handy/进度条点亮.png') : require('@/assets/img/handy/进度条未点亮.png')" /> -->
-      </div>
+      <div class="red-bot" :class="actionIndex >= index ? 'active' : ''"></div>
       <div class="text">{{ step.text }}</div>
     </div>
   </div>

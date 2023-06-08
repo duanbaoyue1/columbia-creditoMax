@@ -89,14 +89,7 @@ const routes = [
           title: 'Loan Application',
         },
       },
-      {
-        path: 'utr-help',
-        name: 'utr-help',
-        component: () => import(/* webpackChunkName: "utr-help" */ '../views/utr-help.vue'),
-        meta: {
-          title: 'Help',
-        },
-      },
+
       {
         path: 'about',
         name: 'about',
@@ -129,14 +122,7 @@ const routes = [
           title: 'Deferment',
         },
       },
-      {
-        path: 'utr',
-        name: 'utr',
-        component: () => import(/* webpackChunkName: "utr" */ '../views/utr.vue'),
-        meta: {
-          title: 'UTR',
-        },
-      },
+
       {
         path: 'defer-history',
         name: 'defer-history',

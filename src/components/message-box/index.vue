@@ -115,7 +115,7 @@ export default {
         font-weight: 400;
         color: #999999;
         border-radius: 20px;
-        line-height: 20px;
+        line-height: 38px;
         margin-top: 16px;
         text-align: center;
       }

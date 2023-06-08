@@ -38,11 +38,6 @@
 
     <div class="submit">
       <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Confirme el préstamo</button>
-      <!-- <div class="policy" @click="togglePolicy">
-        <m-icon class="icon" :type="choosed ? 'handy/选中（小）' : 'handy/未选（小）'" :width="14" :height="14" />
-        I have read and agreed to the &nbsp;
-        <span @click="checkAgreement">loan Agreement</span>
-      </div> -->
     </div>
   </div>
 </template>
@@ -107,7 +102,7 @@ export default {
           syncRes = await this.startSyncData();
         } catch (error) {
           this.hideLoading();
-          this.$toast('Your message verification failed, please wait a minute and try again');
+          this.$toast('Carga fallida, inténtelo más tarde');
           return;
         }
         if (syncRes.success) {

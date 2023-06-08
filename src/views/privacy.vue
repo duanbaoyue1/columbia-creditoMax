@@ -1,115 +1,97 @@
 <template>
   <div class="h5-content content-area">
-    <div class="head">Privacy Policy</div>
+    <div class="head">Política de Privacidad</div>
 
-    Please read the following terms of this policy carefully to understand how we process your personal data and how we will process it. This policy sets out how we will store any personal data collected from, about you or provided to us by you. By accepting this Privacy Policy, you expressly consent to the collection, retention, analysis, use and Disclosure of your personal information.
+    Esta política de privacidad ("Política") está incorporada y sujeta a los términos y condiciones. Por favor, lea esta Política de Privacidad cuidadosamente. Esta Política describe cómo la Compañía o sus proveedores ("nosotros", "nos", "nuestro", "CreditoMax") recoger, almacenar, proteger y utilizar su información personal. Al acceder a nuestra Plataforma o utilizar cualquiera de nuestros servicios a través de la Plataforma (los "Servicios"), usted acepta esta Política de Privacidad. Si no está de acuerdo con esta Política de Privacidad, no debe utilizar los Servicios.
     <br />
     <br />
+    1. Recopilación de información
     <br />
     <br />
-    HandyCash is committed to protecting the privacy of user information, and collects all your data just to help you use the product better. Your information is uploaded to https://pro.fin-handycash.com/api/userCollect/collectMsg for encrypted storage and will not be misused or disclosed. We strictly abide by Indian laws.
+    Para evaluar su elegibilidad y facilitar el pago más rápido de su préstamo, necesitamos cierto acceso a su teléfono móvil: mensajes de texto, cámara, localización, etc. Puede eliminar su información personal en cualquier momento poniéndose en contacto con nuestro Centro de Atención al Cliente. La información personal no se utilizará ni tratará para fines distintos de los aquí indicados.
     <br />
     <br />
     <br />
     <br />
-
-    <strong>Collect message</strong>
+    Estado del teléfono
     <br />
     <br />
-    When using this service, we need to obtain, collect, store, manage and use your personal data obtained in the process, including but not limited to filling in online forms or data fields included in the platform, device information, access to user permissions, platform usage , and other information obtained through the Platform, email, telephone or other media (if required).
+    Necesitamos recopilar y controlar información específica sobre su dispositivo, incluido el nombre, modelo, región, idioma, identificador, información sobre hardware y software, estado, hábitos de uso, identificadores únicos como IMEI y número de serie. Los datos se cifrarán y se cargarán en nuestra plataforma únicamente con fines antifraude y de evaluación crediticia.
     <br />
     <br />
     <br />
     <br />
-    <strong>SMS</strong>
+    SMS
     <br />
     <br />
-    We monitor financial SMS messages to ensure account security and assess user creditworthiness and loan approvals. Encrypted messages are uploaded to our server https://pro.fin-handycash.com/api/userCollect/collectMsg. We will not disclose and resell your personal information to third parties.
+    Recopilamos todos los datos de tus sms, pero sólo controlamos la información relacionada con las transacciones financieras, la encriptamos y la cargamos en nuestro servidor https:// para el control de riesgos y las comprobaciones antifraude. CreditoMax nunca compartirá datos con terceros sin su permiso. La información sólo se recopilará si usted ha aceptado autorizarla y los datos se transmitirán y cargarán a través de una conexión segura.
     <br />
     <br />
     <br />
     <br />
-    <strong>Installed applications</strong>
+    Aplicaciones instaladas
     <br />
     <br />
-    We collect a list of metadata information about installed applications, including the application name, package name, installation time, update time, version name and version code of each installed application on your device, for anti-fraud checks and to provide More accurate loan servicing. We will not disclose and resell your personal information to third parties.
+    Recopilamos una lista de información de metadatos sobre las aplicaciones instaladas, que incluye el nombre de la aplicación, el nombre del paquete, la hora de instalación, la hora de actualización, el nombre de la versión y el código de la versión de cada aplicación instalada en su dispositivo, la ciframos y la cargamos en nuestro servidor en https:// para identificar y analizar su comportamiento y el riesgo de préstamos múltiples, ayudando así a prevenir el fraude.
     <br />
     <br />
     <br />
     <br />
-    <strong>Device Information</strong>
+    Cámaras
     <br />
     <br />
-    Collect and monitor specific information about your device, including phone hardware model, operating system and version, unique device identifiers (such as IMEI and serial number), user profile information, and mobile network information to ensure unauthorized devices cannot represent you to operate.
+    Necesitamos una licencia de información de la cámara para ofrecerle una experiencia fácil y sin problemas y para permitirle hacer clic en las fotos de los documentos KYC y otros documentos requeridos durante el proceso de solicitud de préstamo y cargarlos en la aplicación.
     <br />
     <br />
     <br />
     <br />
-    <strong>Location</strong>
+    Localización
     <br />
     <br />
-    Collect and monitor information about your device's location for risk assessment purposes for credit scoring.
+    Recopilamos y cargamos la información de localización de su dispositivo para reducir el riesgo de su cuenta.
     <br />
     <br />
     <br />
     <br />
-    <strong>Camera</strong>
+    2. Uso de la información
     <br />
     <br />
-    We will need to take a camera selfie, scan and film the required KYC documents so that you can submit the information required for your application.
+    Como parte de las actividades del servicio CreditoMax, en particular la investigación y la concesión de créditos, la recopilación de trabajo, la actualización de datos, la presentación de informes a la central de riesgos, el contacto con los clientes y usuarios, es necesario proporcionar información de contacto de datos como el nombre, la dirección, la edad, por ejemplo, número de teléfono y dirección de correo electrónico, así como información específica sobre su situación financiera y referencias, y otra información pertinente relativa a usted, como los títulos de solicitud y de crédito y sus redes sociales, para que podamos conocerle mejor y promover sus propias actividades. No obtenemos automáticamente el número de teléfono de un usuario para completar la página de acceso a la solicitud.
     <br />
     <br />
     <br />
     <br />
-    <strong>Use of information</strong>
+    3. ¿Compartimos sus datos personales con terceros?
     <br />
     <br />
+    La información sobre nuestros usuarios es una parte importante de nuestro negocio y no nos dedicamos a vender información personal sobre nuestros usuarios a terceros. Debido a que CreditoMax depende de varios productos y servicios de terceros (colectivamente, "Servicios de Terceros") para algunas de sus funciones, podemos transferir datos personales a proveedores de servicios o a terceros en relación con el funcionamiento del negocio de CreditoMax. Estos terceros proveedores de servicios sólo pueden acceder a cierta información personal, como la dirección de su monedero público, para realizar sus funciones y no pueden utilizarla para otros fines.
     <br />
     <br />
-    We may associate any category of information with any other category of information and, whenever combined, treat the combined information as personal data under this policy. The information we collect will be used to determine whether to extend loans to customers, the amount of such loans and the terms and conditions applicable to such loans. We also comply with an order of a court, arbitration panel, tribunal, regulatory order or order or any other legal or regulatory obligation that we will not disclose personally identifiable information to other parties.
     <br />
     <br />
+    4. Conservación y eliminación de datos
     <br />
     <br />
-    <strong>Personal Information Security</strong>
+    CreditoMax se compromete a proteger sus datos personales contra el acceso no autorizado, uso indebido y divulgación mediante el uso de medidas de seguridad adecuadas en función del tipo de datos y la forma en que los procesamos. Conservamos información sobre usted con el fin de proporcionarle una experiencia sin problemas, para ponernos en contacto con usted cuando se requiere apoyo y para conservar información sobre su cuenta para detectar, mitigar, prevenir e investigar actividades fraudulentas o ilegales. Conservaremos sus datos durante el tiempo que sea necesario para prestarle nuestros servicios. También podemos conservar y utilizar sus datos personales según sea necesario para cumplir con nuestras obligaciones legales, resolver conflictos y hacer cumplir nuestros acuerdos. De conformidad con esta sección, podemos eliminar sus datos en respuesta a una solicitud razonable por escrito.
     <br />
     <br />
-    We take reasonable steps to protect your personal information from unauthorized access, use or disclosure. We use industry standard security measures, including encryption, firewalls and secure servers, to protect your information.
     <br />
     <br />
+    5. Cambios en la Política de Privacidad
     <br />
     <br />
-    <strong>Third-Party SDKs and Links to Other Websites</strong>
+    CreditoMax se reserva el derecho de cambiar, modificar, añadir o eliminar partes de esta política de privacidad en cualquier momento y por cualquier motivo. Si hay algún cambio en la Política de Privacidad, lo actualizaremos en nuestro sitio web. Una vez publicados, estos cambios serán efectivos inmediatamente a menos que se indique lo contrario. Le recomendamos que consulte esta página con regularidad para obtener la información más reciente sobre nuestras prácticas de privacidad. El acceso o uso continuado de los Servicios constituye su aceptación de la Política de Privacidad modificada y revisada.
     <br />
     <br />
-    Our Apps may contain links to third-party websites or services that are not operated by us. We are not responsible for the privacy practices or the content of these third-party sites or services. We encourage you to read the privacy policy of any third-party website or service before providing any personal information.
     <br />
     <br />
+    6. Póngase en contacto con nosotros
     <br />
     <br />
-    <strong>Your rights</strong>
+    Si tiene alguna pregunta o sugerencia sobre esta política de privacidad, no dude en ponerse en contacto con nosotros en
     <br />
     <br />
-    We will use your data to compile statistics relating to our user base or loan portfolio and may disclose such information to any third party for such purposes, provided that such information remains anonymous. You can choose to edit/modify, delete/withdraw any personal information shared to the platform at any time. Please remember that deleting or withdrawing information may affect the services we provide to you. You will need to provide supporting documents related to the change of personal information so that the company can verify the change of personal information.
-    <br />
-    <br />
-    <br />
-    <br />
-    <strong>Privacy Policy Updates</strong>
-    <br />
-    <br />
-    We reserve the right to modify this policy at any time, so please check back often. Changes and modifications will be effective immediately upon posting on the Portal. Continued use of the Service constitutes your acceptance of such new or updated policies, as the case may be.
-    <br />
-    <br />
-    <br />
-    <br />
-    <strong>Contacting us</strong>
-    <br />
-    <br />
-    If you have any questions, concerns or complaints about this privacy policy or the use of your personal information, please contact us at:
-    <br />
-    <br />
-    Mail : handycash01@outlook.com
+    Correo electrónico: creditomax01@outlook.com
   </div>
 </template>
 
@@ -122,7 +104,7 @@ export default {
         show: true,
         fixed: true,
         transparent: false,
-        title: 'Privacy',
+        title: 'Política de Privacidad',
       });
     } else {
       this.setTabBar({

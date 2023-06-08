@@ -121,16 +121,16 @@ export default {
   methods: {
     showDeleteConfirm() {
       this.showMessageBox({
-        content: 'After deleting the account, all information of the account will be erased, confirm to delete?',
-        confirmBtnText: 'Let me think again',
-        cancelBtnText: 'Confirm deletion',
+        content: 'Después de eliminar la cuenta, se borrará toda la información de la cuenta, ¿confirmar para eliminar?',
+        confirmBtnText: 'Déjame pensar de nuevo',
+        cancelBtnText: 'Confirmar eliminación',
         confirmCallback: () => {
           this.hideMessageBox();
         },
         cancelCallback: () => {
           this.toAppMethod('toLoginPage');
         },
-        iconPath: 'handy/编组 11',
+        iconPath: 'creditomax/删除账户',
       });
     },
     async updateData() {

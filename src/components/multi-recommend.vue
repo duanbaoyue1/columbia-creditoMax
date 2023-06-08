@@ -1,29 +1,29 @@
 <template>
   <div class="multi-recommend">
     <div class="order-items">
-      <div class="order-item" v-for="(order, index) in list" :key="order.id" @click="checkLoan(index)">
+      <div class="order-item" :class="{active: !order.unChecked}" v-for="(order, index) in list" :key="order.id" @click="checkLoan(index)">
         <div class="reloan" v-if="order.isReloan">reloan</div>
         <div class="status">
-          <m-icon class="icon" :type="order.unChecked ? 'handy/未选中' : 'handy/选中'" :width="24" :height="24" />
+          <m-icon class="icon" :type="order.unChecked ? 'creditomax/多推未选中' : 'creditomax/多推选中'" :width="24" :height="24" />
           {{ order.productName }}
         </div>
         <div class="info">
           <img :src="order.productImgUrl" />
           <div class="name">
             <div>
-              <span class="label">Lending Company:</span>
+              <span class="label">Compañía de préstamo:</span>
               {{ order.companyName }}
             </div>
             <div>
-              <span class="label">Interest:</span>
+              <span class="label">Tasa de interés:</span>
               {{ order.interest }}% / Day
             </div>
           </div>
         </div>
         <div class="action">
-          <span class="label">Max amout</span>
+          <span class="label">Monto del préstamo</span>
           <span class="number">
-            <span class="fs-12">₹</span>
+            <span class="fs-12">$</span>
             {{ order.minAmount }}
           </span>
         </div>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="select-all" @click="selectAll">
-      <button>Select all</button>
+      <button>Seleccionar todo</button>
     </div>
   </div>
 </template>
@@ -89,8 +89,8 @@ export default {
     button {
       width: 327px;
       height: 48px;
-      background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-      box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+      background: linear-gradient(180deg, #696FFB 0%, #434AF9 100%);;
+      box-shadow: 0px 4px 10px 0px rgba(67,74,249,0.4), inset 0px 1px 4px 0px #434AF9;;
       border-radius: 24px;
       font-size: 18px;
       font-family: Roboto-Black, Roboto;
@@ -113,7 +113,11 @@ export default {
       padding: 16px;
       margin: 16px 24px;
       background: #fff;
-
+      border-radius: 14px;
+      border: 2px solid #fff;
+      &.active {
+        border: 2px solid #434AF9;
+      }
       .action {
         display: flex;
         justify-content: space-between;

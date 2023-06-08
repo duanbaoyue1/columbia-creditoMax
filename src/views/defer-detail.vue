@@ -49,56 +49,25 @@
       <div class="help-center" @click="goHelpCenter">Centro de ayuda</div>
     </div>
 
-    <div class="modal" v-if="showPaymentTips">
-      <div class="modal-content payment-success-container">
-        <m-icon class="close" type="handy/路径" :width="20" :height="20" @click="showPaymentTips = false" />
-
-        <div class="content">
-          <header>Seleccione la forma de pago</header>
-          <ul>
-            <li @click="chooseBankA">Nequi</li>
-            <li @click="chooseBankA">PSE(Pagos Seguros en Línea)</li>
-          </ul>
-          <div class="tips">
-            <div>Consejos:</div>
-            <div>Una vez realizado el pago, el banco suele procesarlo en el plazo de una hora y el pedido se actualiza automáticamente.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <van-action-sheet class="bank-picker-sheet" v-model="openSelect" title="Forma de pago" close-on-click-action>
-      <van-picker ref="bankPicker" class="bank-picker" :columns="banks" :item-height="67">
-        <template #option="PickerOption">
-          <div class="pick-value">
-            <div>
-              {{ PickerOption.text }}
-              <span class="recommend" v-if="PickerOption.recommend">Recomendar</span>
-            </div>
-          </div>
-        </template>
-      </van-picker>
-      <div class="submit">
-        <button class="bottom-submit-btn" @click="confirmSelect">Enviar</button>
-      </div>
-    </van-action-sheet>
+    <choose-bank :show.sync="showPaymentTips" @update:show="showPaymentTips = $event" @select-bank="selectBank" />
   </div>
 </template>
 
 <script>
-import * as ALL_ATTRS from '@/config/typeConfig';
+import chooseBank from '@/components/choose-bank.vue';
 
 export default {
+  components: {
+    chooseBank,
+  },
   computed: {},
   data() {
     return {
       orderId: this.$route.query.orderId,
       loaded: false,
-      showPaymentTips: true,
+      showPaymentTips: false,
       detail: '',
       orderUrl: '',
-      banks: ALL_ATTRS.BANKS,
-      openSelect: false,
     };
   },
   created() {
@@ -115,21 +84,16 @@ export default {
     this.orderUrl = await this.getOrderRelateUrl(this.orderId);
   },
   methods: {
-    chooseBankA() {
+    selectBank(value) {
+      console.log(value);
       this.showPaymentTips = false;
-      this.openSelect = true;
-    },
-    goFillUtr() {
-      this.innerJump('utr', { orderId: this.orderId, type: 'defer' });
+      // TODO
     },
     goTutorial() {
       location.href = this.orderUrl.utrVideoUrl;
     },
     defer() {
       this.showPaymentTips = true;
-    },
-    async repay() {
-      this.innerJump('utr', { nextUrl: this.orderUrl.extensionUrl, orderId: this.orderId, type: 'defer' });
     },
     async getDetail() {
       console.log('this.orderId', this.orderId);
@@ -148,182 +112,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.pick-value {
-  > div {
-    font-size: 10px;
-    font-family: Roboto-Regular, Roboto;
-    font-weight: 400;
-    color: #a1a5fc;
-    line-height: 16px;
-    text-align: center;
-    transform: scale(0.9);
-    transition: all 0.3s;
-    &:first-child {
-      font-size: 14px;
-      font-family: Roboto-Regular, Roboto;
-      font-weight: 400;
-      color: #9a9a9a;
-      line-height: 20px;
-      position: relative;
-
-      .recommend {
-        width: 74px;
-        height: 28px;
-        background: #ffdc62;
-        border-radius: 8px 8px 8px 0px;
-        font-size: 10px;
-        font-family: Roboto-Regular, Roboto;
-        font-weight: 400;
-        color: #333333;
-        line-height: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        right: -200%;
-        bottom: 0;
-        transform: scale(0.9);
-        opacity: 0.6;
-      }
-    }
-  }
-}
-
-.payment-success-container {
-  width: 295px;
-  box-sizing: border-box;
-  border-radius: 8px;
-  .policy {
-    display: flex;
-    align-items: flex-start;
-    font-size: 12px;
-    font-weight: 400;
-    margin: 50px 0px 0;
-    color: #000601;
-    position: relative;
-    .tips {
-      position: absolute;
-      top: -30px;
-      left: -8px;
-      width: 130px;
-      height: 20px;
-      background: #fbe396;
-      border-radius: 24px 24px 24px 0px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 10px;
-      font-weight: bold;
-      color: #333333;
-      line-height: 12px;
-      transform: scale(0.9);
-    }
-    .m-icon {
-      margin-top: -2px;
-    }
-    span {
-      margin-left: 0px;
-      transform: scale(0.9);
-      margin-top: -10px;
-    }
-  }
-
-  .close {
-    position: absolute;
-    bottom: -32px;
-    left: 50%;
-    z-index: 2;
-    transform: translateX(-50%);
-  }
-  .content {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
-    color: #000601;
-    text-align: left;
-    header {
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 900;
-      border-bottom: 4px solid #f6f6f6;
-      color: #333333;
-      line-height: 24px;
-    }
-    ul {
-      li {
-        height: 72px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        font-family: Roboto-Regular, Roboto;
-        font-weight: 400;
-        color: #333333;
-        line-height: 24px;
-        border-bottom: 1px solid #cccccc;
-      }
-    }
-    .tips {
-      padding: 24px;
-      > div {
-        &:first-child {
-          font-size: 14px;
-          font-weight: 500;
-          color: #999999;
-          line-height: 16px;
-          margin-bottom: 8px;
-        }
-      }
-      font-size: 12px;
-      font-family: Roboto-Regular, Roboto;
-      font-weight: 400;
-      color: #999999;
-      line-height: 18px;
-    }
-    a {
-      color: #1143a4;
-      text-decoration: underline;
-    }
-  }
-  .action {
-    margin: 0 24px;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 24px;
-    > div {
-      width: 143px;
-      height: 40px;
-      background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-      box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
-      border-radius: 20px;
-      font-size: 16px;
-      font-weight: 900;
-      color: #ffffff;
-      line-height: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
-
-      &.cancel {
-        border: 1px solid #999999;
-        color: #999;
-        position: relative;
-        width: 88px;
-        background: transparent;
-        box-shadow: none;
-        margin-right: 16px;
-        flex-grow: 1;
-      }
-    }
-  }
-}
 .defer-detail {
   padding-bottom: 120px;
-  background-image: url(../assets/img/creditomax/back3@2x.png);
+  background-image: url(../assets/img/creditomax/back21.png);
   background-position: top;
   background-repeat: no-repeat;
   background-size: 375px 206px;

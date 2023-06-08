@@ -104,33 +104,6 @@
       </div>
     </div> -->
 
-    <div class="modal" v-if="showPaymentTips">
-      <div class="modal-content payment-success-container">
-        <m-icon class="close" type="handy/路径" :width="20" :height="20" @click="showPaymentTips = false" />
-        <m-icon class="icon" type="handy/还款弹窗" />
-
-        <div class="content">
-          <div class="remember">Remember</div>
-          When payment is completed,
-          <div>
-            remember to
-            <span @click="goFillUtr" class="color-orange fill">fill in the UTR</span>
-            in this app
-          </div>
-        </div>
-        <div class="action">
-          <div class="cancel" @click="goTutorial">Tutorial</div>
-          <div class="confirm" @click="repay">Repay</div>
-        </div>
-
-        <div class="policy" v-if="showAuto">
-          <div class="tips">99% of users opened!</div>
-          <m-icon class="icon-i" :type="choosed ? 'handy/开启' : 'handy/未开启'" :width="28" :height="14" @click="choosed = !choosed" />
-          <span>VIP privilege, you will get automatic reloan if repay successfully, and loan limit up with 100% possible.</span>
-        </div>
-      </div>
-    </div>
-
     <div class="actions">
       <div class="btns" v-if="detail.orderStatus == 100 || detail.orderStatus == 101 || detail.orderStatus == 40 || detail.orderStatus == 80 || detail.orderStatus == 90">
         <button class="btn-default" v-if="detail.orderStatus == 100 || detail.orderStatus == 101 || detail.orderStatus == 40" @click="goHome">Cambio de cuenta de cobro</button>
@@ -141,11 +114,17 @@
       </div>
       <div class="help-center" @click="goHelpCenter">Centro de ayuda</div>
     </div>
+
+    <choose-bank :show.sync="showPaymentTips" @update:show="showPaymentTips = $event" @select-bank="selectBank" />
   </div>
 </template>
 
 <script>
+import chooseBank from '@/components/choose-bank.vue';
 export default {
+  components: {
+    chooseBank,
+  },
   computed: {
     showDate() {
       return this.detail.orderStatus == 80 || this.detail.orderStatus == 90 || this.detail.orderStatus == 100 || this.detail.orderStatus == 101;
@@ -261,6 +240,11 @@ export default {
   },
 
   methods: {
+    selectBank(value) {
+      console.log(value);
+      this.showPaymentTips = false;
+      // TODO
+    },
     async queryOrderReloan() {
       try {
         // 判断全局状态
@@ -282,14 +266,6 @@ export default {
       console.log('backC');
     },
 
-    async repay() {
-      // 更新复贷
-      try {
-        await this.$http.post(`/api/order/updateOrderAutoRepeatStatus`, { orderId: this.orderId, isOpen: this.choosed ? 1 : 0 });
-      } catch (error) {}
-
-      this.innerJump('utr', { nextUrl: this.orderUrl.repaymentUrl, orderId: this.orderId, type: 'repay' });
-    },
     applyDefer() {
       this.innerJump('defer-detail', { orderId: this.orderId });
     },
@@ -302,10 +278,6 @@ export default {
     goDeferHis() {
       this.innerJump('defer-history', { orderId: this.orderId });
     },
-    goFillUtr() {
-      this.innerJump('utr', { orderId: this.orderId, type: 'repay' });
-    },
-
     async getDeferTimes() {
       let data = await this.$http.post(`/api/extension/historyNum`, {
         id: this.orderId,
@@ -434,8 +406,8 @@ export default {
     > div {
       width: 143px;
       height: 40px;
-      background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-      box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+      background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+      box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
       border-radius: 20px;
       font-size: 16px;
       font-weight: 900;
@@ -504,8 +476,8 @@ export default {
       justify-content: space-between;
 
       .btn-default {
-        background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-        box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+        background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+        box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
         border-radius: 25px;
         height: 46px;
         border: none;

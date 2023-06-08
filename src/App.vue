@@ -17,7 +17,7 @@
         <van-tabbar-item replace to="/home">
           <span>Préstamos</span>
           <template #icon="props">
-            <m-icon :type="props.active ? 'creditomax/Prstamos' : 'creditomax/Loans未选中'" class="nav-icon" :width="24" :height="24" />
+            <m-icon :type="props.active ? 'creditomax/Prstamos' : 'creditomax/no_order1'" class="nav-icon" :width="24" :height="24" />
           </template>
         </van-tabbar-item>
 

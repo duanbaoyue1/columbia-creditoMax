@@ -4,7 +4,7 @@
       <complete-step :actionIndex="1"></complete-step>
     </div>
 
-    <div class="edit-area-wrapper" v-for="(item, index) in familyContacts">
+    <div class="edit-area-wrapper" v-for="(item, index) in contacts">
       <div class="edit-area-header">Contacto de emergencia {{ index + 1 }}</div>
       <div class="edit-area">
         <div class="line-item line-item-rela">
@@ -12,7 +12,7 @@
           <select-item :items="ALL_ATTRS.RELATION_SHIPS" title="Elige el parentesco del contacto" :itemAttrs="index" @choose="chooseRelation" />
         </div>
 
-        <div class="line-item phone-select-wrapper" @click="choosePhone('familyPhone', index)">
+        <div class="line-item phone-select-wrapper" @click="choosePhone(index)">
           <label>Número de contacto</label>
           <div>
             <input id="familyPhone" v-model="item.mobile" disabled placeholder="Por favor, elija" />
@@ -21,23 +21,6 @@
         </div>
         <div class="line-item">
           <label>Nombre</label>
-          <input v-model="item.name" placeholder="Por favor escribe" />
-        </div>
-      </div>
-    </div>
-
-    <div class="edit-area-wrapper" v-for="(item, index) in friendContacts">
-      <div class="edit-area-header">Contacto de emergencia {{ index + 1 + familyContacts.length }}</div>
-      <div class="edit-area">
-        <div class="line-item phone-select-wrapper" @click="choosePhone('friendPhone', index)">
-          <label>Friends Phone No.</label>
-          <div>
-            <input id="fiendPhone" v-model="item.mobile" disabled placeholder="Por favor, elija" />
-            <m-icon class="icon" type="creditomax/telephone" :width="16" :height="16" />
-          </div>
-        </div>
-        <div class="line-item">
-          <label>Friends Name</label>
           <input v-model="item.name" placeholder="Por favor escribe" />
         </div>
       </div>
@@ -78,9 +61,10 @@ export default {
     });
   },
   watch: {
-    editData: {
+    contacts: {
       handler() {
-        this.canSubmit = true;
+        console.log(this.contacts.filter(t => t.mobile).length );
+        this.canSubmit = this.contacts.filter(t => t.mobile).length == this.contacts.length;
       },
       deep: true,
     },
@@ -106,7 +90,7 @@ export default {
         return;
       }
       // 2. 验证是否有重复的
-      let currentPhone = [...this.familyContacts, ...this.friendContacts].map(t => t.mobile);
+      let currentPhone = [...this.contacts].map(t => t.mobile);
       if (currentPhone.includes(mobile)) {
         this.showMessageBox({
           content: 'Número de móvil duplicado, seleccione otro contacto',
@@ -119,24 +103,15 @@ export default {
         });
         return;
       }
-      if (this.lastPhoneType) {
-        if (this.lastPhoneType == 'familyPhone') {
-          this.familyContacts[this.lastPhoneIndex].mobile = mobile;
-          this.familyContacts[this.lastPhoneIndex].name = name;
-        } else {
-          this.friendContacts[this.lastPhoneIndex].mobile = mobile;
-          this.friendContacts[this.lastPhoneIndex].name = name;
-        }
-      }
+        this.contacts[this.lastPhoneIndex].mobile = mobile;
+        this.contacts[this.lastPhoneIndex].name = name;
     };
 
     return {
       ALL_ATTRS: ALL_ATTRS,
       canSubmit: true, // 是否可以提交
       submitSuccess: false,
-      friendContacts: [],
-      familyContacts: [],
-      lastPhoneType: '',
+      contacts: [],
       lastPhoneIndex: 0,
       editData: {},
       saving: false,
@@ -152,27 +127,21 @@ export default {
 
   methods: {
     async getAppContactsNum() {
-      let familyContactsNum = 1,
-        friendContactsNum = 1;
+      let contactsNum = 1;
       try {
         let res = await this.$http.post(`/api/app/getAppContactsNum`);
-        familyContactsNum = res.data.familyContactsNum;
-        friendContactsNum = res.data.friendContactsNum;
+        contactsNum = res.data.num;
       } catch (error) {
       } finally {
-        this.familyContacts = Array.from({ length: familyContactsNum }, (v, k) => k).map(t => {
+        this.contacts = Array.from({ length: contactsNum }, (v, k) => k).map(t => {
           return { relation: '', mobile: '', name: '' };
-        });
-        this.friendContacts = Array.from({ length: friendContactsNum }, (v, k) => k).map(t => {
-          return { relation: 'Friends', mobile: '', name: '' };
         });
       }
     },
     chooseRelation(data) {
-      this.familyContacts[data.attr].relation = data.value;
+      this.contacts[data.attr].relation = data.value;
     },
-    choosePhone(type, index) {
-      this.lastPhoneType = type;
+    choosePhone(index) {
       this.lastPhoneIndex = index;
       let isGettedPhone = localStorage.getItem(FIRST_GET_PHONE_KEY);
       if (!isGettedPhone) {
@@ -195,18 +164,16 @@ export default {
       this.showLoading();
       try {
         this.eventTracker('contact_submit');
-        console.log(this.familyContacts, this.friendContacts);
         let saveData = { ...this.editData };
-        let contacts = [...this.familyContacts, ...this.friendContacts];
+        let contacts = [...this.contacts];
         saveData.contacts = contacts;
-        console.log(saveData);
         let data = await this.$http.post(`/api/user/addInfo/save`, saveData);
         if (data.returnCode === 2000) {
           this.submitSuccess = true;
           this.eventTracker('contact_submit_success');
           setTimeout(() => {
             this.submitSuccess = false;
-            this.innerJump('complete-bank', { orderId: this.$route.query.orderId, from: 'order' }, true);
+            this.innerJump('identity', { orderId: this.$route.query.orderId, from: 'order' }, true);
           }, 2000);
         }
       } catch (error) {
@@ -243,7 +210,6 @@ export default {
     bottom: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 2;
     span {
       position: absolute;
       top: 50%;

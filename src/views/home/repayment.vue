@@ -4,7 +4,8 @@
       <order-item-repayment class="order-item" v-for="item in orders" :key="item.id" :order="item"></order-item-repayment>
     </div>
     <div class="no-order" v-else-if="!loading">
-      <m-icon class="icon" type="handy/订单空状态" :width="140" :height="107" />
+      <m-icon class="icon" type="creditomax/no-order-all" :width="140" :height="107" />
+      <div>Ningún pedido de préstamo</div>
       <button @click="goHome">Aplicar ahora</button>
     </div>
   </div>
@@ -69,6 +70,17 @@ export default {
   margin: 0 auto;
   .icon {
     margin: 80px auto 40px;
+    margin-bottom: 0;
+  }
+  div {
+    font-size: 12px;
+    font-family: Roboto-Regular, Roboto;
+    font-weight: 400;
+    color: #999999;
+    line-height: 14px;
+    margin-top: 9px;
+    margin-bottom: 16px;
+    text-align: center;
   }
   button {
     width: 327px;

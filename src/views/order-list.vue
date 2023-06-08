@@ -6,7 +6,8 @@
           <order-item class="order-item" v-for="item in orders" :key="item.id" :order="item"></order-item>
         </div>
         <div class="no-order" v-else-if="!loading">
-          <m-icon class="icon" type="handy/订单空状态" :width="140" :height="107" />
+          <m-icon class="icon" type="creditomax/no-order-all" :width="140" :height="107" />
+          <div>Ningún pedido de préstamo</div>
           <button @click="goHome">Apply Now</button>
         </div>
       </div>
@@ -71,12 +72,23 @@ export default {
   margin: 0 auto;
   .icon {
     margin: 100px auto 40px;
+    margin-bottom: 0;
+  }
+  div {
+    font-size: 12px;
+    font-family: Roboto-Regular, Roboto;
+    text-align: center;
+    font-weight: 400;
+    color: #999999;
+    line-height: 14px;
+    margin-top: 9px;
+    margin-bottom: 16px;
   }
   button {
     width: 327px;
     height: 50px;
-    background: linear-gradient(180deg, #fe816f 0%, #fc2214 100%);
-    box-shadow: 0px 4px 10px 0px #f7b5ae, inset 0px 1px 4px 0px #ffc7c0;
+    background: linear-gradient(180deg, #696FFB 0%, #434AF9 100%);;
+    box-shadow: 0px 4px 10px 0px rgba(67,74,249,0.4), inset 0px 1px 4px 0px #434AF9;;
     border-radius: 25px;
     margin: 0 auto;
     display: flex;

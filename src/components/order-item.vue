@@ -8,7 +8,7 @@
         <div class="date">
           <span>{{ dateText }}</span>
           <span>{{ dateValue }}</span>
-          <span class="repaid" v-if="order.orderStatus == 80 || order.orderStatus == 90" @click="goFillUtr">Repaid?</span>
+          <!-- <span class="repaid" v-if="order.orderStatus == 80 || order.orderStatus == 90" @click="goFillUtr">Repaid?</span> -->
         </div>
       </div>
     </div>
@@ -86,9 +86,6 @@ export default {
   },
 
   methods: {
-    goFillUtr() {
-      this.innerJump('utr', { orderId: this.order.orderNo, type: 'repay' });
-    },
     goDetail() {
       if (this.order.orderStatus == 10 || this.order.orderStatus == 100 || this.order.orderStatus == 101) {
         this.goHome();

@@ -6,9 +6,9 @@
     <div class="edit-area">
       <div class="head-top">Subir C.C.ID</div>
       <div class="pan-img-wrapper">
-        <div class="pan-img" @click="getCapture(3)">
-          <template v-if="panFrontBase64Src">
-            <img class="back user-pic" :src="panFrontBase64Src" />
+        <div class="pan-img" @click="getCapture(1)">
+          <template v-if="cardFrontBase64Src">
+            <img class="back user-pic" :src="cardFrontBase64Src" />
             <img class="btn" :src="require('@/assets/img/creditomax/完成.png')" />
           </template>
           <template v-else>
@@ -20,9 +20,9 @@
       </div>
 
       <div class="pan-img-wrapper">
-        <div class="pan-img" @click="getCapture(3)">
-          <template v-if="panBackBase64Src">
-            <img class="back user-pic" :src="panBackBase64Src" />
+        <div class="pan-img" @click="getCapture(2)">
+          <template v-if="cardBackBase64Src">
+            <img class="back user-pic" :src="cardBackBase64Src" />
             <img class="btn" :src="require('@/assets/img/creditomax/完成.png')" />
           </template>
           <template v-else>
@@ -67,9 +67,7 @@
           <div class="cur-percent" :style="{ width: curPercent + '%' }"></div>
           <div class="tips" :style="{ left: curPercent + '%' }">{{ curPercent }}%</div>
         </div>
-        <div class="tips">
-          Por favor, sea paciente y espere a la carga para desbloquear el crédito
-        </div>
+        <div class="tips">Por favor, sea paciente y espere a la carga para desbloquear el crédito</div>
       </div>
     </div>
   </div>
@@ -93,14 +91,25 @@ export default {
     });
   },
   data() {
-    window.onPhotoSelectCallback_3 = data => {
+    window.onPhotoSelectCallback_1 = data => {
       if (typeof data == 'string') {
         data = JSON.parse(data);
       }
       if (data.success) {
         this.eventTracker('id_pan_front_success');
-        this.panFrontBase64Src = `data:image/png;base64,${data.base64[0]}`;
-        this.uploadImg(3, 'panFrontBase64Src', this.panFrontBase64Src);
+        this.cardFrontBase64Src = `data:image/png;base64,${data.base64}`;
+        this.uploadImg(1, 'cardFrontBase64Src', this.cardFrontBase64Src);
+      }
+    };
+
+    window.onPhotoSelectCallback_2 = data => {
+      if (typeof data == 'string') {
+        data = JSON.parse(data);
+      }
+      if (data.success) {
+        this.eventTracker('id_pan_back_success');
+        this.cardBackBase64Src = `data:image/png;base64,${data.base64}`;
+        this.uploadImg(2, 'cardBackBase64Src', this.cardBackBase64Src);
       }
     };
 
@@ -110,15 +119,15 @@ export default {
       }
       if (data.success) {
         this.eventTracker('id_liveness_photo_submit');
-        this.uploadImg(4, 'livingBase64Src', `data:image/png;base64,${data.base64[0]}`);
+        this.uploadImg(4, 'livingBase64Src', `data:image/png;base64,${data.base64}`);
       }
     };
 
     return {
       canSubmit: false, // 是否可以提交
       submitSuccess: false,
-      panFrontBase64Src: '',
-      panBackBase64Src: '',
+      cardFrontBase64Src: '',
+      cardBackBase64Src: '',
       editData: {},
       curPercent: 0,
       saving: false,
@@ -144,8 +153,10 @@ export default {
     // },
 
     getCapture(type) {
-      if (type == 3) {
+      if (type == 1) {
         this.eventTracker('id_pan_front');
+      } else if (type == 2) {
+        this.eventTracker('id_pan_back');
       }
       this.toAppMethod('getCapture', { type: type, callbackMethodName: `onPhotoSelectCallback_${type}` });
     },
@@ -178,7 +189,7 @@ export default {
         console.log('订单创建结果:', res);
         this.eventTracker('id_submit_create_order_success');
         this.submitSuccess = false;
-        this.innerJump('information', { orderId: res.data.orderId }, true);
+        this.innerJump('identity', { orderId: res.data.orderId }, true);
       } catch (error) {
         this.submitSuccess = false;
         this.$toast(error.message);
@@ -194,7 +205,7 @@ export default {
           mark: type,
         };
         saveData[fileName] = base64;
-        let res = await this.$http.post(`/api/ocr/saveBase64Result`, saveData);
+        let res = await this.$http.post(`/api/ocr/saveResult`, saveData);
 
         if (res.returnCode == 2000) {
           if (type == 3 && res.data.panFrontOcrStatus) {
@@ -322,7 +333,6 @@ export default {
     bottom: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 99;
 
     &-content {
       width: 320px;
@@ -349,7 +359,7 @@ export default {
         position: relative;
         .cur-percent {
           height: 10px;
-          background: linear-gradient(270deg, #fc2214 0%, #fe816f 100%);
+          background: linear-gradient(270deg, #434AF9 0%, #696FFB 100%);
           border-radius: 5px;
           position: absolute;
           top: 0;

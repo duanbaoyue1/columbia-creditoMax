@@ -127,7 +127,6 @@ export default {
     right: 0;
     background: rgba(0, 0, 0, 0.7);
     display: none;
-    z-index: 2;
     span {
       position: absolute;
       top: 50%;
