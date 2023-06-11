@@ -1,23 +1,24 @@
 <template>
   <div class="order-item">
-    <div class="status" :class="'status-' + order.orderStatus">{{ statusText }}</div>
-    <div class="info">
+    <div class="head">
       <img :src="order.productIconImageUrl" />
-      <div class="name">
-        <div>{{ order.productName }}</div>
-        <div class="date">
-          <span>{{ dateText }}</span>
-          <span>{{ dateValue }}</span>
-          <!-- <span class="repaid" v-if="order.orderStatus == 80 || order.orderStatus == 90" @click="goFillUtr">Repaid?</span> -->
+      <div>{{ order.productName }}</div>
+    </div>
+    <div class="info">
+      <div>
+        <div>{{ dateValue }}</div>
+        <div>{{ dateText }}</div>
+      </div>
+      <div>
+        <div>
+          <span class="money">$</span>
+          {{ amountValue }}
         </div>
+        <div>{{ amountText }}</div>
       </div>
     </div>
     <div class="action">
-      <div>
-        <span class="label">{{ amountText }}</span>
-        <span class="label2">₹</span>
-        <span class="number">{{ amountValue }}</span>
-      </div>
+      <div class="status" :class="'status-' + order.orderStatus">{{ statusText }}</div>
       <button class="action-btn" :class="'action-btn-' + order.orderStatus" @click="goDetail">{{ order.orderStatusStr }}</button>
     </div>
   </div>
@@ -45,42 +46,42 @@ export default {
 
     amountText() {
       if (this.order.orderStatus == 80 || this.order.orderStatus == 90) {
-        return `Repayable Amount`;
+        return `Importe de préstamo`;
       } else {
-        return `Application Amount`;
+        return `Importe de préstamo`;
       }
     },
     dateText() {
       if (this.order.orderStatus == 80 || this.order.orderStatus == 90) {
-        return `Due Date`;
+        return `Fecha de aplicación`;
       } else {
-        return `Apply Date`;
+        return `Fecha de aplicación`;
       }
     },
     statusText() {
       switch (this.order.orderStatus) {
         case 10:
-          return 'Pending to apply';
+          return 'Pendiente de aplicar';
         case 20:
-          return 'Reviewing';
+          return 'Evaluando';
         case 21:
-          return 'Reviewing';
+          return 'Evaluando';
         case 30:
-          return 'Disbursing';
+          return 'Desembolsando';
         case 40:
-          return 'Rejected';
+          return 'Incapaz';
         case 70:
-          return 'Disbursing';
+          return 'Desembolsando';
         case 80:
-          return 'Pending Repayment';
+          return 'Reembolsando';
         case 90:
-          return 'Overdue';
+          return 'Atrasado';
         case 100:
-          return 'Repayment Successful';
+          return 'Completado';
         case 101:
-          return 'Repayment Successful';
+          return 'Completado';
         default:
-          return 'Reviewing';
+          return 'Evaluando';
       }
     },
   },
@@ -106,11 +107,39 @@ export default {
   padding: 16px 16px 14px;
   box-sizing: border-box;
   position: relative;
+  .head {
+    display: flex;
+    font-size: 14px;
+    font-family: Roboto-Regular, Roboto;
+    font-weight: 400;
+    color: #333333;
+    line-height: 18px;
+    align-items: center;
+    margin-bottom: 26px;
+    img {
+      height: 24px;
+      width: 24px;
+      margin-right: 8px;
+    }
+  }
   .action {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 11px;
+    margin-top: 15px;
+
+    .status {
+      font-size: 10px;
+      font-family: Roboto-Medium, Roboto;
+      font-weight: 500;
+      color: #ffbc41;
+      line-height: 12px;
+      transform: scale(0.9);
+      padding: 4px 12px;
+      border-radius: 12px;
+      border: 1px solid #ffbc41;
+    }
+
     .number {
       font-size: 24px;
       font-family: DINAlternate-Bold, DINAlternate;
@@ -168,64 +197,34 @@ export default {
       }
     }
   }
-  .status {
-    position: absolute;
-    right: 14px;
-    top: 14px;
-    font-size: 10px;
-    font-family: Roboto-Medium, Roboto;
-    font-weight: 500;
-    color: #ffbc41;
-    line-height: 12px;
-    transform: scale(0.9);
-    padding: 4px 12px;
-    border-radius: 12px;
-    border: 1px solid #ffbc41;
-  }
 
   .info {
     display: flex;
     align-items: flex-start;
     padding-bottom: 16px;
     border-bottom: 1px solid #e9e9e9;
-    img {
-      width: 50px;
-      height: 50px;
-      display: block;
-      margin-right: 16px;
-    }
-    .name {
-      font-size: 14px;
-      color: #333333;
-      line-height: 18px;
-      width: 100%;
+    > div {
+      width: 50%;
+
       > div {
+        text-align: center;
+        font-size: 12px;
+        font-family: Roboto-Regular, Roboto;
+        font-weight: 400;
+        color: #999999;
+        line-height: 12px;
+        transform: scale(0.9);
+        .money {
+          font-size: 12px;
+        }
         &:first-child {
-          margin-bottom: 18px;
-        }
-      }
-      .date {
-        position: relative;
-        span {
-          &:first-child {
-            font-size: 10px;
-            font-family: Roboto-Regular, Roboto;
-            font-weight: 400;
-            color: #999999;
-            line-height: 12px;
-            margin-right: 8px;
-          }
-        }
-        .repaid {
-          position: absolute;
-          right: 0;
-          top: 50%;
-          font-size: 10px;
-          font-weight: 500;
-          color: #ff4b3f;
-          line-height: 12px;
-          transform: scale(0.9) translateY(-50%);
-          text-decoration: underline;
+          font-size: 18px;
+          font-family: DINAlternate-Bold, DINAlternate;
+          font-weight: bold;
+          color: #333333;
+          line-height: 20px;
+          transform: scale(1);
+          margin-bottom: 4px;
         }
       }
     }

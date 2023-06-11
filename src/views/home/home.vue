@@ -6,7 +6,7 @@
           <div class="available-text">Préstamo máximo($)</div>
           <div class="number">
             {{ isMultiple ? multipleCredit.remaining : curAvailableAmount }}
-            <!-- <m-icon v-if="appMode" class="lock" type="creditomax/锁" :width="17" :height="20" /> -->
+            <m-icon v-if="showLock" class="lock" type="creditomax/锁" :width="17" :height="20" />
           </div>
           <div class="total-used">
             <div>
@@ -67,6 +67,7 @@ export default {
     };
 
     return {
+      showLock: false,
       disabledPullRefresh: false,
       created: false,
       query: this.$route.query,
@@ -136,6 +137,7 @@ export default {
   },
 
   mounted() {
+    this.eventTracker('home_access');
     if (!this.checkInApp()) {
       window.getCommonParametersCallback();
     }
@@ -198,6 +200,7 @@ export default {
     updateTextAndAction() {
       // 清除数据
       this.btnTips = '';
+      this.showLock = false;
       this.actionText = 'Apply';
       this.actionCallback = () => {
         this.$toast('please try later!');
@@ -244,18 +247,21 @@ export default {
             }
           };
         } else if (this.actionText == 'Repay') {
+          this.showLock = true;
           this.btnTips = 'Too many loans now. Please repay<br/> first and unlock a higher loan amount.';
           // 有待还款或逾期，无可借
           this.actionCallback = () => {
             this.innerJump('repayment');
           };
         } else if (this.actionText == 'Reviewing' || this.actionText == 'Disbursing') {
+          this.showLock = true;
           // 无可借，订单全部放款中或者审核中
           this.actionCallback = () => {
             this.innerJump('order-list');
           };
         } else if (this.actionText == 'Rejected') {
           // 无可借，订单全被拒绝
+          this.showLock = true;
           this.actionCallback = () => {
             this.$toast('The order was rejected. Please try again after 0:00');
           };
@@ -291,20 +297,22 @@ export default {
 
           if (this.appMode.orderStatus == 20 || this.appMode.orderStatus == 21) {
             // 订单审核中
-            this.actionText = 'Reviewing';
+            this.showLock = true;
+            this.actionText = 'Evaluando';
           } else if (this.appMode.orderStatus == 80 || this.appMode.orderStatus == 90) {
             // 待还款 | 逾期
-            this.actionText = 'Repay';
+            this.showLock = true;
+            this.actionText = 'Ir a reembolsar';
             this.btnTips = 'Please repay first and unlock a higher loan amount';
           } else if (this.appMode.orderStatus == 40) {
             // 拒绝
-            this.actionText = 'Rejected';
+            this.actionText = 'Rechazo';
             this.actionCallback = () => {
               this.$toast('The order was rejected. Please try again after 0:00!');
             };
           } else if (this.appMode.orderStatus == 30 || this.appMode.orderStatus == 70) {
             // 放款中
-            this.actionText = 'Disbursing';
+            this.actionText = 'Desembolsando';
           } else {
             this.btnTips = 'Casi:99%';
             this.actionCallback = () => {
@@ -313,7 +321,7 @@ export default {
           }
         }
       } else if (this.appMode.maskModel == 2) {
-        this.actionText = 'Rejected';
+        this.actionText = 'Rechazo';
         this.actionCallback = () => {
           this.$toast('The order was rejected. Please try again after 0:00!');
         };
@@ -363,6 +371,7 @@ export default {
     },
 
     async clickApply() {
+      this.eventTracker('home_apply');
       if (this.actionCallback) {
         this.actionCallback();
       }
@@ -374,7 +383,7 @@ export default {
 <style lang="scss" scoped>
 .home-recommend {
   height: 80%;
-  background: #F6F6F6;
+  background: #f6f6f6;
   .pop-content {
     position: relative;
     height: 100%;

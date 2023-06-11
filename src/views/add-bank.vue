@@ -113,12 +113,14 @@ export default {
         userName: '',
       },
       from: this.$route.query.from,
+      orderId: this.$route.query.orderId,
       showConfirmModal: false,
       banks: ALL_ATTRS.BANKS,
       saving: false,
     };
   },
   mounted() {
+    this.initInfoBackControl();
     setTimeout(() => {
       this.getUserInfo();
     }, 200);
@@ -126,30 +128,52 @@ export default {
 
   methods: {
     confirmSelect() {
+      this.eventTracker('bank_add_submit');
       this.selectBank = this.$refs.bankPicker.getValues()[0];
       this.openSelect = false;
     },
     async submit() {
       if (this.saving) return;
       this.saving = true;
+      this.showLoading();
       try {
-        this.eventTracker('bank_add_submit');
-        let saveData = { ...this.editData };
-        saveData.name = this.userInfo.panName;
-        if (saveData.accountNumber.length < 7 || saveData.accountNumber.length > 22) {
-          this.$toast('Please enter correct account number');
-          return;
-        }
+        this.eventTracker('bank_confirm_submit');
+        let saveData = {
+          accountNumber: this.editData.accountNumber,
+          bank: this.selectBank.text,
+          bankCode: this.selectBank.value,
+          name: this.editData.userName,
+        };
+        // if (saveData.accountNumber.length < 7 || saveData.accountNumber.length > 22) {
+        //   this.$toast('Please enter correct account number');
+        //   return;
+        // }
         let data = await this.$http.post(`/api/remittance/addRemittanceAccount`, saveData);
         if (data.returnCode == 2000) {
-          this.innerJump('complete-bank', this.$route.query, true);
+          if (this.from == 'order') {
+            // 绑卡
+            await this.$http.post(`/api/order/bindRemittanceAccount`, { remittanceAccountId: data.data.id, orderId: this.orderId });
+            // 判断是否需要确认订单
+            let appMode = await this.getAppMode();
+            if (appMode.confirmType == 1) {
+              // 需要进确认申请页
+              this.innerJump('loan-confirm', { orderId: this.orderId }, true);
+            } else {
+              // 不需要进确认申请页
+              this.innerJump('loan-success-multi', { orderId: this.orderId, single: true, systemTime: new Date().getTime() }, true);
+            }
+          } else {
+            this.goAppBack();
+          }
         }
         this.eventTracker('bank_add_submit_success');
       } catch (error) {
+        console.log(error);
         this.eventTracker('bank_add_submit_error');
         this.$toast(error.message);
       } finally {
         this.saving = false;
+        this.hideLoading();
       }
     },
   },

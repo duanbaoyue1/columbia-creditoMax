@@ -7,7 +7,7 @@
         <div class="content">
           <header>Seleccione la forma de pago</header>
           <ul>
-            <li @click="chooseBankA('Nequi')">Nequi</li>
+            <li @click="chooseBankA(0, '1507')">Nequi</li>
             <li @click="chooseBankB">PSE(Pagos Seguros en Línea)</li>
           </ul>
           <div class="tips">
@@ -54,11 +54,13 @@ export default {
       let selectBank = this.$refs.bankPicker.getValues()[0];
       localStorage.setItem(LAST_CHOOSE_BANK_KEY, selectBank.value);
       this.openSelect = false;
-      this.chooseBankA();
+      this.chooseBankA(1, selectBank.value);
     },
-    chooseBankA(value) {
-      console.log('chooseBankA');
-      this.$emit('select-bank', value);
+    chooseBankA(type, value) {
+      this.$emit('select-bank', {
+        payType: type,
+        bankCode: value
+      });
     },
     cancelSheet() {
       this.$emit('update:show', false);

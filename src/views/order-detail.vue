@@ -1,17 +1,22 @@
 <template>
   <div class="order-detail content-area" :class="'order_' + detail.orderStatus">
     <div class="status-text">{{ orderStatusText }}</div>
+    <div class="status-desc" v-if="detail.orderStatus == 30 || detail.orderStatus == 70 || detail.orderStatus == 110">
+      <div v-if="detail.orderStatus == 30 || detail.orderStatus == 70">Por lo general, llegará el mismo día o al día siguiente. Sin embargo, puede deberse a la lentitud del procesamiento del banco, y la cuenta llegará a más tardar el tercer día. Espere pacientemente. La hora de desembolso está sujeta a la hora real de llegada.</div>
+      <die v-else>Si el pago falla, cambie los datos de su tarjeta en el Centro Personal y vuelva a presentar su solicitud.</die>
+    </div>
+
     <div class="order-info" v-if="detail.orderStatus >= 80">
       <div class="flex-between" v-if="detail.orderStatus >= 80">
         <span>Monto de reembolso</span>
         <span class="font-bold color-orange align-end" style="line-height: 26px">
-          ₹
+          <span class="fs-24">$</span>
           <span class="fs-24">{{ detail.estimatedRepaymentAmount }}</span>
         </span>
       </div>
       <div class="flex-between" v-if="showDate">
         <span>Fecha de vencimiento</span>
-        <span>{{ detail.expectedRepaymentTime }}</span>
+        <span class="fw-500">{{ detail.expectedRepaymentTime }}</span>
       </div>
     </div>
 
@@ -22,15 +27,15 @@
       </div>
       <div class="flex-between">
         <span>Monto de prestamo</span>
-        <span class="font-bold color-000">
-          $
+        <span class="font-bold">
+          <span class="money-label">$</span>
           <span>{{ detail.approvalAmount }}</span>
         </span>
       </div>
       <div class="flex-between" v-if="detail.orderStatus >= 80">
         <span>Importe real recibid</span>
-        <span class="font-bold color-blue">
-          $
+        <span class="font-bold">
+          <span class="money-label">$</span>
           <span>{{ detail.actualAmount }}</span>
         </span>
       </div>
@@ -40,14 +45,14 @@
       <div class="flex-between">
         <span>Tarifa de servicio</span>
         <span class="font-bold color-blue">
-          $
+          <span class="money-label">$</span>
           <span>{{ detail.incidentalAmount }}</span>
         </span>
       </div>
       <div class="flex-between" v-if="detail.penaltyInterest > 0">
         <span>Tarifa vencida</span>
         <span class="font-bold color-blue">
-          $
+          <span class="money-label">$</span>
           <span>{{ detail.penaltyInterest }}</span>
         </span>
       </div>
@@ -56,7 +61,7 @@
     <div class="order-info" v-if="detail.orderStatus >= 80">
       <div class="flex-between" v-if="deferTimes > 0 || (detail.orderStatus >= 80 && detail.showExtension == 1)" @click="goDeferHis">
         <span>Historial de reembolso diferido</span>
-        <div class="color-blue">
+        <div class="color-blue font-bold">
           {{ deferTimes }} veces
           <m-icon class="icon" type="blue-right" :width="8" :height="12" />
         </div>
@@ -68,7 +73,7 @@
         <span>Forma de pago</span>
         <span>{{ detail.bankCardName }}</span>
       </div>
-      <div class="flex-between">
+      <div class="flex-between bank-no">
         <span>Número de cuenta receptora</span>
         <span>{{ detail.bankCardNo }}</span>
       </div>
@@ -85,12 +90,12 @@
       </div> -->
       <div class="flex-between">
         <span>Fecha de aplicacion</span>
-        <span>{{ detail.applyTime }}</span>
+        <span class="fw-500">{{ detail.applyTime }}</span>
       </div>
 
       <div class="flex-between" v-if="showDate">
         <span>Fecha de recibo</span>
-        <span>{{ detail.actualRepaymentTime || detail.expectedRepaymentTime }}</span>
+        <span class="fw-500">{{ detail.actualRepaymentTime || detail.expectedRepaymentTime }}</span>
       </div>
     </div>
 
@@ -105,8 +110,8 @@
     </div> -->
 
     <div class="actions">
-      <div class="btns" v-if="detail.orderStatus == 100 || detail.orderStatus == 101 || detail.orderStatus == 40 || detail.orderStatus == 80 || detail.orderStatus == 90">
-        <button class="btn-default" v-if="detail.orderStatus == 100 || detail.orderStatus == 101 || detail.orderStatus == 40" @click="goHome">Cambio de cuenta de cobro</button>
+      <div class="btns" v-if="detail.orderStatus == 100 || detail.orderStatus == 110 || detail.orderStatus == 101 || detail.orderStatus == 40 || detail.orderStatus == 80 || detail.orderStatus == 90">
+        <button class="btn-default" v-if="detail.orderStatus == 100 || detail.orderStatus == 101 || detail.orderStatus == 40 || detail.orderStatus == 110" @click="goHome">Cambio de cuenta de cobro</button>
         <template v-else-if="detail.orderStatus == 80 || detail.orderStatus == 90">
           <button class="btn-line" v-if="detail.showExtension == 1" @click="applyDefer">Reembolso diferido</button>
           <button class="btn-default" @click="showPaymentTips = true">Ir a reembolsar</button>
@@ -225,7 +230,6 @@ export default {
     return {
       orderId: this.$route.query.orderId,
       choosed: false, // 是否勾选复贷
-      showAuto: false, // 是否显示复贷
       showPaymentTips: false,
       detail: '',
       deferTimes: 0,
@@ -236,34 +240,12 @@ export default {
   mounted() {
     this.getDetail();
     this.getDeferTimes();
-    this.queryOrderReloan();
   },
 
   methods: {
-    selectBank(value) {
-      console.log(value);
+    async selectBank(bank) {
       this.showPaymentTips = false;
-      // TODO
-    },
-    async queryOrderReloan() {
-      try {
-        // 判断全局状态
-        let data = await this.$http.post(`/api/order/isOpenOrderAutoRepeatNew`, { orderId: this.orderId });
-        this.showAuto = data.data.isOpen;
-        this.choosed = data.data.isGive;
-        console.log('update choosed1', data.data.isGive);
-
-        // 查询当前订单是否开启自动复贷
-        data = await this.$http.post(`/api/order/getOrderIsOpenOrderAutoRepeat`, { orderId: this.orderId });
-        if (data.data != null && typeof data.data != 'undefined') {
-          this.choosed = data.data;
-          console.log('update choosed', this.choosed);
-        }
-      } catch (error) {}
-    },
-
-    backC() {
-      console.log('backC');
+      this.openWebview(`${this.appGlobal.apiHost}/api/repayment/prepay?id=${this.orderId}&payType=${bank.payType}&bankCode=${bank.bankCode}`);
     },
 
     applyDefer() {
@@ -271,9 +253,6 @@ export default {
     },
     checkAgreement() {
       this.openWebview(`${this.appGlobal.apiHost}/api/h5/contract?orderNo=${this.orderId}`);
-    },
-    goTutorial() {
-      location.href = this.orderUrl.utrVideoUrl;
     },
     goDeferHis() {
       this.innerJump('defer-history', { orderId: this.orderId });
@@ -292,9 +271,6 @@ export default {
           orderId: this.orderId,
         });
         this.detail = res.data;
-        console.log('order detail', this.detail);
-        console.log('order status', this.detail.orderStatus);
-        console.log('this.orderStatus', this.orderStatusText);
         if (this.orderStatusText == 'Rejected' || this.orderStatusText == 'Repayment Successful' || this.orderStatusText == 'Pending Repayment' || this.orderStatusText == 'Overdue') {
           this.orderUrl = await this.getOrderRelateUrl(this.orderId);
         }
@@ -308,133 +284,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.payment-success-container {
-  width: 295px;
-  box-sizing: border-box;
-  border-radius: 8px;
-  .policy {
-    display: flex;
-    align-items: flex-start;
-    font-size: 12px;
-    font-weight: 400;
-    margin: 16px 24px 0;
-    color: #000601;
-    position: relative;
-    .tips {
-      position: absolute;
-      top: -30px;
-      left: -8px;
-      width: 130px;
-      height: 20px;
-      background: #fbe396;
-      border-radius: 24px 24px 24px 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 10px;
-      font-weight: bold;
-      color: #333333;
-      line-height: 12px;
-      transform: scale(0.9);
-      &::after {
-        position: absolute;
-        content: ' ';
-        width: 1px;
-        height: 1px;
-        border-width: 6px 6px;
-        border-style: solid;
-        border-color: #fbe396 transparent transparent transparent;
-        bottom: -10px;
-        left: 11px;
-      }
-    }
-    .m-icon {
-      margin-top: -2px;
-    }
-    span {
-      margin-left: 0px;
-      transform: scale(0.9);
-      margin-top: -10px;
-    }
-  }
-  .icon {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: transparent;
-    width: 295px !important;
-    height: 154px !important;
-  }
-  .close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 2;
-  }
-  .content {
-    padding-top: 140px;
-    margin-bottom: 40px;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
-    color: #000601;
-    text-align: left;
-    margin-left: 24px;
-    margin-right: 24px;
-    .fill {
-      text-decoration: underline;
-    }
-    .remember {
-      font-size: 20px;
-      font-weight: bold;
-      color: #000601;
-      line-height: 24px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    a {
-      color: #1143a4;
-      text-decoration: underline;
-    }
-  }
-  .action {
-    margin: 0 24px;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 24px;
-    > div {
-      width: 143px;
-      height: 40px;
-      background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
-      box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
-      border-radius: 20px;
-      font-size: 16px;
-      font-weight: 900;
-      color: #ffffff;
-      line-height: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
-
-      &.cancel {
-        border: 1px solid #999999;
-        color: #999;
-        position: relative;
-        width: 88px;
-        background: transparent;
-        box-shadow: none;
-        margin-right: 16px;
-        flex-grow: 1;
-      }
-    }
-  }
-}
-
 .order-detail {
   padding-bottom: 120px;
-  background-image: url(../assets/img/handy/订单等待.png);
+  background-image: url(../assets/img/creditomax/放款中.png);
   background-position: top;
   background-repeat: no-repeat;
   background-size: 375px 206px;
@@ -443,11 +295,29 @@ export default {
   background-attachment: local;
   &.order_40,
   &.order_90 {
-    background-image: url(../assets/img/handy/订单失败.png);
+    background-image: url(../assets/img/creditomax/订单失败.png);
   }
   &.order_100,
   &.order_101 {
-    background-image: url(../assets/img/handy/订单成功.png);
+    background-image: url(../assets/img/creditomax/订单成功.png);
+  }
+
+  &.order_30, &.order_70, &.order_110 {
+    background-size: 375px 246px;
+    .status-text {
+      margin-top: 8px;
+    }
+  }
+
+  .bank-no {
+    flex-direction: column;
+    align-items: baseline;
+    span {
+      margin-left: 0 !important;
+      &:last-child {
+        margin-top: 8px;
+      }
+    }
   }
 
   .status-text {
@@ -455,9 +325,28 @@ export default {
     font-weight: bold;
     color: #ffffff;
     line-height: 32px;
+    margin-top: 24px;
     margin-bottom: 24px;
     padding-left: 24px;
     padding-right: 24px;
+  }
+  .status-desc {
+    font-size: 10px;
+    font-family: Roboto-Medium, Roboto;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-bottom: 16px;
+    margin-top: -16px;
+  }
+
+  .money-label {
+    font-size: 12px;
+    font-family: Helvetica;
+    color: #333333;
+    line-height: 14px;
   }
   .actions {
     position: fixed;
@@ -480,15 +369,16 @@ export default {
         box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
         border-radius: 25px;
         height: 46px;
-        border: none;
+        border: 1px solid #434af9;
         color: #ffffff;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 16px;
       }
       .btn-line {
         border-radius: 25px;
         border: 1px solid #999999;
-        font-size: 18px;
+        font-weight: bold;
+        font-size: 16px;
         color: #999;
       }
       button {

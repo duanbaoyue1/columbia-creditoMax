@@ -163,6 +163,9 @@ export default {
     startSyncData(needResolve = false) {
       return new Promise(async (resolve, reject) => {
         try {
+          // TODO
+          resolve({ success: true });
+
           await this.getUserInfo();
           // 第一步判断是否需要
           let res = await axios.post(`${DATA_API_HOST}/original/indiaIsUpload`, {

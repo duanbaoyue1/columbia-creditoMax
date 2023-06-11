@@ -8,7 +8,7 @@
         <div class="no-order" v-else-if="!loading">
           <m-icon class="icon" type="creditomax/no-order-all" :width="140" :height="107" />
           <div>Ningún pedido de préstamo</div>
-          <button @click="goHome">Apply Now</button>
+          <button @click="goHome">Aplicar ahora</button>
         </div>
       </div>
     </van-pull-refresh>
@@ -33,7 +33,7 @@ export default {
       show: true,
       transparent: false,
       fixed: true,
-      title: 'All orders',
+      title: 'Pedido de préstamo',
     });
   },
   mounted() {

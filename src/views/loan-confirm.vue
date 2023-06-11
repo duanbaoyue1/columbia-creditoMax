@@ -3,7 +3,7 @@
     <div class="loan-money">
       <div>
         <div>Monto del préstamo ($)</div>
-        <div>2,000,000 - 500,000</div>
+        <div>{{ orderInfo.estimatedRepaymentAmount }}</div>
       </div>
       <m-icon type="creditomax/确认申请页" :width="56" :height="56" />
     </div>
@@ -11,12 +11,12 @@
     <div class="loan-info">
       <div class="item">
         <span>Monto total de recibo</span>
-        <span>1,260,000 - 400,000</span>
+        <span>{{ orderInfo.actualAmount }}</span>
       </div>
 
       <div class="item border">
         <span>Monto total de reembolso</span>
-        <span class="color-000">2,000,000 - 500,000</span>
+        <span class="color-000">{{ orderInfo.approvalAmount }}</span>
       </div>
       <div class="item">
         <span>Fecha de aplicación</span>

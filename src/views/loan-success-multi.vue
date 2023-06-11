@@ -103,7 +103,7 @@ export default {
       totalAmount: 0,
       checkedNums: 0,
       nextStep: '',
-      showBackControl: true,
+      showBackControl: false,
       backInterval: null, // 回退倒计时
       showGoogleFeed: false,
       isSysNeedGoogle: false,

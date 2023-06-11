@@ -177,6 +177,7 @@ export default {
     },
 
     openWebview(url, type = 0) {
+      console.log(url);
       this.toAppMethod('openWebView', { path: url, type: type });
     },
 

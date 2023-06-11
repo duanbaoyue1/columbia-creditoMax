@@ -20,7 +20,7 @@
     <div class="order-info">
       <div class="period">
         <span class="fs-14 font-bold">Costes para reembolso diferido</span>
-        <div>
+        <div class="value">
           <span class="color-blue">$</span>
           <span class="value">{{ detail.amount }}</span>
           <!-- <m-icon class="icon" type="gray-down" :width="16" :height="12" /> -->
@@ -84,10 +84,9 @@ export default {
     this.orderUrl = await this.getOrderRelateUrl(this.orderId);
   },
   methods: {
-    selectBank(value) {
-      console.log(value);
+    async selectBank(bank) {
       this.showPaymentTips = false;
-      // TODO
+      this.openWebview(`${this.appGlobal.apiHost}/api/extension/prepay?id=${this.orderId}&payType=${bank.payType}&bankCode=${bank.bankCode}`);
     },
     goTutorial() {
       location.href = this.orderUrl.utrVideoUrl;
@@ -131,6 +130,7 @@ export default {
       line-height: 16px;
       word-break: break-word;
       margin-top: 0;
+      width: 70%;
       &:first-child {
         margin-bottom: 7px;
         font-size: 16px;
@@ -198,7 +198,6 @@ export default {
         display: flex;
         align-items: flex-end;
         .value {
-          margin-left: 4px;
           margin-right: 0px;
           font-size: 24px;
           font-weight: bold;
@@ -234,7 +233,7 @@ export default {
   .desc {
     font-size: 12px;
     font-weight: 400;
-    color: #333;
+    color: #999;
     line-height: 18px;
     margin: 0 24px;
     word-break: break-word;

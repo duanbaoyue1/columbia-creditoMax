@@ -119,7 +119,6 @@ export default {
   },
 
   mounted() {
-    // this.toAppMethod('needBackControl', { need: true });
     this.getAppContactsNum();
     this.eventTracker('contact_access');
     this.initInfoBackControl();

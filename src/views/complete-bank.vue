@@ -9,19 +9,19 @@
               <div class="number">{{ card.accountNumber | phoneHideFilter }}</div>
             </div>
           </div>
-          <m-icon class="choose" :type="chooseBankId == card.id ? 'creditomax/多推选中' : 'creditomax/多推未选中'" :width="24" :height="24" />
+          <m-icon class="choose" :class="{active: chooseBankId == card.id}" :type="chooseBankId == card.id ? 'creditomax/多推选中' : 'creditomax/多推未选中'" :width="24" :height="24" />
           <span class="default-tips" v-if="chooseBankId == card.id">Tarjeta bancaria por defecto</span>
         </div>
       </div>
       <div class="add-card" @click="goAddCard">
-        <m-icon class="icon" type="creditomax/添加" :width="14" :height="14" />
+        <m-icon class="icon" type="creditomax/add1" :width="14" :height="14" />
         Agregar un nuevo método
       </div>
     </div>
 
-    <div class="submit">
+    <!-- <div class="submit">
       <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Enviar</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -72,7 +72,6 @@ export default {
   mounted() {
     this.getBanks();
     if (this.from != 'mine') {
-      this.initInfoBackControl();
       this.eventTracker('bank_access');
     }
   },
@@ -80,52 +79,31 @@ export default {
   methods: {
     goAddCard() {
       this.eventTracker('bank_add');
-      this.innerJump('add-bank', this.$route.query, true);
+      this.innerJump('add-bank', this.$route.query);
     },
     async getBanks() {
       let data = await this.$http.post('/api/remittance/remittanceAccountList');
       this.cards = data.data.list;
       this.chooseBankId = this.cards[0].id;
     },
-    chooseBank(bank) {
-      this.chooseBankId = bank.id;
-    },
-    async submit() {
+    async chooseBank(bank) {
       this.showLoading();
       try {
-        if (this.from != 'mine') {
-          this.eventTracker('bank_submit');
-          try {
-            await this.$http.post(`/api/order/bindRemittanceAccount`, {
-              orderId: this.orderId,
-              remittanceAccountId: this.chooseBankId,
-            });
-            this.eventTracker('bank_submit_success');
-            let appMode = await this.getAppMode();
-            if (appMode.confirmType == 1) {
-              // 需要进确认申请页
-              this.innerJump('loan-confirm', { orderId: this.orderId }, true);
-            } else {
-              // 不需要进确认申请页
-              this.innerJump('loan-success-multi', { orderId: this.orderId, single: true, systemTime: new Date().getTime() }, true);
-            }
-          } catch (error) {
-            this.eventTracker('bank_submit_error');
-            this.$toast(error.message);
-          }
-        } else {
-          // 从个人中心进来，则是修改默认卡
-          await this.$http.post(`/api/remittance/modifyLoanCard`, {
-            remittanceAccountId: this.chooseBankId,
-          });
-          this.hideLoading();
-          this.goAppBack();
-        }
+        // 从个人中心进来，则是修改默认卡
+        await this.$http.post(`/api/remittance/modifyLoanCard`, {
+          remittanceAccountId: bank.id,
+        });
+        this.chooseBankId = bank.id;
+        this.hideLoading();
+        this.eventTracker('bank_submit_success');
+        this.$toast('Vinculación de la tarjeta bancaria con éxito');
       } catch (error) {
         this.$toast(error.message);
       } finally {
         this.hideLoading();
       }
+    },
+    async submit() {
       // this.showMessageBox({
       //   content: 'The name of the bank account you submitted is inconsistent with your name, please change it to your own account.',
       //   confirmBtnText: 'Submit',
@@ -178,14 +156,13 @@ export default {
 <style lang="scss" scoped>
 .complete-bank {
   padding: 20px 24px;
-  padding-bottom: 110px;
   background: #f6f6f6;
-  height: 100%;
   box-sizing: border-box;
 
   .cards {
     background: #fff;
     margin-top: 24px;
+    margin-bottom: 24px;
     padding: 16px 16px 24px;
     border-radius: 8px;
     .none {
@@ -233,22 +210,26 @@ export default {
       background-size: cover;
 
       &:nth-child(4n + 1) {
-        background-image: url('../assets/img/handy/银行卡1.png');
+        background-image: url('../assets/img/creditomax/卡1.png');
       }
       &:nth-child(4n + 2) {
-        background-image: url('../assets/img/handy/银行卡2.png');
+        background-image: url('../assets/img/creditomax/卡2.png');
       }
       &:nth-child(4n + 3) {
-        background-image: url('../assets/img/handy/银行卡3.png');
+        background-image: url('../assets/img/creditomax/卡3.png');
       }
       &:nth-child(4n + 4) {
-        background-image: url('../assets/img/handy/银行卡4.png');
+        background-image: url('../assets/img/creditomax/卡4.png');
       }
 
       .choose {
         position: absolute;
         top: 16px;
         right: 16px;
+        &.active {
+          background: #fff;
+          border-radius: 100%;
+        }
       }
       .default-tips {
         font-size: 10px;
@@ -283,6 +264,7 @@ export default {
             color: #ffffff;
             line-height: 1;
             margin-bottom: 10px;
+            padding-right: 20px;
           }
         }
       }

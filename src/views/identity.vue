@@ -96,7 +96,7 @@ export default {
         data = JSON.parse(data);
       }
       if (data.success) {
-        this.eventTracker('id_pan_front_success');
+        this.eventTracker('id_card_front_submit');
         this.cardFrontBase64Src = `data:image/png;base64,${data.base64}`;
         this.uploadImg(1, 'cardFrontBase64Src', this.cardFrontBase64Src);
       }
@@ -107,7 +107,7 @@ export default {
         data = JSON.parse(data);
       }
       if (data.success) {
-        this.eventTracker('id_pan_back_success');
+        this.eventTracker('id_card_back_submit');
         this.cardBackBase64Src = `data:image/png;base64,${data.base64}`;
         this.uploadImg(2, 'cardBackBase64Src', this.cardBackBase64Src);
       }
@@ -133,6 +133,9 @@ export default {
       saving: false,
       curInterval: null,
       ocrChannel: 'AccV2',
+      adahaarFrontOcrStatus: 0, 
+      adahaarBackOcrStatus: 0,
+      orderId: this.$route.query.orderId
     };
   },
 
@@ -154,9 +157,9 @@ export default {
 
     getCapture(type) {
       if (type == 1) {
-        this.eventTracker('id_pan_front');
+        this.eventTracker('id_card_front');
       } else if (type == 2) {
-        this.eventTracker('id_pan_back');
+        this.eventTracker('id_card_back');
       }
       this.toAppMethod('getCapture', { type: type, callbackMethodName: `onPhotoSelectCallback_${type}` });
     },
@@ -181,18 +184,17 @@ export default {
       window.clearInterval(this.curInterval);
     },
 
-    async createNewOrder() {
+    async goAddCard() {
       try {
         // 创建订单
         let res = await this.$http.post(`/api/product/appMaskModel`);
-        // 跳转个人信息页
         console.log('订单创建结果:', res);
         this.eventTracker('id_submit_create_order_success');
         this.submitSuccess = false;
-        this.innerJump('identity', { orderId: res.data.orderId }, true);
+        this.innerJump('add-bank', { orderId: res.data.orderId }, true);
       } catch (error) {
         this.submitSuccess = false;
-        this.$toast(error.message);
+        // this.$toast(error.message);
       }
     },
 
@@ -201,27 +203,37 @@ export default {
       this.startPercent();
       try {
         let saveData = {
-          channel: this.ocrChannel,
+          // channel: this.ocrChannel,
           mark: type,
         };
         saveData[fileName] = base64;
         let res = await this.$http.post(`/api/ocr/saveResult`, saveData);
 
         if (res.returnCode == 2000) {
-          if (type == 3 && res.data.panFrontOcrStatus) {
+          if(type == 1) {
+            this.adahaarFrontOcrStatus = res.data.adahaarFrontOcrStatus;
+          } else if(type == 2) {
+            this.adahaarBackOcrStatus = res.data.adahaarBackOcrStatus;
+          }
+          if (type == 1 && res.data.adahaarFrontOcrStatus) {
             this.curPercent = 100;
             setTimeout(() => {
               this.stopPercent();
               this.submitSuccess = false;
-              // 活体检测
-              this.canSubmit = true;
             }, 1000);
-            this.eventTracker('id_submit_success');
+            this.eventTracker('id_card_front_submit_success');
+          } else if (type == 2 && res.data.adahaarBackOcrStatus) {
+            this.curPercent = 100;
+            setTimeout(() => {
+              this.stopPercent();
+              this.submitSuccess = false;
+            }, 1000);
+            this.eventTracker('id_card_back_submit_success');
           } else if (type == 4 && res.data.faceComparisonStatus) {
             this.curPercent = 100;
 
             this.eventTracker('id_liveness_success');
-            this.createNewOrder();
+            this.goAddCard();
           } else {
             this.logError(type);
           }
@@ -230,6 +242,12 @@ export default {
         }
       } catch (error) {
         this.logError(type, error.message);
+      } finally {
+        if(this.adahaarBackOcrStatus && this.adahaarFrontOcrStatus) {
+          this.canSubmit = true; 
+        } else {
+          this.canSubmit = false;
+        }
       }
     },
 

@@ -20,6 +20,7 @@
   text-align: justify;
   word-break: break-all;
   word-wrap: break-word;
+  z-index: 10000;
   &-center {
     position: fixed;
     left: 50%;
