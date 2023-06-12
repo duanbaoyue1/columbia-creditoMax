@@ -133,9 +133,9 @@ export default {
       saving: false,
       curInterval: null,
       ocrChannel: 'AccV2',
-      adahaarFrontOcrStatus: 0, 
+      adahaarFrontOcrStatus: 0,
       adahaarBackOcrStatus: 0,
-      orderId: this.$route.query.orderId
+      orderId: this.$route.query.orderId,
     };
   },
 
@@ -210,9 +210,9 @@ export default {
         let res = await this.$http.post(`/api/ocr/saveResult`, saveData);
 
         if (res.returnCode == 2000) {
-          if(type == 1) {
+          if (type == 1) {
             this.adahaarFrontOcrStatus = res.data.adahaarFrontOcrStatus;
-          } else if(type == 2) {
+          } else if (type == 2) {
             this.adahaarBackOcrStatus = res.data.adahaarBackOcrStatus;
           }
           if (type == 1 && res.data.adahaarFrontOcrStatus) {
@@ -243,8 +243,8 @@ export default {
       } catch (error) {
         this.logError(type, error.message);
       } finally {
-        if(this.adahaarBackOcrStatus && this.adahaarFrontOcrStatus) {
-          this.canSubmit = true; 
+        if (this.adahaarBackOcrStatus && this.adahaarFrontOcrStatus) {
+          this.canSubmit = true;
         } else {
           this.canSubmit = false;
         }
@@ -326,10 +326,10 @@ export default {
         margin: 0 auto;
         display: block;
         &.user-pic {
-          height: 190px;
-          width: 120px;
-          transform: rotate(270deg);
-          transform-origin: center center;
+          // height: 120px;
+          // width: 120px;
+          // transform: rotate(270deg);
+          // transform-origin: center center;
         }
       }
       .btn {
@@ -377,7 +377,7 @@ export default {
         position: relative;
         .cur-percent {
           height: 10px;
-          background: linear-gradient(270deg, #434AF9 0%, #696FFB 100%);
+          background: linear-gradient(270deg, #434af9 0%, #696ffb 100%);
           border-radius: 5px;
           position: absolute;
           top: 0;
