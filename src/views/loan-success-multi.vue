@@ -215,7 +215,7 @@ export default {
             await this.$http.post(`/api/order/mergePush/apply`, {
               orderIdList: res.data.orderIdList,
             });
-            this.$toast('Apply successfully');
+            this.$toast('Solicitud enviada con éxito');
             setTimeout(res => {
               this.getRecommendLoans();
             }, 1000);

@@ -203,12 +203,12 @@ export default {
       this.showLock = false;
       this.actionText = 'Apply';
       this.actionCallback = () => {
-        this.$toast('please try later!');
+        this.$toast('Por favor, inténtelo de nuevo！');
       };
 
       if (this.appMode.maskModel == 1) {
         this.actionText = this.multipleCredit.button || 'Apply';
-        if (this.actionText == 'Apply immediately') {
+        if (this.actionText == 'Aplicar ahora') {
           // 有可借
           this.actionCallback = async () => {
             // 多推
@@ -233,7 +233,7 @@ export default {
                     await this.$http.post(`/api/order/mergePush/apply`, {
                       orderIdList: res.data.orderIdList,
                     });
-                    this.$toast('Apply successfully');
+                    this.$toast('Solicitud enviada con éxito');
                     setTimeout(res => {
                       this.innerJump('loan-success-multi', { systemTime: new Date().getTime() });
                     }, 1000);
@@ -263,7 +263,7 @@ export default {
           // 无可借，订单全被拒绝
           this.showLock = true;
           this.actionCallback = () => {
-            this.$toast('The order was rejected. Please try again after 0:00');
+            this.$toast('Por favor, inténtelo de nuevo después de 0:00');
           };
         }
       } else if (this.appMode.maskModel == 3 || this.appMode.maskModel == 0) {
@@ -308,7 +308,7 @@ export default {
             // 拒绝
             this.actionText = 'Rechazo';
             this.actionCallback = () => {
-              this.$toast('The order was rejected. Please try again after 0:00!');
+              this.$toast('Por favor, inténtelo de nuevo después de 0:00!');
             };
           } else if (this.appMode.orderStatus == 30 || this.appMode.orderStatus == 70) {
             // 放款中
@@ -323,7 +323,7 @@ export default {
       } else if (this.appMode.maskModel == 2) {
         this.actionText = 'Rechazo';
         this.actionCallback = () => {
-          this.$toast('The order was rejected. Please try again after 0:00!');
+          this.$toast('Por favor, inténtelo de nuevo después de 0:00!');
         };
       }
     },

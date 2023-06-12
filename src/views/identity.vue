@@ -255,7 +255,7 @@ export default {
       this.stopPercent();
       this.submitSuccess = false;
       this.eventTracker('id_submit_error');
-      this.$toast(message || 'please try again!');
+      this.$toast(message || 'Por favor, inténtelo de nuevo！');
     },
 
     async submit() {

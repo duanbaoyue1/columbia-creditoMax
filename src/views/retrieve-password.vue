@@ -80,7 +80,7 @@ export default {
     },
     async submit() {
       if (this.editData.newPassword !== this.editData.enterPassword) {
-        this.$toast('The two passwords are inconsistent');
+        this.$toast('Las dos contraseñas son incoherentes');
         return;
       }
 
