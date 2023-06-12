@@ -78,7 +78,7 @@ export default {
       show: true,
       fixed: true,
       transparent: false,
-      title: 'Loan Applications',
+      title: 'Solicitud de préstamo',
       backCallback: window.loanBtnCallback,
     });
   },

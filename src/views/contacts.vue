@@ -56,7 +56,7 @@ export default {
       show: true,
       transparent: false,
       fixed: true,
-      title: 'Complete information',
+      title: 'Información básica',
       backCallback: null,
     });
   },

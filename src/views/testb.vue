@@ -73,7 +73,7 @@ export default {
       }
       if (data.success) {
         this.base64 = data.pic;
-        this.base64ImgData = `data:image/png;base64,${data.base64}`;
+        this.base64ImgData = `data:image/png;base64,${data.pic}`;
         this.toAppMethod('getCapture', { type: 4, callbackMethodName: `onPhotoSelectCallback_4` });
       }
     };
@@ -85,7 +85,7 @@ export default {
       }
       if (data.success) {
         this.base64 = data.pic;
-        this.base64ImgData = `data:image/png;base64,${data.base64}`;
+        this.base64ImgData = `data:image/png;base64,${data.pic}`;
       }
     };
 
@@ -96,7 +96,7 @@ export default {
       }
       if (data.success) {
         this.base64 = data.pic;
-        this.base64ImgData = `data:image/png;base64,${data.base64}`;
+        this.base64ImgData = `data:image/png;base64,${data.pic}`;
       }
     };
     return {

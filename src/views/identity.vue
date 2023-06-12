@@ -86,7 +86,7 @@ export default {
       show: true,
       transparent: false,
       fixed: true,
-      title: 'Complete information',
+      title: 'Verificación de identidad',
       backCallback: null,
     });
   },
@@ -97,7 +97,7 @@ export default {
       }
       if (data.success) {
         this.eventTracker('id_card_front_submit');
-        this.cardFrontBase64Src = `data:image/png;base64,${data.base64}`;
+        this.cardFrontBase64Src = `data:image/png;base64,${data.pic}`;
         this.uploadImg(1, 'cardFrontBase64Src', this.cardFrontBase64Src);
       }
     };
@@ -108,7 +108,7 @@ export default {
       }
       if (data.success) {
         this.eventTracker('id_card_back_submit');
-        this.cardBackBase64Src = `data:image/png;base64,${data.base64}`;
+        this.cardBackBase64Src = `data:image/png;base64,${data.pic}`;
         this.uploadImg(2, 'cardBackBase64Src', this.cardBackBase64Src);
       }
     };
@@ -119,7 +119,7 @@ export default {
       }
       if (data.success) {
         this.eventTracker('id_liveness_photo_submit');
-        this.uploadImg(4, 'livingBase64Src', `data:image/png;base64,${data.base64}`);
+        this.uploadImg(4, 'livingBase64Src', `data:image/png;base64,${data.pic}`);
       }
     };
 
