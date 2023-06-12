@@ -6,12 +6,14 @@
     </div>
     <div class="step">
       <div class="step-item status">
-        <img :src="require('@/assets/img/creditomax/进度条点亮.png')" />
+        <div class="round"></div>
+        <!-- <img :src="require('@/assets/img/creditomax/进度条点亮.png')" /> -->
         <div class="text">Fecha de aplicacion</div>
         <div class="date">{{ detail.startTime }}</div>
       </div>
       <div class="step-item">
-        <img :src="require('@/assets/img/creditomax/进度条未点亮.png')" />
+        <div class="round"></div>
+        <!-- <img :src="require('@/assets/img/creditomax/进度条未点亮.png')" /> -->
         <div class="text">Fecha de vencimiento</div>
         <div class="date">{{ detail.updatedDueDate }}</div>
       </div>
@@ -86,7 +88,7 @@ export default {
   methods: {
     async selectBank(bank) {
       this.showPaymentTips = false;
-      this.openWebview(`${this.appGlobal.apiHost}/api/extension/prepay?id=${this.orderId}&payType=${bank.payType}&bankCode=${bank.bankCode}`);
+      this.openWebview(`${this.appGlobal.apiHost}/api/extension/prepay?id=${this.detail.orderBillId}&payType=${bank.payType}&bankCode=${bank.bankCode}`);
     },
     goTutorial() {
       location.href = this.orderUrl.utrVideoUrl;
@@ -258,7 +260,7 @@ export default {
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 120px;
+      width: 110px;
       height: 2px;
       background: #cccccc;
     }
@@ -269,11 +271,18 @@ export default {
       justify-content: center;
       align-items: center;
       flex: 1;
-      img {
-        width: 10px;
-        height: 10px;
+
+      .round {
+        width: 5px;
+        height: 5px;
+        border-radius: 100%;
+        border: 5px solid #cccccc;
       }
+
       &.status {
+        .round {
+          border-color: #434af9;
+        }
         .text {
           color: #434af9;
         }
@@ -288,7 +297,6 @@ export default {
       }
       .date {
         font-size: 18px;
-        font-family: Roboto-Medium, Roboto;
         font-weight: 500;
         color: #333333;
         line-height: 24px;

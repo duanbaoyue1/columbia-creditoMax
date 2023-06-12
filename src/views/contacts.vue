@@ -75,6 +75,7 @@ export default {
         data = JSON.parse(data);
       }
       let { mobile, name } = data;
+      console.log(mobile);
       mobile = mobile.replace(/ /g, '');
       // 1. 验证号码是否有效
       if (mobile.length < 10 || mobile.length > 15) {

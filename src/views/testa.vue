@@ -33,13 +33,13 @@ export default {
     };
 
     let res = await this.$http.post(`/api/user/smsLogin`, {
-      loginName: '8105000000',
-      // loginName: '8105000011',
+      // loginName: '8105000000', //已经有数据了
+      loginName: '8106000011',
       smsCode: '0000',
       platform: 'android',
       afId: '1221',
       gaId: '12221',
-      androidId: '1121123233',
+      androidId: '13123',
       imei: '22222122',
     });
     console.log(res);

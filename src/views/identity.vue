@@ -33,24 +33,6 @@
         <div class="pan-text">Reverso de C.C.ID</div>
       </div>
 
-      <!-- <div class="pan-demo">
-        <div>
-          <img class="btn" :src="require('@/assets/img/identity/Standard@2x.png')" />
-          <div>Standard</div>
-        </div>
-        <div>
-          <img class="btn" :src="require('@/assets/img/identity/Missing border@2x.png')" />
-          <div>Missing border</div>
-        </div>
-        <div>
-          <img class="btn" :src="require('@/assets/img/identity/Blurred photo@2x.png')" />
-          <div>Blurred photo</div>
-        </div>
-        <div>
-          <img class="btn" :src="require('@/assets/img/identity/Strong flash@2x.png')" />
-          <div>Strong flash</div>
-        </div>
-      </div> -->
       <div class="pan-tips">
         1. Asegúrate de que el C.C.ID que subes es auténtico y válido
         <br />
@@ -68,6 +50,7 @@
           <div class="tips" :style="{ left: curPercent + '%' }">{{ curPercent }}%</div>
         </div>
         <div class="tips">Por favor, sea paciente y espere a la carga para desbloquear el crédito</div>
+        <m-icon class="close" type="creditomax/编组 5" :width="30" :height="30" @click="submitSuccess = false" />
       </div>
     </div>
   </div>
@@ -124,7 +107,7 @@ export default {
     };
 
     return {
-      canSubmit: false, // 是否可以提交
+      canSubmit: false,
       submitSuccess: false,
       cardFrontBase64Src: '',
       cardBackBase64Src: '',
@@ -132,7 +115,6 @@ export default {
       curPercent: 0,
       saving: false,
       curInterval: null,
-      ocrChannel: 'AccV2',
       cardFrontOcrStatus: 0,
       cardBackOcrStatus: 0,
       orderId: this.$route.query.orderId,
@@ -142,19 +124,9 @@ export default {
   mounted() {
     this.eventTracker('id_access');
     this.initInfoBackControl();
-    // this.getOcrChannel();
   },
 
   methods: {
-    // async getOcrChannel() {
-    //   try {
-    //     let res = await this.$http.post(`/zds/htgfuvs`);
-    //     if (res.returnCode == 2000) {
-    //       this.ocrChannel = res.data.channel;
-    //     }
-    //   } catch (error) {}
-    // },
-
     getCapture(type) {
       if (type == 1) {
         this.eventTracker('id_card_front');
@@ -194,7 +166,7 @@ export default {
         this.innerJump('add-bank', { orderId: res.data.orderId, from: 'order' }, true);
       } catch (error) {
         this.submitSuccess = false;
-        // this.$toast(error.message);
+        this.$toast(error.message);
       }
     },
 
@@ -203,7 +175,6 @@ export default {
       this.startPercent();
       try {
         let saveData = {
-          // channel: this.ocrChannel,
           mark: type,
         };
         saveData[fileName] = base64;
@@ -230,6 +201,7 @@ export default {
             }, 1000);
             this.eventTracker('id_card_back_submit_success');
           } else if (type == 3 && res.data.livingStatus) {
+            // 提交人脸对比请求
             res = await this.$http.post(`/api/ocr/saveResult`, { mark: 4 });
             if (res.data.faceComparisonStatus) {
               this.curPercent = 100;
@@ -247,11 +219,15 @@ export default {
       } catch (error) {
         this.logError(type, error.message);
       } finally {
-        if (this.cardBackOcrStatus && this.cardFrontOcrStatus) {
-          this.canSubmit = true;
-        } else {
-          this.canSubmit = false;
-        }
+        this.checkCanSubmit();
+      }
+    },
+
+    checkCanSubmit() {
+      if (this.cardBackOcrStatus && this.cardFrontOcrStatus) {
+        this.canSubmit = true;
+      } else {
+        this.canSubmit = false;
       }
     },
 
@@ -355,6 +331,13 @@ export default {
     bottom: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.7);
+    .close {
+      position: absolute;
+      bottom: -62px;
+      left: 50%;
+      z-index: 2;
+      transform: translateX(-50%);
+    }
 
     &-content {
       width: 320px;
@@ -391,6 +374,7 @@ export default {
           position: absolute;
           top: -30px;
           width: 36px;
+          margin-left: 0px;
           height: 20px;
           display: flex;
           justify-content: center;

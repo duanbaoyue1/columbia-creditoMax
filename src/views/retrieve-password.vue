@@ -154,7 +154,6 @@ export default {
       border-bottom: 2px solid #e9e9e9;
       .label {
         font-size: 16px;
-        font-family: Roboto-Medium, Roboto;
         font-weight: 500;
         color: #333333;
         line-height: 20px;

@@ -1,15 +1,10 @@
 <template>
   <div class="res-loans-model" v-if="this.loans.length">
-    <img class="cc" :src="require('@/assets/img/loan/congratinations.png')" />
+    <!-- <img class="cc" :src="require('@/assets/img/loan/congratinations.png')" /> -->
     <div class="res-total">
-      <div>
-        You have successfully applied for
-        <span>
-          {{ this.loans.length }}
-          <span>products</span>
-        </span>
-      </div>
-      <div class="tips">The audit result is expected within 5 minutes</div>
+      <div class="head">Enhorabuena</div>
+      <div>Ha solicitado {{ this.loans.length }} productos con éxito.</div>
+      <div class="tips">Revise los resultados en 5 minutos</div>
     </div>
 
     <div v-for="(loan, index) in loans" :key="loan.id" class="loan-item">
@@ -17,7 +12,7 @@
       <div class="info">
         <div class="name">{{ loan.productName }}</div>
         <div class="value">
-          Loan Amount (₹):
+          Monto del préstamo($):
           <span>{{ loan.approvalAmount }}</span>
         </div>
 
@@ -90,6 +85,7 @@ export default {
 <style lang="scss" scoped>
 .res-loans-model {
   margin-top: 30px;
+  padding-bottom: 20px;
   .cc {
     width: 280px;
     margin: 0 auto;
@@ -97,40 +93,54 @@ export default {
     margin-bottom: 20px;
   }
   .res-total {
-    width: 320px;
-    background: #d8e4fb;
-    box-sizing: border-box;
-    border-radius: 10px;
-    padding: 16px 0px;
+    width: 327px;
+    height: 102px;
+    background: #ededff;
+    border-radius: 8px;
     margin: 0 auto;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 900;
+    font-size: 14px;
+    font-family: Roboto-Bold, Roboto;
+    font-weight: bold;
     color: #333333;
-    line-height: 14px;
-    position: relative;
-    span {
-      font-size: 18px;
-      color: #1143a4;
+    line-height: 18px;
+    text-align: center;
+    .head {
+      padding-top: 16px;
+      margin-bottom: 8px;
+      font-size: 20px;
+      font-family: Roboto-Black, Roboto;
       font-weight: 900;
-    }
-    .tips {
-      font-size: 10px;
-      font-weight: 400;
-      color: #999999;
-      line-height: 12px;
-      margin-top: 9px;
+      color: #434af9;
+      line-height: 24px;
+      position: relative;
+      &::after {
+        content: ' ';
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background: #434af9;
+        top: 26px;
+        right: 57px;
+      }
+      &::before {
+        content: ' ';
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background: #434af9;
+        top: 26px;
+        left: 57px;
+      }
     }
 
-    &::after {
-      position: absolute;
-      content: ' ';
-      border-style: solid;
-      border-width: 10px;
-      border-color: transparent transparent #d8e4fb transparent;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
+    .tips {
+      font-size: 10px;
+      font-family: Roboto-Regular, Roboto;
+      font-weight: 400;
+      color: #333333;
+      line-height: 12px;
+      transform: scale(0.9);
+      margin-top: 8px;
     }
   }
 
@@ -178,8 +188,8 @@ export default {
 
     .action {
       position: absolute;
-      right: 20px;
-      top: 50%;
+      right: 8px;
+      top: 22px;
       transform: translateY(-50%);
       display: flex;
       align-items: center;
@@ -190,7 +200,7 @@ export default {
       min-width: 80px;
       box-sizing: border-box;
       padding: 0 10px;
-      height: 30px;
+      height: 22px;
       background: #f125a8;
       border-radius: 14px;
 

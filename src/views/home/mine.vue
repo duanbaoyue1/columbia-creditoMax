@@ -174,7 +174,6 @@ export default {
     .content {
       padding-top: 20px;
       font-size: 16px;
-      font-family: Roboto-Medium, Roboto;
       font-weight: 500;
       color: #333333;
       line-height: 20px;

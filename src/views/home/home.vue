@@ -6,7 +6,7 @@
           <div class="available-text">Préstamo máximo($)</div>
           <div class="number">
             {{ (isMultiple ? multipleCredit.remaining : curAvailableAmount) | formatMonex }}
-            <m-icon v-if="showLock" class="lock" type="creditomax/锁" :width="17" :height="20" />
+            <m-icon v-if="multipleCredit.locked || appMode.locked" class="lock" type="creditomax/锁" :width="17" :height="20" />
           </div>
           <div class="total-used">
             <div>
@@ -19,7 +19,9 @@
             </div>
           </div>
           <div class="action-btn" @click="clickApply">
-            <div class="status-tips" v-if="btnTips" v-html="btnTips"></div>
+            <div class="status-tips" v-if="btnTips">
+              <span v-html="btnTips"></span>
+            </div>
             {{ isMultiple ? multipleCredit.button : actionText }}
           </div>
         </div>
@@ -90,7 +92,7 @@ export default {
       } else if (typeof this.appMode.amount != 'undefined') {
         return this.appMode.amount;
       } else {
-        return 10000;
+        return 2000000;
       }
     },
   },
@@ -125,7 +127,6 @@ export default {
     },
   },
   async created() {
-    console.log(2);
     this.setTabBar({
       show: false,
     });
@@ -141,6 +142,7 @@ export default {
     if (!this.checkInApp()) {
       window.getCommonParametersCallback();
     }
+    console.log(this.getLocalSystemTimeStamp());
   },
   activated() {
     if (this.checkInApp() && !this.created) {
@@ -235,7 +237,7 @@ export default {
                     });
                     this.$toast('Solicitud enviada con éxito');
                     setTimeout(res => {
-                      this.innerJump('loan-success-multi', { systemTime: new Date().getTime() });
+                      this.innerJump('loan-success-multi', { systemTime: this.getLocalSystemTimeStamp() });
                     }, 1000);
                   }
                 }
@@ -303,7 +305,7 @@ export default {
             // 待还款 | 逾期
             this.showLock = true;
             this.actionText = 'Ir a reembolsar';
-            this.btnTips = 'Please repay first and unlock a higher loan amount';
+            this.btnTips = 'Devuelve el dinero a tiempo y desbloquea un préstamo de mayor cuantía';
           } else if (this.appMode.orderStatus == 40) {
             // 拒绝
             this.actionText = 'Rechazo';
@@ -347,6 +349,7 @@ export default {
           remaining: res.data.remaining,
           repaymentNum: res.data.repaymentNum,
           button: res.data.button,
+          locked: res.data.locked,
         };
       } catch (error) {}
     },
@@ -524,19 +527,19 @@ export default {
             background: #fbe396;
             padding: 8px;
             border-radius: 10px 10px 10px 0;
-            font-size: 10px;
-            font-family: Roboto-Regular, Roboto;
             font-weight: 400;
             color: #333333;
             line-height: 12px;
             font-size: 10px;
-            font-family: Roboto-Regular, Roboto;
             font-weight: 400;
             color: #333333;
             line-height: 12px;
-            right: -4px;
-            top: -20px;
-            transform: scale(0.9);
+            right: 0px;
+            bottom: 32px;
+            span {
+              font-size: 10px;
+              transform: scale(0.9);
+            }
           }
         }
         .total-used {
@@ -550,8 +553,9 @@ export default {
           color: #333333;
           line-height: 36px;
           > div {
+            text-align: center;
             &:first-child {
-              margin-right: 76px;
+              margin-right: 56px;
             }
           }
           .label {

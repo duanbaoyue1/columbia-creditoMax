@@ -130,7 +130,6 @@ export default {
 
     .status {
       font-size: 10px;
-      font-family: Roboto-Medium, Roboto;
       font-weight: 500;
       color: #ffbc41;
       line-height: 12px;
@@ -164,7 +163,6 @@ export default {
     }
     &-btn {
       font-size: 12px;
-      font-family: Roboto-Medium, Roboto;
       font-weight: 500;
       color: #ffffff;
       line-height: 18px;

@@ -1,22 +1,24 @@
 <template>
   <div class="order-item">
-    <div class="status" :class="'status-' + order.orderStatus">{{ statusText }}</div>
-    <div class="info">
+    <div class="head">
       <img :src="order.productIconImageUrl" />
-      <div class="name">
-        <div>{{ order.productName }}</div>
-        <div class="date">
-          <span>Due Date</span>
-          <span>{{ order.repaymentTime }}</span>
+      <div>{{ order.productName }}</div>
+    </div>
+    <div class="info">
+      <div>
+        <div>{{ dateValue }}</div>
+        <div>Fecha de vencimiento</div>
+      </div>
+      <div>
+        <div>
+          <span class="money">$</span>
+          <span>{{ amountValue }}</span>
         </div>
+        <div>Monto de reembolso</div>
       </div>
     </div>
     <div class="action">
-      <div>
-        <span class="label">Repayable Amount</span>
-        <span class="label2">₹</span>
-        <span class="number">{{ amountValue }}</span>
-      </div>
+      <div class="status" :class="'status-' + order.orderStatus">{{ statusText }}</div>
       <button class="action-btn" :class="'action-btn-' + order.orderStatus" @click="goDetail">{{ order.orderStatusStr }}</button>
     </div>
   </div>
@@ -27,6 +29,21 @@ export default {
   props: ['order'],
 
   computed: {
+    dateValue() {
+      if (this.order.orderStatus == 80 || this.order.orderStatus == 90) {
+        return this.order.repaymentTime;
+      } else {
+        return this.order.applyTime;
+      }
+    },
+    amountValue() {
+      if (this.order.orderStatus == 80 || this.order.orderStatus == 90) {
+        return this.order.repaymentAmount;
+      } else {
+        return this.order.approvalAmount;
+      }
+    },
+
     statusText() {
       switch (this.order.orderStatus) {
         case 10:
@@ -53,18 +70,11 @@ export default {
           return 'Evaluando';
       }
     },
-    amountValue() {
-      if (this.order.orderStatus == 80 || this.order.orderStatus == 90) {
-        return this.order.repaymentAmount;
-      } else {
-        return this.order.approvalAmount;
-      }
-    },
   },
 
   methods: {
     goDetail() {
-      if (this.order.orderStatus == 10) {
+      if (this.order.orderStatus == 10 || this.order.orderStatus == 100 || this.order.orderStatus == 101) {
         this.goHome();
       } else {
         this.innerJump('order-detail', { orderId: this.order.orderNo });
@@ -83,11 +93,38 @@ export default {
   padding: 16px 16px 14px;
   box-sizing: border-box;
   position: relative;
+  .head {
+    display: flex;
+    font-size: 14px;
+    font-family: Roboto-Regular, Roboto;
+    font-weight: 400;
+    color: #333333;
+    line-height: 18px;
+    align-items: center;
+    margin-bottom: 26px;
+    img {
+      height: 24px;
+      width: 24px;
+      margin-right: 8px;
+    }
+  }
   .action {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 11px;
+    margin-top: 15px;
+
+    .status {
+      font-size: 10px;
+      font-weight: 500;
+      color: #ffbc41;
+      line-height: 12px;
+      transform: scale(0.9);
+      padding: 4px 12px;
+      border-radius: 12px;
+      border: 1px solid #ffbc41;
+    }
+
     .number {
       font-size: 24px;
       font-family: DINAlternate-Bold, DINAlternate;
@@ -112,7 +149,6 @@ export default {
     }
     &-btn {
       font-size: 12px;
-      font-family: Roboto-Medium, Roboto;
       font-weight: 500;
       color: #ffffff;
       line-height: 18px;
@@ -145,51 +181,34 @@ export default {
       }
     }
   }
-  .status {
-    position: absolute;
-    right: 14px;
-    top: 14px;
-    font-size: 10px;
-    font-family: Roboto-Medium, Roboto;
-    font-weight: 500;
-    color: #ffbc41;
-    line-height: 12px;
-    transform: scale(0.9);
-    padding: 4px 12px;
-    border-radius: 12px;
-    border: 1px solid #ffbc41;
-  }
 
   .info {
     display: flex;
     align-items: flex-start;
     padding-bottom: 16px;
     border-bottom: 1px solid #e9e9e9;
-    img {
-      width: 50px;
-      height: 50px;
-      display: block;
-      margin-right: 16px;
-    }
-    .name {
-      font-size: 14px;
-      color: #333333;
-      line-height: 18px;
+    > div {
+      width: 50%;
+
       > div {
-        &:first-child {
-          margin-bottom: 18px;
+        text-align: center;
+        font-size: 12px;
+        font-family: Roboto-Regular, Roboto;
+        font-weight: 400;
+        color: #999999;
+        line-height: 12px;
+        transform: scale(0.9);
+        .money {
+          font-size: 12px;
         }
-      }
-      .date {
-        span {
-          &:first-child {
-            font-size: 10px;
-            font-family: Roboto-Regular, Roboto;
-            font-weight: 400;
-            color: #999999;
-            line-height: 12px;
-            margin-right: 8px;
-          }
+        &:first-child {
+          font-size: 18px;
+          font-family: DINAlternate-Bold, DINAlternate;
+          font-weight: bold;
+          color: #333333;
+          line-height: 20px;
+          transform: scale(1);
+          margin-bottom: 4px;
         }
       }
     }

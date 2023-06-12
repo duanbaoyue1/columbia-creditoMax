@@ -61,6 +61,31 @@ export default {
       return typeof wjs != 'undefined';
     },
 
+    getAnyTimeString(date, timeZone) {
+      let sameTimelocalTimeStamp = date - 0 + new Date(date).getTimezoneOffset() * 60 * 1000 + this.getOffsetMinute(timeZone) * 60 * 1000;
+      let targetTime = new Date(sameTimelocalTimeStamp);
+      let targetTimeString = String(targetTime.getFullYear()) + '-' + String(targetTime.getMonth() + 1).replace(/^(\d)$/, '0$1') + '-' + String(targetTime.getDate()).replace(/^(\d)$/, '0$1') + ' ' + String(targetTime.getHours()).replace(/^(\d)$/, '0$1') + ':' + String(targetTime.getMinutes()).replace(/^(\d)$/, '0$1') + ':' + String(targetTime.getSeconds()).replace(/^(\d)$/, '0$1');
+      return targetTimeString;
+    },
+    // 计算以分钟为单位的时区gap，例如 '+04:00'被转换为240
+    getOffsetMinute(timeZone) {
+      if (!/^[+-][0-9]{2}:((0[0-9])|([1-5][0-9]))$/.test(timeZone)) {
+        // 与产品沟通，暂时使用较为严格的格式验证限制，缺少首位0和正负号视为非法格式
+        return 0;
+      }
+      let time = timeZone.split(':');
+
+      if (timeZone[0] === '-') {
+        return parseInt(time[0]) * 60 - parseInt(time[1].slice(0, 2)); //time[0]本身带正负号不需要加，time[1]不带需要加。
+      } else {
+        return parseInt(time[0]) * 60 + parseInt(time[1].slice(0, 2));
+      }
+    },
+    getLocalSystemTimeStamp() {
+      // 哥伦比亚时区
+      return new Date(this.getAnyTimeString(new Date(), '-05:00')).getTime();
+    },
+
     initInfoBackControl() {
       window.infoBtnCallBack = () => {
         this.showMessageBox({

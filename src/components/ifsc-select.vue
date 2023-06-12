@@ -128,7 +128,6 @@ export default {
         text-align: center;
         position: relative;
         font-size: 18px;
-        font-family: Roboto-Medium, Roboto;
         font-weight: 500;
         line-height: 24px;
         background: transparent;

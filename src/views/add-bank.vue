@@ -81,6 +81,12 @@ export default {
     CompleteStep,
   },
   watch: {
+    userInfo: {
+      handler() {
+        this.editData.userName = `${this.userInfo.identityName} ${this.userInfo.identityLastName}`;
+      },
+      deep: true,
+    },
     editData: {
       handler() {
         this.canSubmit = this.selectBank.value && this.editData.accountNumber && this.editData.userName;
@@ -95,9 +101,6 @@ export default {
       fixed: true,
       title: 'Añadir método de pag',
     });
-    setTimeout(() => {
-      this.editData.userName = this.userInfo.panName;
-    }, 1000);
   },
   data() {
     return {
@@ -160,7 +163,7 @@ export default {
               this.innerJump('loan-confirm', { orderId: this.orderId }, true);
             } else {
               // 不需要进确认申请页
-              this.innerJump('loan-success-multi', { orderId: this.orderId, single: true, systemTime: new Date().getTime() }, true);
+              this.innerJump('loan-success-multi', { orderId: this.orderId, single: true, systemTime: this.getLocalSystemTimeStamp() }, true);
             }
           } else {
             this.goAppBack();

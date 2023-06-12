@@ -55,7 +55,6 @@ export default {
     align-items: center;
     white-space: nowrap;
     font-size: 12px;
-    font-family: Roboto-Medium, Roboto;
     font-weight: 500;
     line-height: 16px;
     position: relative;
@@ -117,6 +116,7 @@ export default {
     }
     .text {
       color: #999999;
+      font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
     }
     &.active {
       .text {

@@ -3,7 +3,7 @@
     <div class="status-text">{{ orderStatusText }}</div>
     <div class="status-desc" v-if="detail.orderStatus == 30 || detail.orderStatus == 70 || detail.orderStatus == 110">
       <div v-if="detail.orderStatus == 30 || detail.orderStatus == 70">Por lo general, llegará el mismo día o al día siguiente. Sin embargo, puede deberse a la lentitud del procesamiento del banco, y la cuenta llegará a más tardar el tercer día. Espere pacientemente. La hora de desembolso está sujeta a la hora real de llegada.</div>
-      <die v-else>Si el pago falla, cambie los datos de su tarjeta en el Centro Personal y vuelva a presentar su solicitud.</die>
+      <div v-else>Si el pago falla, cambie los datos de su tarjeta en el Centro Personal y vuelva a presentar su solicitud.</div>
     </div>
 
     <div class="order-info" v-if="detail.orderStatus >= 80">
@@ -110,8 +110,9 @@
     </div> -->
 
     <div class="actions">
-      <div class="btns" v-if="detail.orderStatus == 100 || detail.orderStatus == 110 || detail.orderStatus == 101 || detail.orderStatus == 40 || detail.orderStatus == 80 || detail.orderStatus == 90">
-        <button class="btn-default" v-if="detail.orderStatus == 100 || detail.orderStatus == 101 || detail.orderStatus == 40 || detail.orderStatus == 110" @click="goHome">Cambio de cuenta de cobro</button>
+      <div class="btns" v-if="detail.orderStatus == 110 || detail.orderStatus == 80 || detail.orderStatus == 90">
+        <!-- <button class="btn-default" v-if="detail.orderStatus == 100 || detail.orderStatus == 101 || detail.orderStatus == 40" @click="goHome">Cambio de cuenta de cobro</button> -->
+        <button class="btn-default" v-if="detail.orderStatus == 110" @click="goCompleteBank">Cambio de cuenta de cobro</button>
         <template v-else-if="detail.orderStatus == 80 || detail.orderStatus == 90">
           <button class="btn-line" v-if="detail.showExtension == 1" @click="applyDefer">Reembolso diferido</button>
           <button class="btn-default" @click="showPaymentTips = true">Ir a reembolsar</button>
@@ -154,6 +155,8 @@ export default {
           return 'Completado';
         case 101:
           return 'Completado';
+        case 110:
+          return 'Transferencia fallida';
         default:
           return 'Bajo revisión';
       }
@@ -243,9 +246,12 @@ export default {
   },
 
   methods: {
+    goCompleteBank() {
+      this.innerJump('complete-bank', { orderId: this.orderId, from: 'mine' });
+    },
     async selectBank(bank) {
       this.showPaymentTips = false;
-      this.openWebview(`${this.appGlobal.apiHost}/api/repayment/prepay?id=${this.orderId}&payType=${bank.payType}&bankCode=${bank.bankCode}`);
+      this.openWebview(`${this.appGlobal.apiHost}/api/repayment/prepay?id=${this.detail.orderBillId}&payType=${bank.payType}&bankCode=${bank.bankCode}`);
     },
 
     applyDefer() {
@@ -294,7 +300,8 @@ export default {
   box-sizing: border-box;
   background-attachment: local;
   &.order_40,
-  &.order_90 {
+  &.order_90,
+  &.order_110 {
     background-image: url(../assets/img/creditomax/订单失败.png);
   }
   &.order_100,
@@ -302,7 +309,8 @@ export default {
     background-image: url(../assets/img/creditomax/订单成功.png);
   }
 
-  &.order_30, &.order_70, &.order_110 {
+  &.order_30,
+  &.order_70 {
     background-size: 375px 246px;
     .status-text {
       margin-top: 8px;
@@ -332,7 +340,6 @@ export default {
   }
   .status-desc {
     font-size: 10px;
-    font-family: Roboto-Medium, Roboto;
     font-weight: 500;
     color: #ffffff;
     line-height: 16px;
