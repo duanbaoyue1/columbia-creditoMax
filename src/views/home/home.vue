@@ -5,17 +5,17 @@
         <div class="inner">
           <div class="available-text">Préstamo máximo($)</div>
           <div class="number">
-            {{ isMultiple ? multipleCredit.remaining : curAvailableAmount }}
+            {{ (isMultiple ? multipleCredit.remaining : curAvailableAmount) | formatMonex }}
             <m-icon v-if="showLock" class="lock" type="creditomax/锁" :width="17" :height="20" />
           </div>
           <div class="total-used">
             <div>
               <div class="label">Crédito total($)</div>
-              <div class="number">{{ isMultiple ? multipleCredit.sumQuota : appMode.totalCredit }}</div>
+              <div class="number">{{ (isMultiple ? multipleCredit.sumQuota : appMode.totalCredit) | formatMonex }}</div>
             </div>
             <div>
               <div class="label">Crédito usado ($)</div>
-              <div class="number">{{ isMultiple ? multipleCredit.usedQuota : appMode.usedCredit }}</div>
+              <div class="number">{{ (isMultiple ? multipleCredit.usedQuota : appMode.usedCredit) | formatMonex }}</div>
             </div>
           </div>
           <div class="action-btn" @click="clickApply">
@@ -207,7 +207,7 @@ export default {
       };
 
       if (this.appMode.maskModel == 1) {
-        this.actionText = this.multipleCredit.button || 'Apply';
+        this.actionText = this.multipleCredit.button || 'Aplicar ahora';
         if (this.actionText == 'Aplicar ahora') {
           // 有可借
           this.actionCallback = async () => {
@@ -246,20 +246,20 @@ export default {
               }
             }
           };
-        } else if (this.actionText == 'Repay') {
+        } else if (this.actionText == 'Ir a reembolsar') {
           this.showLock = true;
-          this.btnTips = 'Too many loans now. Please repay<br/> first and unlock a higher loan amount.';
+          this.btnTips = 'Demasiados préstamos ahora. Por favor, pagar primero y desbloquear una mayor cantidad del préstamo.';
           // 有待还款或逾期，无可借
           this.actionCallback = () => {
             this.innerJump('repayment');
           };
-        } else if (this.actionText == 'Reviewing' || this.actionText == 'Disbursing') {
+        } else if (this.actionText == 'En revisión' || this.actionText == 'Desembolsando') {
           this.showLock = true;
           // 无可借，订单全部放款中或者审核中
           this.actionCallback = () => {
             this.innerJump('order-list');
           };
-        } else if (this.actionText == 'Rejected') {
+        } else if (this.actionText == 'Rechazo') {
           // 无可借，订单全被拒绝
           this.showLock = true;
           this.actionCallback = () => {

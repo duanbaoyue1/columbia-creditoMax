@@ -113,13 +113,13 @@ export default {
       }
     };
 
-    window.onPhotoSelectCallback_4 = data => {
+    window.onPhotoSelectCallback_3 = data => {
       if (typeof data == 'string') {
         data = JSON.parse(data);
       }
       if (data.success) {
         this.eventTracker('id_liveness_photo_submit');
-        this.uploadImg(4, 'livingBase64Src', `data:image/png;base64,${data.pic}`);
+        this.uploadImg(3, 'livingBase64Src', `data:image/png;base64,${data.pic}`);
       }
     };
 
@@ -133,8 +133,8 @@ export default {
       saving: false,
       curInterval: null,
       ocrChannel: 'AccV2',
-      adahaarFrontOcrStatus: 0,
-      adahaarBackOcrStatus: 0,
+      cardFrontOcrStatus: 0,
+      cardBackOcrStatus: 0,
       orderId: this.$route.query.orderId,
     };
   },
@@ -191,7 +191,7 @@ export default {
         console.log('订单创建结果:', res);
         this.eventTracker('id_submit_create_order_success');
         this.submitSuccess = false;
-        this.innerJump('add-bank', { orderId: res.data.orderId }, true);
+        this.innerJump('add-bank', { orderId: res.data.orderId, from: 'order' }, true);
       } catch (error) {
         this.submitSuccess = false;
         // this.$toast(error.message);
@@ -211,29 +211,33 @@ export default {
 
         if (res.returnCode == 2000) {
           if (type == 1) {
-            this.adahaarFrontOcrStatus = res.data.adahaarFrontOcrStatus;
+            this.cardFrontOcrStatus = res.data.cardFrontOcrStatus;
           } else if (type == 2) {
-            this.adahaarBackOcrStatus = res.data.adahaarBackOcrStatus;
+            this.cardBackOcrStatus = res.data.cardBackOcrStatus;
           }
-          if (type == 1 && res.data.adahaarFrontOcrStatus) {
+          if (type == 1 && res.data.cardFrontOcrStatus) {
             this.curPercent = 100;
             setTimeout(() => {
               this.stopPercent();
               this.submitSuccess = false;
             }, 1000);
             this.eventTracker('id_card_front_submit_success');
-          } else if (type == 2 && res.data.adahaarBackOcrStatus) {
+          } else if (type == 2 && res.data.cardBackOcrStatus) {
             this.curPercent = 100;
             setTimeout(() => {
               this.stopPercent();
               this.submitSuccess = false;
             }, 1000);
             this.eventTracker('id_card_back_submit_success');
-          } else if (type == 4 && res.data.faceComparisonStatus) {
-            this.curPercent = 100;
-
-            this.eventTracker('id_liveness_success');
-            this.goAddCard();
+          } else if (type == 3 && res.data.livingStatus) {
+            res = await this.$http.post(`/api/ocr/saveResult`, { mark: 4 });
+            if (res.data.faceComparisonStatus) {
+              this.curPercent = 100;
+              this.eventTracker('id_liveness_success');
+              this.goAddCard();
+            } else {
+              this.logError(type);
+            }
           } else {
             this.logError(type);
           }
@@ -243,7 +247,7 @@ export default {
       } catch (error) {
         this.logError(type, error.message);
       } finally {
-        if (this.adahaarBackOcrStatus && this.adahaarFrontOcrStatus) {
+        if (this.cardBackOcrStatus && this.cardFrontOcrStatus) {
           this.canSubmit = true;
         } else {
           this.canSubmit = false;
@@ -260,7 +264,7 @@ export default {
 
     async submit() {
       this.eventTracker('id_submit');
-      this.getCapture(4);
+      this.getCapture(3);
     },
   },
 };

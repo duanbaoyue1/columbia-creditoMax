@@ -1,8 +1,8 @@
 <template>
   <div class="multi-recommend">
     <div class="order-items">
-      <div class="order-item" :class="{active: !order.unChecked}" v-for="(order, index) in list" :key="order.id" @click="checkLoan(index)">
-        <div class="reloan" v-if="order.isReloan">reloan</div>
+      <div class="order-item" :class="{ active: !order.unChecked }" v-for="(order, index) in list" :key="order.id" @click="checkLoan(index)">
+        <div class="reloan" v-if="order.isReloan">Volver a prestar</div>
         <div class="status">
           <m-icon class="icon" :type="order.unChecked ? 'creditomax/多推未选中' : 'creditomax/多推选中'" :width="24" :height="24" />
           {{ order.productName }}
@@ -11,21 +11,17 @@
           <img :src="order.productImgUrl" />
           <div class="name">
             <div>
-              <span class="label">Compañía de préstamo:</span>
-              {{ order.companyName }}
+              <span class="label">Monto del préstamo:</span>
+              <span class="fs-18 color-money">
+                <span class="fs-12">$&nbsp;</span>
+                <strong>{{ order.minAmount | formatMonex }}</strong>
+              </span>
             </div>
             <div>
               <span class="label">Tasa de interés:</span>
               {{ order.interest }}% / Day
             </div>
           </div>
-        </div>
-        <div class="action">
-          <span class="label">Monto del préstamo</span>
-          <span class="number">
-            <span class="fs-12">$</span>
-            {{ order.minAmount }}
-          </span>
         </div>
       </div>
     </div>
@@ -41,7 +37,8 @@ export default {
   props: ['list'],
   methods: {
     checkLoan(index) {
-      // if (this.checkedNums == 1 && !this.loans[index].unChecked) return;
+      let checkedNums = this.list.filter(t => !t.unChecked).length;
+      if (checkedNums == 1 && !this.list[index].unChecked) return;
       this.$set(this.list, index, { ...this.list[index], unChecked: !this.list[index].unChecked });
       this.updateHome();
     },
@@ -71,10 +68,15 @@ export default {
   position: absolute;
   top: 52px;
   left: 0;
+  font-family: Helvetica-Bold, Helvetica;
   right: 0;
   bottom: 0;
   margin-bottom: 88px;
 
+  .color-money {
+    color: #434af9;
+    font-family: DINAlternate-Bold, DINAlternate;
+  }
   .select-all {
     width: 375px;
     height: 88px;
@@ -89,8 +91,8 @@ export default {
     button {
       width: 327px;
       height: 48px;
-      background: linear-gradient(180deg, #696FFB 0%, #434AF9 100%);;
-      box-shadow: 0px 4px 10px 0px rgba(67,74,249,0.4), inset 0px 1px 4px 0px #434AF9;;
+      background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+      box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
       border-radius: 24px;
       font-size: 18px;
       font-family: Roboto-Black, Roboto;
@@ -116,31 +118,11 @@ export default {
       border-radius: 14px;
       border: 2px solid #fff;
       &.active {
-        border: 2px solid #434AF9;
-      }
-      .action {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .label {
-          font-size: 16px;
-          font-family: Roboto-Regular, Roboto;
-          font-weight: 400;
-          color: #999999;
-          line-height: 24px;
-        }
-        .number {
-          font-size: 24px;
-          font-family: DINAlternate-Bold, DINAlternate;
-          font-weight: bold;
-          color: #333333;
-          line-height: 24px;
-        }
+        border: 2px solid #434af9;
       }
 
       .reloan {
         position: absolute;
-        width: 52px;
         height: 16px;
         border-radius: 8px;
         border: 1px solid #ffbd5c;
@@ -154,6 +136,8 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+        padding-left: 4px;
+        padding-right: 4px;
       }
       .status {
         display: flex;
@@ -171,9 +155,6 @@ export default {
 
       .info {
         display: flex;
-        border-bottom: 1px solid #e9e9e9;
-        padding-bottom: 16px;
-        margin-bottom: 15px;
         img {
           display: block;
           width: 50px;
@@ -183,8 +164,8 @@ export default {
         .name {
           font-size: 14px;
           font-family: Roboto-Regular, Roboto;
-          font-weight: 400;
-          color: #333333;
+          font-weight: 500;
+          color: #000;
           line-height: 20px;
 
           .label {

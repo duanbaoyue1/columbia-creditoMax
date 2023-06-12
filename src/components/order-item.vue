@@ -12,7 +12,7 @@
       <div>
         <div>
           <span class="money">$</span>
-          {{ amountValue }}
+          <span>{{ amountValue }}</span>
         </div>
         <div>{{ amountText }}</div>
       </div>

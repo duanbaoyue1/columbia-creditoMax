@@ -176,9 +176,9 @@ export default {
       try {
         // const file = this.base64ToFile(this.base64ImgData, new Date().getTime());
         let formData = new FormData();
-        formData.append('channel', 'AccV2');
+        // formData.append('channel', 'AccV2');
         formData.append('cardFrontBase64Src', this.base64ImgData);
-        formData.append('mark', 2);
+        formData.append('mark', 1);
 
         let res = await this.$http.post(`/api/ocr/saveResult`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
