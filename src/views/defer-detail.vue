@@ -2,13 +2,13 @@
   <div class="defer-detail content-area" v-show="loaded">
     <div class="defer-head">
       <p>Retraso de {{ detail.extendedTerm }} días</p>
-      <p>Sólo necesita pagar xox pesos hoy y luego puedes aplazar el pago durante{{ detail.extendedTerm }} días</p>
+      <p>Sólo necesita pagar ${{ detail.amount }} pesos hoy y luego puedes aplazar el pago durante{{ detail.extendedTerm }} días</p>
     </div>
     <div class="step">
       <div class="step-item status">
         <div class="round"></div>
         <!-- <img :src="require('@/assets/img/creditomax/进度条点亮.png')" /> -->
-        <div class="text">Fecha de aplicacion</div>
+        <div class="text">Fecha de aplicación</div>
         <div class="date">{{ detail.startTime }}</div>
       </div>
       <div class="step-item">

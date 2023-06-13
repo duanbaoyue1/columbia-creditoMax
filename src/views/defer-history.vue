@@ -4,7 +4,7 @@
       <div class="head fs-18">Plazo de aplazamiento</div>
 
       <div class="flex-between">
-        <span>Fecha de aplicacion</span>
+        <span>Fecha de aplicación</span>
         <span>{{ item.approvalDate }}</span>
       </div>
 

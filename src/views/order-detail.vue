@@ -10,8 +10,8 @@
       <div class="flex-between" v-if="detail.orderStatus >= 80">
         <span>Monto de reembolso</span>
         <span class="font-bold color-orange align-end" style="line-height: 26px">
-          <span class="fs-24">$</span>
-          <span class="fs-24">{{ detail.estimatedRepaymentAmount }}</span>
+          <span class="fs-18">$</span>
+          <span class="fs-18">{{ detail.estimatedRepaymentAmount }}</span>
         </span>
       </div>
       <div class="flex-between" v-if="showDate">
@@ -33,7 +33,7 @@
         </span>
       </div>
       <div class="flex-between" v-if="detail.orderStatus >= 80">
-        <span>Importe real recibid</span>
+        <span>Importe real recibido</span>
         <span class="font-bold">
           <span class="money-label">$</span>
           <span>{{ detail.actualAmount }}</span>
@@ -41,17 +41,17 @@
       </div>
     </div>
 
-    <div class="order-info" v-if="detail.penaltyInterest > 0">
+    <div class="order-info" v-if="detail.incidentalAmount > 0">
       <div class="flex-between">
         <span>Tarifa de servicio</span>
-        <span class="font-bold color-blue">
+        <span class="font-bold">
           <span class="money-label">$</span>
           <span>{{ detail.incidentalAmount }}</span>
         </span>
       </div>
       <div class="flex-between" v-if="detail.penaltyInterest > 0">
         <span>Tarifa vencida</span>
-        <span class="font-bold color-blue">
+        <span class="font-bold">
           <span class="money-label">$</span>
           <span>{{ detail.penaltyInterest }}</span>
         </span>
@@ -89,7 +89,7 @@
         <span>{{ detail.companyName }}</span>
       </div> -->
       <div class="flex-between">
-        <span>Fecha de aplicacion</span>
+        <span>Fecha de aplicación</span>
         <span class="fw-500">{{ detail.applyTime }}</span>
       </div>
 

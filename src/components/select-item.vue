@@ -88,7 +88,7 @@ export default {
       margin-top: 42px;
       .item {
         font-size: 16px;
-        font-family: Roboto-Regular, Roboto;
+        font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
         font-weight: 400;
         color: #999999;
         line-height: 20px;

@@ -27,9 +27,9 @@
         </div>
 
         <div class="multi-select" v-if="isMultiple" @click="clickShowRecommend">
-          <span>Customized Solutions</span>
+          <span>Soluciones personalizadas</span>
           <div>
-            <span :class="{ 'has-num': selectItems.length > 0 }">{{ selectItems.length }} products</span>
+            <span :class="{ 'has-num': selectItems.length > 0 }">{{ selectItems.length }} productos</span>
             <m-icon type="creditomax/蓝右@2x" :width="12" :height="14" />
           </div>
         </div>
@@ -490,7 +490,7 @@ export default {
         .number {
           margin-top: 8px;
           font-size: 48px;
-          font-family: DINAlternate-Bold, DINAlternate;
+          font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
           font-weight: bold;
           color: #333333;
           line-height: 54px;
@@ -545,7 +545,7 @@ export default {
         .total-used {
           margin: 32px auto 40px;
           display: flex;
-          justify-content: center;
+          justify-content: space-between;
           align-items: center;
           font-size: 32px;
           font-family: DINAlternate-Bold, DINAlternate;
@@ -565,6 +565,7 @@ export default {
             color: #333333;
             line-height: 18px;
             margin-bottom: 8px;
+            white-space: nowrap;
           }
           .number {
             font-size: 32px;
@@ -572,6 +573,8 @@ export default {
             font-weight: bold;
             color: #333333;
             line-height: 36px;
+            white-space: nowrap;
+            font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
           }
         }
       }

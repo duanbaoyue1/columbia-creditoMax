@@ -12,7 +12,7 @@
         <m-icon class="right" type="creditomax/黑下" :width="14" :height="12" />
       </div>
       <div class="line-item">
-        <div class="label">Número de cuenta rec</div>
+        <div class="label">Número de cuenta receptora</div>
         <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="20" v-model="editData.accountNumber" placeholder="Por favor escribe" />
       </div>
       <div class="line-item">

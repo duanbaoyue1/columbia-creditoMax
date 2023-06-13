@@ -11,7 +11,7 @@
     <br />
     <br />
     <br />
-    1. Reconocimiento y Términos del Acuerdo
+    <strong>1. Reconocimiento y Términos del Acuerdo</strong>
     <br />
     <br />
     Al completar su registro, usted reconoce que ha leído, entendido y acordado aceptar los términos de este Acuerdo en su totalidad y voluntariamente firma este Acuerdo, que tendrá efecto legal entre usted y la Plataforma.
@@ -22,7 +22,7 @@
     <br />
     <br />
     <br />
-    2. Descripción del producto
+    <strong>2. Descripción del producto</strong>
     <br />
     <br />
     Se requiere que el usuario sea mayor de edad, tenga nacionalidad colombiana, posea una cuenta bancaria personal, diligencie un formulario de solicitud de producto con información de datos reales y verificables, autorice el acceso a su historial crediticio y apruebe el análisis de riesgo que realizamos.
@@ -35,7 +35,7 @@
     <br />
     <br />
     <br />
-    3. Información facilitada
+    <strong>3. Información facilitada</strong>
     <br />
     <br />
     Debe proporcionar información veraz, válida y completa cuando presente su solicitud en la Plataforma. Si la información que facilita es falsa, inexacta, incompleta o no refleja la situación real actual, la Plataforma se reserva el derecho a rechazar su solicitud y a denegarle el uso de los servicios de la Plataforma de cualquier forma, ahora o en el futuro, y no le dará ninguna compensación ni le reembolsará ninguna tasa de servicio cobrada.
@@ -59,7 +59,7 @@
     <br />
     <br />
 
-    4. Seguridad de la cuenta
+    <strong>4. Seguridad de la cuenta</strong>
     <br />
     <br />
     Debe mantener la seguridad de su cuenta y contraseña para garantizar la confidencialidad y seguridad de su cuenta. No debe transferir ni ceder su cuenta a terceros.
@@ -88,7 +88,7 @@
     <br />
     <br />
     <br />
-    5. Fallos en la red
+    <strong>5. Fallos en la red</strong>
     <br />
     <br />
     CreditoMax no se hace responsable de los daños que pudieran ocasionarse al usuario por fallos en el servidor o en la red. cualquier otra circunstancia ajena a CreditoMax que provoque que el sistema quede potencialmente inutilizable; en estos casos se procurará restablecerlo lo antes posible sin asumir ningún tipo de responsabilidad por ello.
@@ -96,7 +96,7 @@
     <br />
     <br />
     <br />
-    6. Privacidad de la información personal
+    <strong>6. Privacidad de la información personal</strong>
     <br />
     <br />
     Para utilizar los servicios y contenidos ofrecidos por CreditoMax, los usuarios deben proporcionar ciertos datos personales. Sus datos personales se procesan y almacenan encriptados en servidores que mantienen altos niveles de seguridad y protección, tanto física como técnicamente. Para obtener una descripción de la privacidad de los datos personales y la protección de la información personal, puede consultar nuestra declaración de privacidad.
@@ -104,7 +104,7 @@
     <br />
     <br />
     <br />
-    7. Advertencia
+    <strong>7. Advertencia</strong>
     <br />
     <br />
     - El incumplimiento de las condiciones del préstamo conllevará un recargo por demora.
@@ -118,7 +118,7 @@
     <br />
     <br />
     <br />
-    8. Modificación de los términos y condiciones
+    <strong>8. Modificación de los términos y condiciones</strong>
     <br />
     <br />
     CreditoMax podrá modificar los términos y condiciones en cualquier momento haciendo públicos los términos y condiciones modificados en la aplicación o en el sitio web. Si el usuario no se opone, se considerará que acepta los nuevos términos y condiciones. Si el usuario se opone a los cambios realizados, deberá enviarlos en un plazo de 5 días por correo electrónico a la siguiente cuenta: creditomax01@outlook.com
@@ -126,7 +126,7 @@
     <br />
     <br />
     <br />
-    9. Conducta prohibida
+    <strong>9. Conducta prohibida</strong>
     <br />
     <br />
     Se le prohíbe utilizar la Plataforma a menos que a) la utilice para cualquier fin ilícito; b) solicite a otros que realicen o participen en cualquier acto ilícito; c) infrinja cualquier estatuto, norma, ley u ordenanza local internacional, federal, provincial o estatal; d) infrinja o viole nuestros derechos de propiedad intelectual o los derechos de propiedad intelectual de un tercero; e) acose, abuse, insulte, dañe, difame, calumnie, degrade, intimide o discrimine por motivos de género, orientación sexual, religión, etnia, raza, edad, nacionalidad o discapacidad; f) proporcionar información falsa o engañosa; g) cargar o transmitir virus o cualquier otro tipo de código malicioso; h) recopilar o rastrear información personal de otros; i) prácticas informáticas censurables como spamming, phishing, crawling; j) utilizar para cualquier fin obsceno o inmoral; nos reservamos el derecho a poner fin a su uso de los Servicios o de cualquier sitio web relacionado que infrinja cualquier uso prohibido.
@@ -134,7 +134,7 @@
     <br />
     <br />
     <br />
-    10. Datos de contacto
+    <strong>10. Datos de contacto</strong>
     <br />
     <br />
     Correo electrónico: creditomax01@outlook.com
