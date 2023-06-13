@@ -62,7 +62,7 @@
       <div class="flex-between" v-if="deferTimes > 0 || (detail.orderStatus >= 80 && detail.showExtension == 1)" @click="goDeferHis">
         <span>Historial de reembolso diferido</span>
         <div class="color-blue font-bold">
-          {{ deferTimes }} veces
+          {{ deferTimes }} veces&nbsp;
           <m-icon class="icon" type="blue-right" :width="8" :height="12" />
         </div>
       </div>
