@@ -66,7 +66,7 @@ export default {
     font-weight: 400;
     color: #333333;
     line-height: 18px;
-    padding: 16px;
+    padding: 16px 12px;
     background: #ffffff;
     border-radius: 8px;
     margin-left: 24px;

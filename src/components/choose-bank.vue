@@ -7,7 +7,7 @@
         <div class="content">
           <header>Seleccione la forma de pago</header>
           <ul>
-            <li @click="chooseBankA('Nequi', '1507')">Nequi</li>
+            <li @click="chooseBankA('Nequi', '')">Nequi</li>
             <li @click="chooseBankB">PSE(Pagos Seguros en Línea)</li>
           </ul>
           <div class="tips">
