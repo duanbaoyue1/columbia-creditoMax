@@ -17,9 +17,9 @@
         <div>Monto de reembolso</div>
       </div>
     </div>
-    <div class="action">
-      <div class="status" :class="'status-' + order.orderStatus">{{ statusText }}</div>
-      <button class="action-btn" :class="'action-btn-' + order.orderStatus" @click="goDetail">{{ order.orderStatusStr }}</button>
+    <div class="action" :class="'action-' + order.orderStatus">
+      <div class="status">{{ statusText }}</div>
+      <button class="action-btn" @click="goDetail">{{ order.orderStatusStr }}</button>
     </div>
   </div>
 </template>
@@ -125,6 +125,65 @@ export default {
       border: 1px solid #ffbc41;
     }
 
+    &-10 {
+      .status {
+        border-color: #ffbc41;
+        color: #ffbc41;
+      }
+      .action-btn {
+        background: #ffbc41;
+      }
+    }
+    &-20,
+    &-21,
+    &-30 {
+      .status {
+        border-color: #f125a8;
+        color: #f125a8;
+      }
+      .action-btn {
+        background: #f125a8;
+      }
+    }
+    &-40 {
+      .status {
+        border-color: #ff1412;
+        color: #ff1412;
+      }
+      .action-btn {
+        background: #ff1412;
+      }
+    }
+    &-70 {
+      .status {
+        border-color: #3e56fe;
+        color: #3e56fe;
+      }
+      .action-btn {
+        background: #3e56fe;
+      }
+    }
+    &-80,
+    &-90 {
+      .status {
+        border-color: #f15a25;
+        color: #f15a25;
+      }
+      .action-btn {
+        background: #f15a25;
+      }
+    }
+    &-100,
+    &-101 {
+      .status {
+        border-color: #04ca1c;
+        color: #04ca1c;
+      }
+      .action-btn {
+        background: #04ca1c;
+      }
+    }
+
     .number {
       font-size: 24px;
       font-family: DINAlternate-Bold, DINAlternate;
@@ -156,29 +215,6 @@ export default {
       background: #ffbc41;
       border-radius: 16px;
       border: none;
-
-      &-10 {
-        background: #ffbc41;
-      }
-      &-20,
-      &-21,
-      &-30 {
-        background: #f125a8;
-      }
-      &-40 {
-        background: #ff1412;
-      }
-      &-70 {
-        background: #3e56fe;
-      }
-      &-80,
-      &-90 {
-        background: #f15a25;
-      }
-      &-100,
-      &-101 {
-        background: #04ca1c;
-      }
     }
   }
 
