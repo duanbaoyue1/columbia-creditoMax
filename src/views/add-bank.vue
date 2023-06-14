@@ -123,7 +123,9 @@ export default {
     };
   },
   mounted() {
-    this.initInfoBackControl();
+    if (this.from == 'order') {
+      this.initInfoBackControl();
+    }
     setTimeout(() => {
       this.getUserInfo();
     }, 200);
@@ -150,18 +152,18 @@ export default {
 
         // 较验银行卡长度
         let lengthLimit = this.selectBank.lengthLimit;
-        if(typeof lengthLimit != 'undefined') {
-          if(lengthLimit instanceof Array) {
-            if(saveData.accountNumber.length < lengthLimit[0] || saveData.accountNumber.length > lengthLimit[1]) {
-              throw new Error('Número de cuenta del recibo con formato incorrecto'); 
+        if (typeof lengthLimit != 'undefined') {
+          if (lengthLimit instanceof Array) {
+            if (saveData.accountNumber.length < lengthLimit[0] || saveData.accountNumber.length > lengthLimit[1]) {
+              throw new Error('Número de cuenta del recibo con formato incorrecto');
             }
           } else {
-            if(saveData.accountNumber.length != lengthLimit) {
-              throw new Error('Número de cuenta del recibo con formato incorrecto'); 
+            if (saveData.accountNumber.length != lengthLimit) {
+              throw new Error('Número de cuenta del recibo con formato incorrecto');
             }
           }
         }
- 
+
         let data = await this.$http.post(`/api/remittance/addRemittanceAccount`, saveData);
         if (data.returnCode == 2000) {
           if (this.from == 'order') {
@@ -218,9 +220,6 @@ export default {
     left: 0;
     right: 0;
     top: 0;
-    .van-picker__columns {
-      height: 420px !important;
-    }
   }
 
   .confirm-data {
@@ -302,6 +301,7 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 22;
   }
 
   .pick-value {

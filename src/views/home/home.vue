@@ -554,9 +554,6 @@ export default {
           line-height: 36px;
           > div {
             text-align: center;
-            &:first-child {
-              margin-right: 56px;
-            }
           }
           .label {
             font-size: 14px;

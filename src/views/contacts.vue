@@ -32,9 +32,9 @@
 
     <div class="submit-success" v-show="submitSuccess">
       <span>
-        Congratulations!
+        ¡Enhorabuena!
         <br />
-        Your contacts information has been verified
+        Su información personal ha sido verificada
       </span>
     </div>
   </div>
