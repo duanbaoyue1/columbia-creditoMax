@@ -147,10 +147,21 @@ export default {
           bankCode: this.selectBank.value,
           name: this.editData.userName,
         };
-        // if (saveData.accountNumber.length < 7 || saveData.accountNumber.length > 22) {
-        //   this.$toast('Please enter correct account number');
-        //   return;
-        // }
+
+        // 较验银行卡长度
+        let lengthLimit = this.selectBank.lengthLimit;
+        if(typeof lengthLimit != 'undefined') {
+          if(lengthLimit instanceof Array) {
+            if(saveData.accountNumber.length < lengthLimit[0] || saveData.accountNumber.length > lengthLimit[1]) {
+              throw new Error('Número de cuenta del recibo con formato incorrecto'); 
+            }
+          } else {
+            if(saveData.accountNumber.length != lengthLimit) {
+              throw new Error('Número de cuenta del recibo con formato incorrecto'); 
+            }
+          }
+        }
+ 
         let data = await this.$http.post(`/api/remittance/addRemittanceAccount`, saveData);
         if (data.returnCode == 2000) {
           if (this.from == 'order') {
