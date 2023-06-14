@@ -22,7 +22,7 @@
         </van-tabbar-item>
 
         <van-tabbar-item replace to="/repayment" :badge="repaymentNum > 0 ? repaymentNum : ''" v-if="showRepayment">
-          <span>Repayment</span>
+          <span>Reembolsando</span>
           <template #icon="props">
             <m-icon :type="props.active ? 'creditomax/Reembolsando选中' : 'creditomax/Reembolsando未点击'" class="nav-icon" :width="22" :height="24" />
           </template>
