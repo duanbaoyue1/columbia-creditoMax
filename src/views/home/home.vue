@@ -438,7 +438,7 @@ export default {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          font-size: 16px;
+          font-size: 15px;
           font-family: Roboto-Regular, Roboto;
           font-weight: 400;
           color: #333333;
