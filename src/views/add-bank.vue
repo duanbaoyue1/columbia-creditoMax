@@ -1,23 +1,23 @@
 <template>
   <div class="add-bank content-area" :class="{ 'from-order': from == 'order' }">
-    <template v-if="from != 'mine'">
+    <template v-if="from == 'order'">
       <div class="step">
         <complete-step :actionIndex="3"></complete-step>
       </div>
     </template>
     <div class="edit-area">
-      <div class="line-item select-bank" @click="openSelect = true">
+      <div class="line-item select-bank" @click="openSelectModel">
         <div class="label">Forma de pago</div>
         <input v-model="selectBank.text" disabled placeholder="Por favor, elija" />
         <m-icon class="right" type="creditomax/黑下" :width="14" :height="12" />
       </div>
       <div class="line-item">
         <div class="label">Número de cuenta receptora</div>
-        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="20" v-model="editData.accountNumber" placeholder="Por favor escribe" />
+        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="20" :disabled="markLoanCard != ''" v-model="editData.accountNumber" placeholder="Por favor escribe" />
       </div>
       <div class="line-item">
         <div class="label">Nombre del beneficia</div>
-        <input v-model="editData.userName" placeholder="Please enter your name" />
+        <input v-model="editData.userName" :disabled="markLoanCard != ''" placeholder="Please enter your name" />
       </div>
     </div>
     <div class="tips">
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="submit">
-      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="showConfirmModal = true">Enviar</button>
+      <button class="bottom-submit-btn" :disabled="!canSubmit" @click="showConfirmBank">Enviar</button>
     </div>
 
     <van-action-sheet class="bank-picker-sheet" v-model="openSelect" title="Elegir banco" close-on-click-action>
@@ -89,7 +89,7 @@ export default {
     },
     editData: {
       handler() {
-        this.canSubmit = this.selectBank.value && this.editData.accountNumber && this.editData.userName;
+        this.canSubmit = (this.selectBank.value && this.editData.accountNumber && this.editData.userName) || this.markLoanCard;
       },
       deep: true,
     },
@@ -115,6 +115,7 @@ export default {
       editData: {
         userName: '',
       },
+      markLoanCard: '',
       from: this.$route.query.from,
       orderId: this.$route.query.orderId,
       showConfirmModal: false,
@@ -122,9 +123,19 @@ export default {
       saving: false,
     };
   },
-  mounted() {
+  async mounted() {
     if (this.from == 'order') {
       this.initInfoBackControl();
+      let data = await this.$http.post('/api/remittance/remittanceAccountList');
+      let defaultCards = (data.data.list || []).filter(t => t.markLoanCard == 1);
+
+      // 從冷卻期过来的订单，这个时候选择默认卡绑定
+      if (defaultCards && defaultCards.length == 1) {
+        this.markLoanCard = defaultCards[0];
+        this.selectBank.text = this.markLoanCard.bank;
+        this.selectBank.value = this.markLoanCard.accountNumber;
+        this.editData.accountNumber = this.markLoanCard.accountNumber;
+      }
     }
     setTimeout(() => {
       this.getUserInfo();
@@ -136,6 +147,33 @@ export default {
       this.eventTracker('bank_add_submit');
       this.selectBank = this.$refs.bankPicker.getValues()[0];
       this.openSelect = false;
+    },
+    showConfirmBank() {
+      // 从订单进来，如果已经有卡，直接完成绑定，进入确认页
+      if(this.from == 'order' && this.markLoanCard) {
+        this.bindCardAndJump(this.markLoanCard.id);
+        return;
+      }
+      this.showConfirmModal = true;
+    },
+    openSelectModel() {
+      if (this.from == 'order' && this.markLoanCard) {
+        return;
+      }
+      this.openSelect = true;
+    },
+    async bindCardAndJump(cardId) {
+      // 绑卡
+      await this.$http.post(`/api/order/bindRemittanceAccount`, { remittanceAccountId: cardId, orderId: this.orderId });
+      // 判断是否需要确认订单
+      let appMode = await this.getAppMode();
+      if (appMode.confirmType == 1) {
+        // 需要进确认申请页
+        this.innerJump('loan-confirm', { orderId: this.orderId }, true);
+      } else {
+        // 不需要进确认申请页
+        this.innerJump('loan-success-multi', { orderId: this.orderId, single: true, systemTime: this.getLocalSystemTimeStamp() }, true);
+      }
     },
     async submit() {
       if (this.saving) return;
@@ -167,17 +205,7 @@ export default {
         let data = await this.$http.post(`/api/remittance/addRemittanceAccount`, saveData);
         if (data.returnCode == 2000) {
           if (this.from == 'order') {
-            // 绑卡
-            await this.$http.post(`/api/order/bindRemittanceAccount`, { remittanceAccountId: data.data.id, orderId: this.orderId });
-            // 判断是否需要确认订单
-            let appMode = await this.getAppMode();
-            if (appMode.confirmType == 1) {
-              // 需要进确认申请页
-              this.innerJump('loan-confirm', { orderId: this.orderId }, true);
-            } else {
-              // 不需要进确认申请页
-              this.innerJump('loan-success-multi', { orderId: this.orderId, single: true, systemTime: this.getLocalSystemTimeStamp() }, true);
-            }
+            this.bindCardAndJump(data.data.id);
           } else {
             this.goAppBack();
           }

@@ -537,6 +537,8 @@ export default {
             line-height: 12px;
             right: 0px;
             bottom: 34px;
+            max-width: 280px;
+            box-sizing: border-box;
             div {
               font-size: 10px;
               // transform: scale(0.9);
