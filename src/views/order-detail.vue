@@ -16,7 +16,7 @@
       </div>
       <div class="flex-between" v-if="showDate">
         <span>Fecha de vencimiento</span>
-        <span class="fw-500">{{ detail.expectedRepaymentTime }}</span>
+        <span class="fw-500">{{ detail.actualRepaymentTime || detail.expectedRepaymentTime }}</span>
       </div>
     </div>
 
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="order-info" v-if="detail.incidentalAmount > 0">
+    <div class="order-info" v-if="detail.orderStatus >= 80">
       <div class="flex-between">
         <span>Tarifa de servicio</span>
         <span class="font-bold">
@@ -58,8 +58,8 @@
       </div>
     </div>
 
-    <div class="order-info" v-if="detail.orderStatus >= 80">
-      <div class="flex-between" v-if="deferTimes > 0 || (detail.orderStatus >= 80 && detail.showExtension == 1)" @click="goDeferHis">
+    <div class="order-info" v-if="deferTimes > 0 || (detail.orderStatus >= 80 && detail.showExtension == 1)">
+      <div class="flex-between" @click="goDeferHis">
         <span>Historial de reembolso diferido</span>
         <div class="color-blue font-bold">
           {{ deferTimes }} veces&nbsp;
@@ -95,7 +95,7 @@
 
       <div class="flex-between" v-if="showDate">
         <span>Fecha de recibo</span>
-        <span class="fw-500">{{ detail.actualRepaymentTime || detail.expectedRepaymentTime }}</span>
+        <span class="fw-500">{{ detail.arrivalTime }}</span>
       </div>
     </div>
 

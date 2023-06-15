@@ -22,7 +22,7 @@
             <div class="status-tips" v-if="btnTips">
               <span v-html="btnTips"></span>
             </div>
-            {{ isMultiple ? multipleCredit.button : actionText }}
+            {{ isMultiple ? multipleCredit.button : appMode.button }}
           </div>
         </div>
 
@@ -92,7 +92,7 @@ export default {
       } else if (typeof this.appMode.amount != 'undefined') {
         return this.appMode.amount;
       } else {
-        return 2000000;
+        return '';
       }
     },
   },
@@ -443,6 +443,9 @@ export default {
           font-weight: 400;
           color: #333333;
           line-height: 24px;
+          > span {
+            font-weight: bold;
+          }
           > div {
             display: flex;
             align-items: center;
@@ -460,7 +463,6 @@ export default {
               align-items: center;
               justify-content: center;
               border-radius: 20px;
-              margin-right: 10px;
               &.has-num {
                 background: #ff4b3f;
                 color: #fff;
@@ -490,7 +492,7 @@ export default {
         .number {
           margin-top: 8px;
           font-size: 48px;
-          font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
+          font-family: DINAlternate-Bold, DINAlternate;
           font-weight: bold;
           color: #333333;
           line-height: 54px;
@@ -571,7 +573,7 @@ export default {
             color: #333333;
             line-height: 36px;
             white-space: nowrap;
-            font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
+            height: initial;
           }
         }
       }

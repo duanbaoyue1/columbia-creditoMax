@@ -3,6 +3,26 @@
 @import './vant-change.scss';
 @import './reset.scss';
 
+@font-face {
+  font-family: "DINAlternate-Bold";
+  src: url('../font/DIN\ Alternate\ Bold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url('../font/Roboto-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: "DINAlternate-Bold";
+//   src: url('../font/DIN\ Condensed\ Bold.ttf');
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
 .input-placeholder {
   color: #cccccc;
 }

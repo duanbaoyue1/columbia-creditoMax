@@ -116,7 +116,7 @@ export default {
     }
     .text {
       color: #999999;
-      font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
+      font-weight: 500;
     }
     &.active {
       .text {
