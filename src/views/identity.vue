@@ -144,7 +144,7 @@ export default {
         this.curInterval = null;
       }
       this.curInterval = setInterval(() => {
-        if (this.curPercent <= 99) {
+        if (this.curPercent < 99) {
           this.curPercent += 1;
         } else {
           this.stopPercent();
