@@ -60,7 +60,7 @@ export default {
     position: relative;
     &::before {
       position: absolute;
-      width: 72px;
+      width: 74px;
       height: 4px;
       background: #e3e3e3;
       content: ' ';

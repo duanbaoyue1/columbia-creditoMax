@@ -33,14 +33,14 @@ export default {
     };
 
     let res = await this.$http.post(`/api/user/smsLogin`, {
-      // loginName: '8105000000', //卡在ocr
-      loginName: '7010000002', //  现金贷
+      loginName: '8105000000', //卡在ocr
+      // loginName: '7010000002', //  现金贷
       // loginName: '7010000001', // 多推
       smsCode: '0000',
       platform: 'android',
       afId: '1221',
       gaId: '12221',
-      androidId: '222234223',
+      androidId: '22223422223',
       imei: '22222122',
     });
     console.log(res);

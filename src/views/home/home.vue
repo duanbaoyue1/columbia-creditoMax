@@ -20,7 +20,7 @@
           </div>
           <div class="action-btn" @click="clickApply">
             <div class="status-tips" v-if="btnTips">
-              <span v-html="btnTips"></span>
+              <div v-html="btnTips"></div>
             </div>
             {{ isMultiple ? multipleCredit.button : appMode.button }}
           </div>
@@ -475,7 +475,7 @@ export default {
       .inner {
         width: 100%;
         height: 308px;
-        background: linear-gradient(180deg, #efccc1 0%, #f9f0ea 16%, #ffffff 41%, #ffffff 100%);
+        background: linear-gradient(180deg, #ebebff 0%, #fafbff 20%, #ffffff 41%, #ffffff 100%);
         box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.16), inset 0px 2px 3px 0px rgba(255, 255, 255, 0.8);
         border-radius: 16px;
         padding: 24px 24px 20px;
@@ -513,7 +513,6 @@ export default {
           box-shadow: 0px 8px 20px 0px rgba(67, 74, 249, 0.4), inset 0px 2px 8px 0px #434af9;
           border-radius: 23px;
           font-size: 20px;
-          font-family: PingFangSC-Semibold, PingFang SC;
           font-weight: 600;
           color: #ffffff;
           line-height: 28px;
@@ -537,10 +536,11 @@ export default {
             color: #333333;
             line-height: 12px;
             right: 0px;
-            bottom: 32px;
-            span {
+            bottom: 34px;
+            div {
               font-size: 10px;
-              transform: scale(0.9);
+              // transform: scale(0.9);
+              //     transform-origin: right;
             }
           }
         }
