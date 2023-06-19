@@ -4,7 +4,7 @@
       <div class="tips">
         <img :src="require('@/assets/img/loan/tips-1.png')" />
       </div>
-      <div class="title">What do you think about easymoney?</div>
+      <div class="title">What do you think about CreditoMax?</div>
       <div class="stars">
         <div class="star" v-for="(item, index) in stars">
           <img :src="curStar >= index + 1 ? require('@/assets/img/loan/star-solid.png') : require('@/assets/img/loan/star-none.png')" @click="toggleStar(index + 1)" />

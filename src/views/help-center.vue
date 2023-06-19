@@ -69,14 +69,14 @@ export default {
     });
   },
   mounted() {
-    setTimeout(async () => {
-      try {
-        let user = await this.getUserInfo();
-        if (parseInt(user.id) % 2 == 1) {
-          this.feedEmail = 'creditomax03@outlook.com';
-        }
-      } catch (error) {}
-    }, 200);
+    // setTimeout(async () => {
+    //   try {
+    //     let user = await this.getUserInfo();
+    //     if (parseInt(user.id) % 2 == 1) {
+    //       this.feedEmail = 'creditomax03@outlook.com';
+    //     }
+    //   } catch (error) {}
+    // }, 200);
   },
 
   methods: {

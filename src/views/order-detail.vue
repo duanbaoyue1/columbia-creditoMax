@@ -6,7 +6,7 @@
       <div v-else>Si el pago falla, cambie los datos de su tarjeta en el Centro Personal y vuelva a presentar su solicitud.</div>
     </div>
 
-    <div class="order-info" v-if="detail.orderStatus >= 80">
+    <div class="order-info" v-if="showDate">
       <div class="flex-between" v-if="detail.orderStatus >= 80">
         <span>Monto de reembolso</span>
         <span class="font-bold color-orange align-end" style="line-height: 26px">
@@ -32,7 +32,7 @@
           <span>{{ detail.approvalAmount }}</span>
         </span>
       </div>
-      <div class="flex-between" v-if="detail.orderStatus >= 80">
+      <div class="flex-between" v-if="showDate">
         <span>Importe real recibido</span>
         <span class="font-bold">
           <span class="money-label">$</span>
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="order-info" v-if="detail.orderStatus >= 80">
+    <div class="order-info" v-if="showDate">
       <div class="flex-between">
         <span>Tarifa de servicio</span>
         <span class="font-bold">
@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <div class="order-info" v-if="deferTimes > 0 || (detail.orderStatus >= 80 && detail.showExtension == 1)">
+    <div class="order-info" v-if="deferTimes > 0 || (showDate && detail.showExtension == 1)">
       <div class="flex-between" @click="goDeferHis">
         <span>Historial de reembolso diferido</span>
         <div class="color-blue font-bold">
@@ -300,9 +300,11 @@ export default {
   box-sizing: border-box;
   background-attachment: local;
   &.order_40,
-  &.order_90,
   &.order_110 {
     background-image: url(../assets/img/creditomax/订单失败.png);
+  }
+  &.order_90 {
+    background-image: url(../assets/img/creditomax/逾期.png);
   }
   &.order_100,
   &.order_101 {
@@ -454,7 +456,7 @@ export default {
           text-align: right;
           overflow: hidden;
           text-overflow: ellipsis;
-          margin-left:10px;
+          margin-left: 10px;
           font-size: 12px;
           font-weight: bold;
         }
