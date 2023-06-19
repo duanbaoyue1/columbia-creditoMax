@@ -32,7 +32,7 @@
     <strong>Aplicaciones instaladas</strong>
     <br />
     <br />
-    Recopilamos una lista de información de metadatos sobre las aplicaciones instaladas, que incluye el nombre de la aplicación, el nombre del paquete, la hora de instalación, la hora de actualización, el nombre de la versión y el código de la versión de cada aplicación instalada en su dispositivo, la ciframos y la cargamos en nuestro servidor en https:// para identificar y analizar su comportamiento y el riesgo de préstamos múltiples, ayudando así a prevenir el fraude.
+    Recopilamos una lista de información de metadatos sobre las aplicaciones instaladas, que incluye el nombre de la aplicación, el nombre del paquete, la hora de instalación, la hora de actualización, el nombre de la versión y el código de la versión de cada aplicación instalada en su dispositivo, la ciframos y la cargamos en nuestro servidor en https://pro.creditomaxco.com/ para identificar y analizar su comportamiento y el riesgo de préstamos múltiples, ayudando así a prevenir el fraude.
     <br />
     <br />
     <br />

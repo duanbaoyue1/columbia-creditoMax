@@ -23,7 +23,7 @@
       <div class="period">
         <span class="fs-14 font-bold">Costes para reembolso diferido</span>
         <div class="value">
-          <span class="color-blue">$</span>
+          <span class="">$</span>
           <span class="value">{{ detail.amount }}</span>
           <!-- <m-icon class="icon" type="gray-down" :width="16" :height="12" /> -->
         </div>
@@ -203,7 +203,7 @@ export default {
           margin-right: 0px;
           font-size: 24px;
           font-weight: bold;
-          color: #434af9;
+          
           line-height: 24px;
         }
         .icon {
@@ -214,7 +214,7 @@ export default {
       .value {
         font-size: 20px;
         font-weight: 900;
-        color: #333333;
+       color: #434af9;
         line-height: 24px;
         margin-right: 5px;
       }

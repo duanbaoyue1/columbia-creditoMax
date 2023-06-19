@@ -454,7 +454,9 @@ export default {
           text-align: right;
           overflow: hidden;
           text-overflow: ellipsis;
-          margin-left: 20px;
+          margin-left:10px;
+          font-size: 12px;
+          font-weight: bold;
         }
       }
     }
