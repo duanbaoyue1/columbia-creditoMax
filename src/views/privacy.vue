@@ -24,7 +24,7 @@
     <strong>SMS</strong>
     <br />
     <br />
-    Recopilamos todos los datos de tus sms, pero sólo controlamos la información relacionada con las transacciones financieras, la encriptamos y la cargamos en nuestro servidor https:// para el control de riesgos y las comprobaciones antifraude. CreditoMax nunca compartirá datos con terceros sin su permiso. La información sólo se recopilará si usted ha aceptado autorizarla y los datos se transmitirán y cargarán a través de una conexión segura.
+    Recopilamos todos los datos de tus sms, pero sólo controlamos la información relacionada con las transacciones financieras, la encriptamos y la cargamos en nuestro servidor https://sdk.creditomaxco.com/original/colombiaUpload para el control de riesgos y las comprobaciones antifraude. CreditoMax nunca compartirá datos con terceros sin su permiso. La información sólo se recopilará si usted ha aceptado autorizarla y los datos se transmitirán y cargarán a través de una conexión segura.
     <br />
     <br />
     <br />

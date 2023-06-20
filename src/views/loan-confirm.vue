@@ -102,7 +102,7 @@ export default {
           syncRes = await this.startSyncData();
         } catch (error) {
           this.hideLoading();
-          this.$toast('Carga fallida, inténtelo más tarde');
+          this.$toast('Compruebe la red y vuelva a intentarlo');
           return;
         }
         if (syncRes.success) {
@@ -112,7 +112,7 @@ export default {
           this.innerJump('loan-success-multi', { orderId: this.orderId, single: true, systemTime: this.getLocalSystemTimeStamp() }, true);
         }
       } catch (error) {
-        this.$toast(error.message);
+        this.$toast(error.message || 'Compruebe la red y vuelva a intentarlo');
         setTimeout(() => {
           this.innerJump('loan-fail', { orderId: this.orderId }, true);
         }, 1000);

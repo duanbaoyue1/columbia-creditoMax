@@ -32,27 +32,31 @@ export default {
       }
     };
 
-    // let res = await this.$http.post(`/api/user/smsLogin`, {
+    try {
+      let res = await this.$http.post(`/api/user/smsLogin`, {
+        loginName: '7010000001', //卡在ocr
+        // loginName: '7010000002', //  现金贷
+        // loginName: '7010000001', // 多推
+        smsCode: '222222',
+        platform: 'android',
+        afId: '1221',
+        gaId: '12221',
+        androidId: '222234222222223',
+        imei: '22222122',
+      });
+      console.log(res);
+      this.updateToken({ token: res.data.token, userId: res.data.userId });
+    } catch (error) {
+      console.log(error);
+    }
+
+    // 密码登陆
+    // let res = await this.$http.post(`/api/user/login`, {
     //   loginName: '7010000001', //卡在ocr
-    //   // loginName: '7010000002', //  现金贷
-    //   // loginName: '7010000001', // 多推
-    //   smsCode: '222222',
-    //   platform: 'android',
-    //   afId: '1221',
-    //   gaId: '12221',
-    //   androidId: '222234222222223',
-    //   imei: '22222122',
+    //   password: '222222',
     // });
     // console.log(res);
     // this.updateToken({ token: res.data.token, userId: res.data.userId });
-
-    // 密码登陆
-    let res = await this.$http.post(`/api/user/login`, {
-      loginName: '7010000001', //卡在ocr
-      password: '222222',
-    });
-    console.log(res);
-    this.updateToken({ token: res.data.token, userId: res.data.userId });
   },
 
   methods: {

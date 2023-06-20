@@ -7,7 +7,7 @@
       <div class="head-top">Subir C.C.ID</div>
       <div class="pan-img-wrapper">
         <div class="pan-img" @click="getCapture(1)">
-          <template v-if="cardFrontBase64Src">
+          <template v-if="cardFrontOcrStatus">
             <img class="back user-pic" :src="cardFrontBase64Src" />
             <img class="btn" :src="require('@/assets/img/creditomax/完成.png')" />
           </template>
@@ -21,7 +21,7 @@
 
       <div class="pan-img-wrapper">
         <div class="pan-img" @click="getCapture(2)">
-          <template v-if="cardBackBase64Src">
+          <template v-if="cardBackOcrStatus">
             <img class="back user-pic" :src="cardBackBase64Src" />
             <img class="btn" :src="require('@/assets/img/creditomax/完成.png')" />
           </template>
@@ -217,7 +217,7 @@ export default {
           this.logError(type);
         }
       } catch (error) {
-        this.logError(type, error.message);
+        this.logError(type, error);
       } finally {
         this.checkCanSubmit();
       }
@@ -231,11 +231,20 @@ export default {
       }
     },
 
-    logError(type, message) {
+    logError(type, error) {
       this.stopPercent();
       this.submitSuccess = false;
       this.eventTracker('id_submit_error');
-      this.$toast(message || 'Por favor, inténtelo de nuevo！');
+      let toastMessage = 'Por favor, inténtelo de nuevo！';
+
+      if (error) {
+        if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
+          toastMessage = 'Compruebe la red y vuelva a intentarlo';
+        } else {
+          toastMessage = error.message || toastMessage;
+        }
+      }
+      this.$toast(toastMessage);
     },
 
     async submit() {

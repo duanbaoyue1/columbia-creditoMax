@@ -97,7 +97,10 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log('err' + error); // for debug
+    // if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
+    //   console.log('Request timed out');
+    //   return Promise.reject({ message: 'Tiempo de espera, inténtelo de nuevo' });
+    // }
     return Promise.reject(error);
   }
 );
