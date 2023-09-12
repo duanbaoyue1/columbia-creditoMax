@@ -30,7 +30,7 @@
       </div>
       <!-- <div class="flex-between">
         <span>Interest</span>
-        <span>₹ {{ detail.interest }}</span>
+        <span>$ {{ detail.interest }}</span>
       </div> -->
       <div class="flex-between">
         <span>Tarifa de servicio</span>
