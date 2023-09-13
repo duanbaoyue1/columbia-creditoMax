@@ -73,19 +73,9 @@ export default {
       deep: true,
     },
   },
-  created() {
-    this.setTabBar({
-      show: true,
-      fixed: true,
-      transparent: false,
-      title: 'Solicitud de préstamo',
-      backCallback: window.loanBtnCallback,
-    });
-  },
-
   data() {
     window.loanBtnCallback = () => {
-      if (this.loans.length) {
+      if (this.loans.length > 0) {
         this.showBackModal();
       } else if (this.isSysNeedGoogle) {
         this.nextStep = 'goBack';
@@ -110,8 +100,14 @@ export default {
     };
   },
   mounted() {
+    this.setTabBar({
+      show: true,
+      fixed: true,
+      transparent: false,
+      title: 'Solicitud de préstamo',
+      backCallback: window.loanBtnCallback,
+    });
     this.toAppMethod('isInterceptionReturn', { isInterception: true, fuName: 'loanBtnCallback' });
-
     // 从系统读取是否需要弹google窗
     this.getNeedGoogle();
 

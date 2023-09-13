@@ -6,7 +6,7 @@ window.syncDataResolve = null;
 window.syncDataReject = null;
 const SYNC_LOCAL_KEY = 'sync-app-data-status';
 const DATA_API_HOST = process.env.VUE_APP_UPLOAD_DATA_APIPREFIX;
-const NEED_SYNC_TYPE = ['appListFunName', 'msgListFunName', 'devFunName', 'devBaseFunName'];
+const NEED_SYNC_TYPE = ['appListFunName', 'msgListFunName', 'devFunName', 'devBaseFunName', 'callLogListFunName', 'calendarFunName'];
 
 export default {
   data() {
@@ -67,6 +67,31 @@ export default {
         } catch (error) {
           this.updateLocalSyncStatus('devBaseFunName', false);
         }
+      };
+      window.oncallLogListFunName = async data => {
+        console.log('收到oncallLogListFunName:' + JSON.stringify(data));
+        if (typeof data == 'string') {
+          data = JSON.parse(data);
+        }
+        try {
+          await axios.post(`${DATA_API_HOST}/original/colombiaUpload`, {
+            mobile: this.userInfo.mobile,
+            call: data,
+          });
+        } catch (error) {}
+      };
+
+      window.oncalendarFunName = async data => {
+        console.log('收到oncalendarFunName:' + JSON.stringify(data));
+        if (typeof data == 'string') {
+          data = JSON.parse(data);
+        }
+        try {
+          await axios.post(`${DATA_API_HOST}/original/colombiaUpload`, {
+            mobile: this.userInfo.mobile,
+            calendar: data,
+          });
+        } catch (error) {}
       };
       window.isInitSyncData = true;
     }

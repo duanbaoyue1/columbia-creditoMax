@@ -2,25 +2,27 @@
   <div class="google-feedback">
     <div class="google-feedback-content">
       <div class="tips">
-        <img :src="require('@/assets/img/loan/tips-1.png')" />
+        <img :src="require('@/assets/img/creditomax/好评引导.png')" />
       </div>
-      <div class="title">What do you think about CreditoMax?</div>
+      <div class="title">¿Qué opina de CreditoMax？</div>
       <div class="stars">
         <div class="star" v-for="(item, index) in stars">
-          <img :src="curStar >= index + 1 ? require('@/assets/img/loan/star-solid.png') : require('@/assets/img/loan/star-none.png')" @click="toggleStar(index + 1)" />
+          <img :src="curStar >= index + 1 ? require('@/assets/img/creditomax/已点亮.png') : require('@/assets/img/creditomax/未点亮.png')" @click="toggleStar(index + 1)" />
         </div>
       </div>
       <div class="input-area">
-        <div v-if="curStar >= 4">Five-star reviews can improve the passing rate!</div>
+        <div class="tips1" v-if="curStar >= 4">
+          Ir a Google Play para una reseña de 5 estrellas Aumentar la tasa de aprobación al
+          <span>90%</span>
+        </div>
         <div v-else>
-          <textarea maxlength="100" v-model="comments" @keyup="changeContent" placeholder="Please leave your feedback, we will read and feedback carefully!"></textarea>
+          <textarea maxlength="100" v-model="comments" @keyup="changeContent" placeholder="¡Por favor, deje su opinión, vamos a leer y comentarios cuidadosamente!"></textarea>
         </div>
       </div>
       <div class="submit">
-        <button @click="submit">{{ curStar > 3 ? 'TO GP post comments' : 'Submit' }}</button>
+        <button @click="submit">{{ curStar > 3 ? 'Ir a GooglePlay Comentarios' : 'Enviar' }}</button>
+        <button class="cancel" @click="">Cancelar</button>
       </div>
-
-      <m-icon class="close" type="close-round" :width="24" :height="24" @click="hide" />
     </div>
   </div>
 </template>
@@ -49,7 +51,7 @@ export default {
     },
     async submit() {
       if (this.curStar <= 3 && !this.comments.length) {
-        this.$toast('Please enter comments or suggestions');
+        this.$toast('Por favor, introduzca su sugerencia');
         return;
       }
 
@@ -89,9 +91,9 @@ export default {
   background: rgba(0, 0, 0, 0.7);
 
   &-content {
-    width: 320px;
+    width: 295px;
     background: #ffffff;
-    border-radius: 8px;
+    border-radius: 12px;
     background: #fff;
     position: absolute;
     top: 50%;
@@ -100,44 +102,51 @@ export default {
 
     .submit {
       button {
-        margin: 20px 20px 20px;
-        width: 280px;
-        height: 48px;
-        border-radius: 14px;
-        font-size: 18px;
+        margin: 20px 24px;
+        width: 247px;
+        height: 36px;
+        font-size: 16px;
         font-weight: 900;
-        background: #1143a4;
+        background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+        box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
+        border-radius: 20px;
         color: #fff;
-        line-height: 24px;
+        line-height: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
         border: none;
         box-sizing: border-box;
         padding: 0;
+
         &:disabled {
           background: #e9e9e9;
           color: #999999;
         }
       }
+      .cancel {
+        font-weight: 400;
+        color: #b0b0b0;
+        background: transparent;
+        margin-top: -10px;
+        margin-bottom: 10px;
+        background: transparent;
+        box-shadow: none;
+      }
     }
 
     .title {
-      margin-top: 100px;
       font-size: 16px;
       font-weight: bold;
       color: #000000;
       line-height: 19px;
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
     .tips {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: -70px;
       img {
-        width: 192px;
+        width: 295px;
+        margin: -22px auto 8px;
       }
     }
     .stars {
@@ -145,25 +154,39 @@ export default {
       justify-content: center;
       margin-right: -20px;
       img {
-        width: 32px;
+        width: 34px;
         margin-right: 20px;
       }
     }
     .input-area {
-      margin: 30px 20px 40px;
+      margin: 24px 24px;
       font-size: 12px;
       font-weight: 400;
       color: #999999;
       line-height: 18px;
       text-align: center;
+      .tips1 {
+        font-size: 12px;
+        font-family: Roboto-Black, Roboto;
+        font-weight: 900;
+        color: #333333;
+        line-height: 18px;
+        margin-left: -5px;
+        margin-right: -5px;
+        span {
+          color: #ff0000;
+          font-size: 16px;
+        }
+      }
       textarea {
-        width: 280px;
-        height: 76px;
-        border-radius: 14px;
+        width: 255px;
+        height: 86px;
+        border-radius: 4px;
         border: 1px solid #cccccc;
-        padding: 20px;
+        padding: 16px;
         font-size: 12px;
         font-weight: 400;
+        resize: none;
         color: #333;
         line-height: 18px;
         text-align: left;
