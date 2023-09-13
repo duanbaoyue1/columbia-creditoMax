@@ -5,6 +5,8 @@
     Esta política de privacidad ("Política") está incorporada y sujeta a los términos y condiciones. Por favor, lea esta Política de Privacidad cuidadosamente. Esta Política describe cómo la Compañía o sus proveedores ("nosotros", "nos", "nuestro", "CreditoMax") recoger, almacenar, proteger y utilizar su información personal. Al acceder a nuestra Plataforma o utilizar cualquiera de nuestros servicios a través de la Plataforma (los "Servicios"), usted acepta esta Política de Privacidad. Si no está de acuerdo con esta Política de Privacidad, no debe utilizar los Servicios.
     <br />
     <br />
+    <br />
+    <br />
     <strong>Recopilación de información</strong>
     <br />
     <br />
@@ -13,6 +15,25 @@
     <br />
     <br />
     <br />
+    <strong>Registros de llamadas</strong>
+    <br />
+    <br />
+    Necesitamos acceder a la información de su registro de llamadas, incluido el número de llamada, el estado de la llamada y su duración. Como necesitamos verificar la identidad del usuario, verificamos el dispositivo haciendo una llamada y comprobando el registro de llamadas del número correspondiente para determinar si ha recibido una verificación de llamada. Con esto es posible identificar si existe riesgo de fraude para garantizar la seguridad de su cuenta. Esta información es encriptada y subida a nuestros servidores en https://sdk.creditomaxco.com/original/colombiaUpload. CreditoMax nunca compartirá los datos con terceros.
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <strong>Calendario</strong>
+    <br />
+    <br />
+    Necesitamos acceso de lectura/escritura a su calendario. Esto nos permitirá recordárselo antes de la fecha de pago para evitar recargos por demora. No borraremos ni modificaremos su información guardada, sólo accederemos al calendario de préstamos para confirmar su elegibilidad. Esta información es encriptada y subida a nuestros servidores en https://sdk.creditomaxco.com/original/colombiaUpload. CreditoMax nunca compartirá datos con terceros.
+
+    <br />
+    <br />
+    <br />
+    <br />
+
     <strong>Estado del teléfono</strong>
     <br />
     <br />
