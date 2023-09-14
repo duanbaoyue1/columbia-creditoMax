@@ -124,6 +124,7 @@ export default {
     };
   },
   async mounted() {
+    this.eventTracker('bank_add_access');
     if (this.from == 'order') {
       this.initInfoBackControl();
       let data = await this.$http.post('/api/remittance/remittanceAccountList');
