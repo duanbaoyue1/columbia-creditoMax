@@ -124,6 +124,7 @@ export default {
     };
   },
   async mounted() {
+    this.eventTracker('bank_add_access');
     if (this.from == 'order') {
       this.initInfoBackControl();
       let data = await this.$http.post('/api/remittance/remittanceAccountList');
@@ -150,7 +151,7 @@ export default {
     },
     showConfirmBank() {
       // 从订单进来，如果已经有卡，直接完成绑定，进入确认页
-      if(this.from == 'order' && this.markLoanCard) {
+      if (this.from == 'order' && this.markLoanCard) {
         this.bindCardAndJump(this.markLoanCard.id);
         return;
       }
