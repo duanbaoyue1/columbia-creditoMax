@@ -21,7 +21,7 @@
       </div>
       <div class="submit">
         <button @click="submit">{{ curStar > 3 ? 'Ir a GooglePlay Comentarios' : 'Enviar' }}</button>
-        <button class="cancel" @click="">Cancelar</button>
+        <button class="cancel" @click="hide">Cancelar</button>
       </div>
     </div>
   </div>
