@@ -93,7 +93,7 @@ export default {
   &-content {
     width: 295px;
     background: #ffffff;
-    border-radius: 12px;
+    border-radius: 8px;
     background: #fff;
     position: absolute;
     top: 50%;
@@ -166,7 +166,7 @@ export default {
       line-height: 18px;
       text-align: center;
       .tips1 {
-        font-size: 12px;
+        font-size: 11px;
         font-family: Roboto-Black, Roboto;
         font-weight: 900;
         color: #333333;
