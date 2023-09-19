@@ -74,16 +74,17 @@ export default {
     },
   },
   data() {
-    window.loanBtnCallback = () => {
+    window.loanBtnCallback = async () => {
       if (this.loans.length > 0) {
         this.showBackModal();
-      } else if (this.isSysNeedGoogle) {
+      } else if (await this.getNeedGoogle()) {
         this.nextStep = 'goBack';
         this.showGoogleFeed = true;
       } else {
         this.goAppBack();
       }
     };
+
     return {
       needRecommend: JSON.parse(this.$route.query.needRecommend || true), // 是否需要推荐 从活动过来的不用推荐
       systemTime: this.$route.query.systemTime || '', // 上次订单时间
@@ -96,7 +97,6 @@ export default {
       showBackControl: false,
       backInterval: null, // 回退倒计时
       showGoogleFeed: false,
-      isSysNeedGoogle: false,
     };
   },
   mounted() {
@@ -108,9 +108,6 @@ export default {
       backCallback: window.loanBtnCallback,
     });
     this.toAppMethod('isInterceptionReturn', { isInterception: true, fuName: 'loanBtnCallback' });
-    // 从系统读取是否需要弹google窗
-    this.getNeedGoogle();
-
     if (this.needRecommend) {
       this.getRecommendLoans();
     }
@@ -139,9 +136,13 @@ export default {
       try {
         let res = await this.$http.post(`/api/product/favourableComment`);
         if (res.returnCode == 2000) {
-          this.isSysNeedGoogle = res.data;
+          return res.data;
+        } else {
+          return false;
         }
-      } catch (error) {}
+      } catch (error) {
+        return false;
+      }
     },
 
     async getRecommendLoans() {
@@ -166,9 +167,9 @@ export default {
         this.hideLoading();
       }
     },
-    check() {
+    async check() {
       // 没有贷款产品且需要google弹窗
-      if (!this.loans.length && this.isSysNeedGoogle) {
+      if (!this.loans.length && (await this.getNeedGoogle())) {
         this.nextStep = 'goAllOrders';
         this.showGoogleFeed = true;
       } else {
