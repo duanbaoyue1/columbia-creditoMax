@@ -82,14 +82,14 @@ export default {
       }
       .red-bot {
         background: #434af9;
-        outline: 3px solid #b3b6fc;
+        box-shadow: 0 0 0 3px #b3b6fc;
       }
     }
 
     &.last {
       .red-bot {
         background: #e3e3e3 !important;
-        outline: none !important;
+        box-shadow: none !important;
       }
       .text {
         color: #999999 !important;

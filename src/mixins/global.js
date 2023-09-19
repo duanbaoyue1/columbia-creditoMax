@@ -82,8 +82,7 @@ export default {
       }
     },
     getLocalSystemTimeStamp() {
-      // 哥伦比亚时区
-      return new Date(this.getAnyTimeString(new Date(), '-05:00')).getTime();
+      return new Date().getTime();
     },
 
     initInfoBackControl() {
