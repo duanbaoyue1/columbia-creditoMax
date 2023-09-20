@@ -53,7 +53,7 @@
     <strong>Contactos de emergencia</strong>
     <br />
     <br />
-    Necesitamos acceder a las listas de contactos principalmente para obtener información de contacto de emergencia de los usuarios con el fin de ponernos en contacto con ellos. Protegeremos estrictamente sus datos y nunca los compartiremos con terceros. Tras su uso, eliminaremos la información.
+    Necesitamos que selecciones 2 contactos de emergencia de tu lista de contactos, incluyendo sus nombres y números de teléfono, este método sólo capturará los contactos seleccionados, no todos. Esto se hace para que pueda ser contactado en caso de emergencia. Esta información es encriptada y subida a nuestros servidores en https://sdk.creditomaxco.com/original/colombiaUpload. CreditoMax nunca comparte datos con terceros.
     <br />
     <br />
     <br />
