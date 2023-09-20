@@ -50,6 +50,14 @@
     <br />
     <br />
     <br />
+    <strong>Contactos de emergencia</strong>
+    <br />
+    <br />
+    Necesitamos acceder a las listas de contactos principalmente para obtener información de contacto de emergencia de los usuarios con el fin de ponernos en contacto con ellos. Protegeremos estrictamente sus datos y nunca los compartiremos con terceros. Tras su uso, eliminaremos la información.
+    <br />
+    <br />
+    <br />
+    <br />
     <strong>Aplicaciones instaladas</strong>
     <br />
     <br />
