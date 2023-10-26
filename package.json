@@ -6,11 +6,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve --mode=development",
-    "testserver": "vue-cli-service build --mode=test",
-    "serve": "vue-cli-service serve --mode=development --open",
-    "build": "vue-cli-service build --mode=production",
-    "lint": "vue-cli-service lint"
+    "dev": "vue-cli-service serve --mode=development --open",
+    "test": "vue-cli-service build --mode=development",
+    "prod": "vue-cli-service build --mode=production"
   },
   "dependencies": {
     "@calvin_von/axios-api-module": "^3.1.1",
@@ -18,15 +16,10 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "crypto-js": "^4.0.0",
-    "dotenv": "^16.0.3",
-    "element-ui": "^2.4.5",
-    "enc": "^0.4.0",
     "image-webpack-loader": "^8.1.0",
-    "jquery": "^3.6.1",
     "js-md5": "^0.7.3",
     "pako": "^2.1.0",
     "postcss-px2rem-include": "^0.0.2",
-    "qrcodejs2": "^0.0.2",
     "vant": "^2.10.4",
     "vconsole": "^3.14.6",
     "vue": "^2.6.12",

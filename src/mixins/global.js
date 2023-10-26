@@ -67,6 +67,7 @@ export default {
       let targetTimeString = String(targetTime.getFullYear()) + '-' + String(targetTime.getMonth() + 1).replace(/^(\d)$/, '0$1') + '-' + String(targetTime.getDate()).replace(/^(\d)$/, '0$1') + ' ' + String(targetTime.getHours()).replace(/^(\d)$/, '0$1') + ':' + String(targetTime.getMinutes()).replace(/^(\d)$/, '0$1') + ':' + String(targetTime.getSeconds()).replace(/^(\d)$/, '0$1');
       return targetTimeString;
     },
+    
     // 计算以分钟为单位的时区gap，例如 '+04:00'被转换为240
     getOffsetMinute(timeZone) {
       if (!/^[+-][0-9]{2}:((0[0-9])|([1-5][0-9]))$/.test(timeZone)) {
