@@ -143,39 +143,39 @@ export default {
         try {
           await this.getUserInfo();
           // 第一步判断是否需要
-          let res = await axios.post(`${DATA_API_HOST}/original/colombiaIsUpload`, {
-            mobile: this.userInfo.mobile,
+          // let res = await axios.post(`${DATA_API_HOST}/original/colombiaIsUpload`, {
+          //   mobile: this.userInfo.mobile,
+          // });
+          // if (res.data && res.data.data.isUpload == 1) {
+          //   // 已经上传
+          //   resolve({ success: true });
+          // } else {
+          // 如果没有上传，则发通知给app抓取，10s以后再试一下
+          let types = {};
+          NEED_SYNC_TYPE.forEach(t => {
+            types[t] = `on${t}`;
           });
-          if (res.data && res.data.data.isUpload == 1) {
-            // 已经上传
-            resolve({ success: true });
+          this.toAppMethod('crawlData', types);
+          if (needResolve) {
+            window.syncDataResolve = resolve;
+            window.syncDataReject = reject;
           } else {
-            // 如果没有上传，则发通知给app抓取，10s以后再试一下
-            let types = {};
-            NEED_SYNC_TYPE.forEach(t => {
-              types[t] = `on${t}`;
-            });
-            this.toAppMethod('crawlData', types);
-            if (needResolve) {
-              window.syncDataResolve = resolve;
-              window.syncDataReject = reject;
-            } else {
-              window.syncDataResolve = null;
-              window.syncDataReject = null;
-            }
-            setTimeout(async res => {
-              window.syncDataResolve = null;
-              window.syncDataReject = null;
-              res = await axios.post(`${DATA_API_HOST}/original/colombiaIsUpload`, {
-                mobile: this.userInfo.mobile,
-              });
-              if (res.data && res.data.data.isUpload == 1) {
-                resolve({ success: true });
-              } else {
-                reject({ success: false });
-              }
-            }, 10000);
+            window.syncDataResolve = null;
+            window.syncDataReject = null;
           }
+          setTimeout(async res => {
+            window.syncDataResolve = null;
+            window.syncDataReject = null;
+            res = await axios.post(`${DATA_API_HOST}/original/colombiaIsUpload`, {
+              mobile: this.userInfo.mobile,
+            });
+            if (res.data && res.data.data.isUpload == 1) {
+              resolve({ success: true });
+            } else {
+              reject({ success: false });
+            }
+          }, 10000);
+          // }
         } catch (error) {
           reject({ success: false });
         }
