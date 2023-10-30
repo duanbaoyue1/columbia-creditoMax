@@ -88,12 +88,12 @@ export default {
     };
   },
   async mounted() {
-    this.setEventTrackStartTime();
-
     let data = await this.$http.post(`/api/user/mine`);
     this.isTestAccount = data.data.isTestAccount;
   },
   activated() {
+    this.setEventTrackStartTime();
+
     this.updateData();
   },
   methods: {
