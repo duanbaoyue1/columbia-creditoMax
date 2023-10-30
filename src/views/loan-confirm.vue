@@ -44,13 +44,14 @@
 
 <script>
 export default {
-  watch: {
-    choosed: {
-      handler() {
-        this.canSubmit = !!this.choosed;
-      },
-      deep: true,
-    },
+  data() {
+    return {
+      choosed: true,
+      canSubmit: true,
+      orderInfo: '',
+      orderId: this.$route.query.orderId,
+      saving: false,
+    };
   },
   created() {
     this.setTabBar({
@@ -61,18 +62,19 @@ export default {
       title: 'Confirmación del préstamo',
     });
   },
-  data() {
-    return {
-      choosed: true,
-      canSubmit: true,
-      orderInfo: '',
-      orderId: this.$route.query.orderId,
-      saving: false,
-    };
-  },
   mounted() {
+    this.setEventTrackStartTime();
+
     this.eventTracker('confirm_access');
     this.getOrderInfo();
+  },
+  watch: {
+    choosed: {
+      handler() {
+        this.canSubmit = !!this.choosed;
+      },
+      deep: true,
+    },
   },
   methods: {
     checkAgreement() {
@@ -108,6 +110,9 @@ export default {
         if (syncRes.success) {
           // 2. 真正的提交动作
           await this.$http.post(`/api/order/apply`, { orderId: this.orderId });
+
+          this.sendEventTrackData({ leaveBy: 1 });
+
           // 成功或者失败的跳转
           this.innerJump('loan-success-multi', { orderId: this.orderId, single: true, systemTime: this.getLocalSystemTimeStamp() }, true);
         }

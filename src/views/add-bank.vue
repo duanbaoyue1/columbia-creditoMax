@@ -124,6 +124,8 @@ export default {
     };
   },
   async mounted() {
+    this.setEventTrackStartTime();
+
     this.eventTracker('bank_add_access');
     if (this.from == 'order') {
       this.initInfoBackControl();
@@ -168,6 +170,7 @@ export default {
       await this.$http.post(`/api/order/bindRemittanceAccount`, { remittanceAccountId: cardId, orderId: this.orderId });
       // 判断是否需要确认订单
       let appMode = await this.getAppMode();
+      this.sendEventTrackData({ leaveBy: 1 });
       if (appMode.confirmType == 1) {
         // 需要进确认申请页
         this.innerJump('loan-confirm', { orderId: this.orderId }, true);
@@ -208,6 +211,7 @@ export default {
           if (this.from == 'order') {
             this.bindCardAndJump(data.data.id);
           } else {
+            this.sendEventTrackData({ leaveBy: 1, page: 'complete-bank' });
             this.goAppBack();
           }
         }

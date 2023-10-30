@@ -63,16 +63,6 @@ export default {
   components: {
     CompleteStep,
   },
-
-  created() {
-    this.setTabBar({
-      show: true,
-      transparent: false,
-      fixed: true,
-      title: 'Verificación de identidad',
-      backCallback: null,
-    });
-  },
   data() {
     window.onPhotoSelectCallback_1 = data => {
       if (typeof data == 'string') {
@@ -120,12 +110,20 @@ export default {
       orderId: this.$route.query.orderId,
     };
   },
-
+  created() {
+    this.setTabBar({
+      show: true,
+      transparent: false,
+      fixed: true,
+      title: 'Verificación de identidad',
+      backCallback: null,
+    });
+  },
   mounted() {
+    this.setEventTrackStartTime();
     this.eventTracker('id_access');
     this.initInfoBackControl();
   },
-
   methods: {
     getCapture(type) {
       if (type == 1) {
@@ -163,6 +161,7 @@ export default {
         console.log('订单创建结果:', res);
         this.eventTracker('id_submit_create_order_success');
         this.submitSuccess = false;
+        this.sendEventTrackData({ leaveBy: 1 });
         this.innerJump('add-bank', { orderId: res.data.orderId, from: 'order' }, true);
       } catch (error) {
         this.submitSuccess = false;

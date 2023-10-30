@@ -28,22 +28,28 @@
 
 <script>
 export default {
-  created() {
+  data() {
+    return {
+      productId: this.$route.query.productId,
+      orderStatus: this.$route.query.orderStatus,
+      lists: [],
+    };
+  },
+  mounted() {
     this.setTabBar({
       show: true,
       fixed: true,
       transparent: false,
       title: 'Historial de reembolso diferido',
+      backCallback: () => {
+        this.updateTrackerData({ key: 'productId', value: this.productId });
+        this.updateTrackerData({ key: 'status', value: this.ORDER_STATUS_LIST[this.orderStatus] });
+        this.sendEventTrackData({});
+        this.goAppBack();
+      },
     });
-  },
+    this.setEventTrackStartTime();
 
-  data() {
-    return {
-      lists: [],
-    };
-  },
-
-  mounted() {
     this.getDeferHistory();
   },
 

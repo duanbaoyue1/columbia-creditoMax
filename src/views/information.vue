@@ -4,22 +4,6 @@
       <complete-step :actionIndex="0"></complete-step>
     </div>
     <div class="edit-area">
-      <!-- <div class="line-item">
-        <label>Name</label>
-        <input v-model="editData.firstName" placeholder="Please enter" />
-      </div>
-      <div class="line-item">
-        <label>Middle Name</label>
-        <input v-model="editData.middleName" placeholder="Please enter" />
-      </div>
-      <div class="line-item">
-        <label>Last Name</label>
-        <input v-model="editData.lastName" placeholder="Please enter" />
-      </div> -->
-      <!-- <div class="line-item">
-        <label>Correo electrónico</label>
-        <input v-model="editData.email" placeholder="Please enter" />
-      </div> -->
       <div class="line-item">
         <label>Estado civil</label>
         <select-item :items="ALL_ATTRS.MARITAL_STATUS" :defaultOpen="curOpenFields == 'marital'" title="Estado civil" itemAttrs="marital" @choose="chooseEditData" />
@@ -40,22 +24,10 @@
         <label>Finalidad del préstamo</label>
         <select-item :items="ALL_ATTRS.LOAN_PURPOSE" :defaultOpen="curOpenFields == 'loanPurpose'" title="Finalidad del préstamo" itemAttrs="loanPurpose" @choose="chooseEditData" />
       </div>
-      <!-- <div class="line-item">
-        <label>Género</label>
-        <select-item :items="ALL_ATTRS.GENDER" :defaultOpen="curOpenFields == 'gender'" title="Género" itemAttrs="gender" @choose="chooseEditData" />
-      </div> -->
       <div class="line-item">
         <label>Tipo de alojamiento</label>
         <select-item :items="ALL_ATTRS.ACCOMMODATION" :defaultOpen="curOpenFields == 'houseType'" title="Tipo de alojamiento" itemAttrs="houseType" @choose="chooseEditData" />
       </div>
-      <!-- <div class="line-item">
-        <label>Number of Children</label>
-        <select-item :items="ALL_ATTRS.CHILDREN" title="Number of Children" itemAttrs="childNum" @choose="chooseEditData" />
-      </div>
-      <div class="line-item">
-        <label>Pay Method</label>
-        <select-item :items="ALL_ATTRS.PAY_METHOD" title="Pay Method" itemAttrs="incomeWay" @choose="chooseEditData" />
-      </div> -->
     </div>
     <div class="submit">
       <button class="bottom-submit-btn" :disabled="!canSubmit" @click="submit">Enviar</button>
@@ -81,23 +53,6 @@ export default {
     selectItem,
     CompleteStep,
   },
-  watch: {
-    editData: {
-      handler() {
-        this.canSubmit = Object.values(this.editData).length == ALL_FIELD.length;
-      },
-      deep: true,
-    },
-  },
-  created() {
-    this.setTabBar({
-      show: true,
-      transparent: false,
-      fixed: true,
-      title: 'Información básica',
-      backCallback: null,
-    });
-  },
   data() {
     return {
       curOpenFields: '',
@@ -109,12 +64,32 @@ export default {
       orderId: this.$route.query.orderId,
     };
   },
+
+  created() {
+    this.setTabBar({
+      show: true,
+      transparent: false,
+      fixed: true,
+      title: 'Información básica',
+      backCallback: null,
+    });
+  },
   mounted() {
+    this.setEventTrackStartTime();
+
     setTimeout(() => {
       this.curOpenFields = ALL_FIELD[0];
     }, 500);
     this.eventTracker('basic_access');
     this.initInfoBackControl();
+  },
+  watch: {
+    editData: {
+      handler() {
+        this.canSubmit = Object.values(this.editData).length == ALL_FIELD.length;
+      },
+      deep: true,
+    },
   },
   methods: {
     chooseEditData(data) {
@@ -142,6 +117,7 @@ export default {
           this.submitSuccess = true;
           setTimeout(() => {
             this.submitSuccess = false;
+            this.sendEventTrackData({ leaveBy: 1 });
             this.innerJump('contacts', { orderId: this.orderId }, true);
           }, 1000);
         }

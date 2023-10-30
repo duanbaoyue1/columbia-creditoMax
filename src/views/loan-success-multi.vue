@@ -100,6 +100,8 @@ export default {
     };
   },
   mounted() {
+    this.setEventTrackStartTime();
+
     this.setTabBar({
       show: true,
       fixed: true,
@@ -114,6 +116,8 @@ export default {
   },
   methods: {
     leave() {
+      this.sendEventTrackData({});
+
       this.toAppMethod('isInterceptionReturn', { isInterception: false });
       this.goHome();
     },
@@ -215,6 +219,7 @@ export default {
             this.$toast('Solicitud enviada con éxito');
             setTimeout(res => {
               this.getRecommendLoans();
+              this.sendEventTrackData({ leaveBy: 1 });
             }, 1000);
           }
         }

@@ -20,6 +20,8 @@ export default {
     });
   },
   mounted() {
+    this.setEventTrackStartTime();
+
     // this.innerJump('identity', { orderId: this.$route.query.orderId, systemTime: this.$route.query.systemTime, needRecommend: false }, true);
   },
 };

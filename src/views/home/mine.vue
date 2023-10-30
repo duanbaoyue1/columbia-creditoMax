@@ -61,30 +61,6 @@
         </div>
         <m-icon type="creditomax/进入" :width="8" :height="12" />
       </div>
-
-      <!-- <div @click="goTestb">
-        <div>
-          <m-icon class="icon" type="creditomax/Log Out" :width="30" :height="30" />
-          testb
-        </div>
-        <m-icon type="creditomax/进入" :width="8" :height="12" />
-      </div> -->
-
-      <!-- <div @click="innerJump('testb')">
-        <div>
-          <m-icon class="icon" type="creditomax/Log Out" :width="30" :height="30" />
-          testb
-        </div>
-        <m-icon type="creditomax/进入" :width="8" :height="12" />
-      </div>
-
-      <div @click="innerJump('order-detail')">
-        <div>
-          <m-icon class="icon" type="creditomax/Log Out" :width="30" :height="30" />
-          Order Detail
-        </div>
-        <m-icon type="creditomax/进入" :width="8" :height="12" />
-      </div> -->
     </div>
 
     <van-overlay :show="showLogOut" @click="showLogOut = false">
@@ -112,6 +88,8 @@ export default {
     };
   },
   async mounted() {
+    this.setEventTrackStartTime();
+
     let data = await this.$http.post(`/api/user/mine`);
     this.isTestAccount = data.data.isTestAccount;
   },
@@ -128,6 +106,7 @@ export default {
           this.hideMessageBox();
         },
         cancelCallback: () => {
+          this.sendEventTrackData({ leaveBy: 2, page: 'mine' });
           this.toAppMethod('toLoginPage');
         },
         iconPath: 'creditomax/删除账户',

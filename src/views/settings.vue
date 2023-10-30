@@ -16,6 +16,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      hasPassword: 0,
+      showLegal: false,
+    };
+  },
   created() {
     this.setTabBar({
       show: true,
@@ -24,14 +30,9 @@ export default {
       title: 'Configuración',
     });
   },
-  data() {
-    return {
-      hasPassword: 0,
-      showLegal: false,
-    };
-  },
-  methods: {},
   async mounted() {
+    this.setEventTrackStartTime();
+
     try {
       let data = await this.$http.post(`/api/user/mine`);
       this.hasPassword = data.data.hasPassword;

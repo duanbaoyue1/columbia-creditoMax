@@ -9,7 +9,7 @@
               <div class="number">{{ card.accountNumber | phoneHideFilter }}</div>
             </div>
           </div>
-          <m-icon class="choose" :class="{active: chooseBankId == card.id}" :type="chooseBankId == card.id ? 'creditomax/多推选中' : 'creditomax/多推未选中'" :width="24" :height="24" />
+          <m-icon class="choose" :class="{ active: chooseBankId == card.id }" :type="chooseBankId == card.id ? 'creditomax/多推选中' : 'creditomax/多推未选中'" :width="24" :height="24" />
           <span class="default-tips" v-if="chooseBankId == card.id">Tarjeta bancaria por defecto</span>
         </div>
       </div>
@@ -33,23 +33,6 @@ export default {
   components: {
     CompleteStep,
   },
-  watch: {
-    chooseBankId: {
-      handler() {
-        this.canSubmit = !!this.chooseBankId;
-      },
-      deep: true,
-    },
-  },
-  created() {
-    this.setTabBar({
-      show: true,
-      transparent: false,
-      fixed: true,
-      title: 'Tarjeta bancaria',
-      backCallback: null,
-    });
-  },
   data() {
     return {
       ALL_ATTRS: ALL_ATTRS,
@@ -68,14 +51,29 @@ export default {
       },
     };
   },
-
   mounted() {
+    this.setTabBar({
+      show: true,
+      transparent: false,
+      fixed: true,
+      title: 'Tarjeta bancaria',
+    });
+
+    this.setEventTrackStartTime();
+
     this.getBanks();
     if (this.from != 'mine') {
       this.eventTracker('bank_access');
     }
   },
-
+  watch: {
+    chooseBankId: {
+      handler() {
+        this.canSubmit = !!this.chooseBankId;
+      },
+      deep: true,
+    },
+  },
   methods: {
     goAddCard() {
       this.eventTracker('bank_add');
@@ -97,6 +95,7 @@ export default {
         this.hideLoading();
         this.eventTracker('bank_submit_success');
         this.$toast('Vinculación de la tarjeta bancaria con éxito');
+        this.sendEventTrackData({ leaveBy: 1 });
       } catch (error) {
         this.$toast(error.message);
       } finally {

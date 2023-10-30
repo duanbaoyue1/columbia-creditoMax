@@ -162,18 +162,6 @@ export default {
       }
     },
   },
-  created() {
-    this.setTabBar({
-      show: true,
-      transparent: true,
-      fixed: true,
-      black: false,
-      title: 'Detalles del pedido',
-      backCallback: () => {
-        this.goAppBack();
-      },
-    });
-  },
   data() {
     // /**
     //  * 创建
@@ -239,18 +227,34 @@ export default {
       orderUrl: '',
     };
   },
-
   mounted() {
+    this.setTabBar({
+      show: true,
+      transparent: true,
+      fixed: true,
+      black: false,
+      title: 'Detalles del pedido',
+      backCallback: () => {
+        this.sendEventTrackData({});
+        this.goAppBack();
+      },
+    });
     this.getDetail();
     this.getDeferTimes();
   },
-
   methods: {
     goCompleteBank() {
       this.innerJump('complete-bank', { orderId: this.orderId, from: 'mine' });
     },
     async selectBank(bank) {
       this.showPaymentTips = false;
+      // 离开
+      this.sendEventTrackData({ leaveBy: 1 });
+
+      // 支付
+      this.setEventTrackStartTime();
+      this.sendEventTrackData({ leaveBy: 1, page: 'payment' });
+
       this.openWebview(`${this.appGlobal.apiHost}/api/repayment/prepay?id=${this.detail.orderBillId}&payType=${bank.payType}&bankCode=${bank.bankCode}`);
     },
 
@@ -261,7 +265,7 @@ export default {
       this.openWebview(`${this.appGlobal.apiHost}/api/h5/contract?orderNo=${this.orderId}`);
     },
     goDeferHis() {
-      this.innerJump('defer-history', { orderId: this.orderId });
+      this.innerJump('defer-history', { orderId: this.orderId, productId: this.detail.productId, orderStatus: this.detail.orderStatus });
     },
     async getDeferTimes() {
       let data = await this.$http.post(`/api/extension/historyNum`, {
@@ -277,6 +281,10 @@ export default {
           orderId: this.orderId,
         });
         this.detail = res.data;
+
+        this.updateTrackerData({ key: 'productId', value: this.detail.productId });
+        this.updateTrackerData({ key: 'status', value: this.ORDER_STATUS_LIST[this.detail.orderStatus] });
+
         if (this.orderStatusText == 'Rejected' || this.orderStatusText == 'Repayment Successful' || this.orderStatusText == 'Pending Repayment' || this.orderStatusText == 'Overdue') {
           this.orderUrl = await this.getOrderRelateUrl(this.orderId);
         }

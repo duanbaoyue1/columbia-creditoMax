@@ -7,13 +7,11 @@
     <div class="step">
       <div class="step-item status">
         <div class="round"></div>
-        <!-- <img :src="require('@/assets/img/creditomax/进度条点亮.png')" /> -->
         <div class="text">Fecha de aplicación</div>
         <div class="date">{{ detail.startTime }}</div>
       </div>
       <div class="step-item">
         <div class="round"></div>
-        <!-- <img :src="require('@/assets/img/creditomax/进度条未点亮.png')" /> -->
         <div class="text">Fecha de vencimiento</div>
         <div class="date">{{ detail.updatedDueDate }}</div>
       </div>
@@ -25,13 +23,8 @@
         <div class="value">
           <span class="">$</span>
           <span class="value">{{ detail.amount }}</span>
-          <!-- <m-icon class="icon" type="gray-down" :width="16" :height="12" /> -->
         </div>
       </div>
-      <!-- <div class="flex-between">
-        <span>Interest</span>
-        <span>$ {{ detail.interest }}</span>
-      </div> -->
       <div class="flex-between">
         <span>Tarifa de servicio</span>
         <span>${{ detail.defermentFee }}</span>
@@ -68,26 +61,32 @@ export default {
       orderId: this.$route.query.orderId,
       loaded: false,
       showPaymentTips: false,
-      detail: '',
+      detail: {},
       orderUrl: '',
     };
   },
-  created() {
+  async mounted() {
     this.setTabBar({
       show: true,
       transparent: true,
       black: false,
       fixed: true,
       title: 'Detalles del pedido',
+      backCallback: () => {
+        this.sendEventTrackData({ page: 'payment' });
+        this.goAppBack();
+      },
     });
-  },
-  async mounted() {
     this.getDetail();
     this.orderUrl = await this.getOrderRelateUrl(this.orderId);
   },
   methods: {
     async selectBank(bank) {
       this.showPaymentTips = false;
+
+      this.setEventTrackStartTime();
+      this.sendEventTrackData({ leaveBy: 1, page: 'payment' });
+
       this.openWebview(`${this.appGlobal.apiHost}/api/extension/prepay?id=${this.detail.orderBillId}&payType=${bank.payType}&bankCode=${bank.bankCode}`);
     },
     goTutorial() {
@@ -103,6 +102,11 @@ export default {
           id: this.orderId,
         });
         this.detail = data.data;
+        let res = await this.$http.post(`/api/order/detail`, {
+          orderId: this.orderId,
+        });
+        this.updateTrackerData({ key: 'productId', value: res.data.productId });
+        this.updateTrackerData({ key: 'status', value: this.ORDER_STATUS_LIST[res.data.orderStatus] });
       } catch (error) {
       } finally {
         this.loaded = true;
@@ -203,7 +207,7 @@ export default {
           margin-right: 0px;
           font-size: 24px;
           font-weight: bold;
-          
+
           line-height: 24px;
         }
         .icon {
@@ -214,7 +218,7 @@ export default {
       .value {
         font-size: 20px;
         font-weight: 900;
-       color: #434af9;
+        color: #434af9;
         line-height: 24px;
         margin-right: 5px;
       }

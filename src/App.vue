@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @touchend="touchend">
     <div v-if="!isAppChecked" class="app-error">error!</div>
     <div v-else-if="showRedirect"></div>
     <div v-else class="app-inner" :class="{ 'has-tab': $route.meta.showTab, 'has-nav': tabBar.show, 'background-fff': $route.meta.backgroundFFF }">
@@ -61,7 +61,7 @@ export default {
     };
   },
   async mounted() {
-    document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px'
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px';
     setTimeout(res => {
       this.mounted = true;
     }, 500);

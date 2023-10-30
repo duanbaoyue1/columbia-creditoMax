@@ -9,13 +9,18 @@
 
 <script>
 export default {
-  mounted() {},
   methods: {
     onBack() {
       if (this.tabBar.backCallback) {
         this.tabBar.backCallback();
         return;
       } else {
+        if (['loan-confirm', 'loan-success-multi', 'order-list', 'complete-bank'].includes(this.$route.name)) {
+          this.sendEventTrackData({});
+        }
+        if (['help-center', 'about', 'settings'].includes(this.$route.name)) {
+          this.sendEventTrackData({ page: 'mine' });
+        }
         this.goAppBack();
       }
     },

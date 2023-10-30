@@ -69,6 +69,8 @@ export default {
     });
   },
   mounted() {
+    this.setEventTrackStartTime();
+
     // setTimeout(async () => {
     //   try {
     //     let user = await this.getUserInfo();

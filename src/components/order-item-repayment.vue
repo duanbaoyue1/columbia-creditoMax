@@ -77,6 +77,8 @@ export default {
       if (this.order.orderStatus == 10 || this.order.orderStatus == 100 || this.order.orderStatus == 101) {
         this.goHome();
       } else {
+        this.sendEventTrackData({ leaveBy: 1 });
+        this.setEventTrackStartTime();
         this.innerJump('order-detail', { orderId: this.order.orderNo });
       }
     },

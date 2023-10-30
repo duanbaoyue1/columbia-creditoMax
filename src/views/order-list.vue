@@ -28,15 +28,15 @@ export default {
       orders: [],
     };
   },
-  created() {
+  mounted() {
     this.setTabBar({
       show: true,
       transparent: false,
       fixed: true,
       title: 'Pedido de préstamo',
     });
-  },
-  mounted() {
+    this.setEventTrackStartTime();
+
     this.getAllOrders();
   },
   methods: {
@@ -87,8 +87,8 @@ export default {
   button {
     width: 327px;
     height: 50px;
-    background: linear-gradient(180deg, #696FFB 0%, #434AF9 100%);;
-    box-shadow: 0px 4px 10px 0px rgba(67,74,249,0.4), inset 0px 1px 4px 0px #434AF9;;
+    background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+    box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
     border-radius: 25px;
     margin: 0 auto;
     display: flex;

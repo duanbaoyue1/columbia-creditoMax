@@ -33,7 +33,15 @@ export default {
     });
   },
   activated() {
+    this.setEventTrackStartTime();
+
     this.getAllOrders();
+  },
+  beforeRouteLeave(to, from, next) {
+    if (['home', 'mine'].includes(to.name)) {
+      this.sendEventTrackData({});
+    }
+    next();
   },
   methods: {
     async getAllOrders() {

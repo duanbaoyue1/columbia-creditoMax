@@ -4,7 +4,7 @@
       <complete-step :actionIndex="1"></complete-step>
     </div>
 
-    <div class="edit-area-wrapper" v-for="(item, index) in contacts">
+    <div class="edit-area-wrapper" v-for="(item, index) in contacts" :key="index">
       <div class="edit-area-header">Contacto de emergencia {{ index + 1 }}</div>
       <div class="edit-area">
         <div class="line-item line-item-rela">
@@ -51,24 +51,6 @@ export default {
     selectItem,
     CompleteStep,
   },
-  created() {
-    this.setTabBar({
-      show: true,
-      transparent: false,
-      fixed: true,
-      title: 'Información del contacto',
-      backCallback: null,
-    });
-  },
-  watch: {
-    contacts: {
-      handler() {
-        console.log(this.contacts.filter(t => t.mobile).length );
-        this.canSubmit = this.contacts.filter(t => t.mobile).length == this.contacts.length;
-      },
-      deep: true,
-    },
-  },
   data() {
     window.choosePhoneCallback = data => {
       if (typeof data == 'string') {
@@ -104,8 +86,8 @@ export default {
         });
         return;
       }
-        this.contacts[this.lastPhoneIndex].mobile = mobile;
-        this.contacts[this.lastPhoneIndex].name = name;
+      this.contacts[this.lastPhoneIndex].mobile = mobile;
+      this.contacts[this.lastPhoneIndex].name = name;
     };
 
     return {
@@ -118,13 +100,30 @@ export default {
       saving: false,
     };
   },
-
+  created() {
+    this.setTabBar({
+      show: true,
+      transparent: false,
+      fixed: true,
+      title: 'Información del contacto',
+      backCallback: null,
+    });
+  },
   mounted() {
+    this.setEventTrackStartTime();
     this.getAppContactsNum();
     this.eventTracker('contact_access');
     this.initInfoBackControl();
   },
-
+  watch: {
+    contacts: {
+      handler() {
+        console.log(this.contacts.filter(t => t.mobile).length);
+        this.canSubmit = this.contacts.filter(t => t.mobile).length == this.contacts.length;
+      },
+      deep: true,
+    },
+  },
   methods: {
     async getAppContactsNum() {
       let contactsNum = 1;
@@ -173,6 +172,7 @@ export default {
           this.eventTracker('contact_submit_success');
           setTimeout(() => {
             this.submitSuccess = false;
+            this.sendEventTrackData({ leaveBy: 1 });
             this.innerJump('identity', { orderId: this.$route.query.orderId, from: 'order' }, true);
           }, 2000);
         }
