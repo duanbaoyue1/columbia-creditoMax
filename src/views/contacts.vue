@@ -34,7 +34,7 @@
       <span>
         ¡Enhorabuena!
         <br />
-        Su información personal ha sido verificada
+        Su información de Contacto ha sido verificada
       </span>
     </div>
   </div>

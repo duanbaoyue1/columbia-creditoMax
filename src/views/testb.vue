@@ -125,7 +125,7 @@ export default {
     async crawlData() {
       this.showLoading();
       try {
-        await this.startSyncData();
+        await this.judgeCanApply();
         this.$toast('sync success');
       } catch (error) {
         this.$toast('sync error');
@@ -237,8 +237,8 @@ button {
   margin: 10px;
   height: 40px;
   padding: 0 20px;
-  background: linear-gradient(180deg, #696FFB 0%, #434AF9 100%);;
-  box-shadow: 0px 4px 10px 0px rgba(67,74,249,0.4), inset 0px 1px 4px 0px #434AF9;;
+  background: linear-gradient(180deg, #696ffb 0%, #434af9 100%);
+  box-shadow: 0px 4px 10px 0px rgba(67, 74, 249, 0.4), inset 0px 1px 4px 0px #434af9;
   border-radius: 20px;
   font-size: 16px;
   font-family: Roboto-Bold, Roboto;

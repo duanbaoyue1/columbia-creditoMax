@@ -101,7 +101,7 @@ export default {
       try {
         // 1. 先同步数据
         try {
-          syncRes = await this.startSyncData();
+          syncRes = await this.judgeCanApply();
         } catch (error) {
           this.hideLoading();
           this.$toast('Compruebe la red y vuelva a intentarlo');
