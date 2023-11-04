@@ -66,6 +66,8 @@ export default {
     };
   },
   async mounted() {
+    this.setEventTrackStartTime();
+
     this.setTabBar({
       show: true,
       transparent: true,

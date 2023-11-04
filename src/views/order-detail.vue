@@ -228,6 +228,8 @@ export default {
     };
   },
   mounted() {
+    this.setEventTrackStartTime();
+
     this.setTabBar({
       show: true,
       transparent: true,
