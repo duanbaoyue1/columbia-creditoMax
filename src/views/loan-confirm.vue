@@ -104,7 +104,7 @@ export default {
           syncRes = await this.judgeCanApply();
         } catch (error) {
           this.hideLoading();
-          this.$toast('Compruebe la red y vuelva a intentarlo');
+          this.$toast('Carga fallida, inténtelo más tarde');
           return;
         }
         if (syncRes.success) {
@@ -117,7 +117,7 @@ export default {
           this.innerJump('loan-success-multi', { orderId: this.orderId, single: true, systemTime: this.getLocalSystemTimeStamp() }, true);
         }
       } catch (error) {
-        this.$toast(error.message || 'Compruebe la red y vuelva a intentarlo');
+        this.$toast(error.message || 'Carga fallida, inténtelo más tarde');
         setTimeout(() => {
           this.innerJump('loan-fail', { orderId: this.orderId }, true);
         }, 1000);
