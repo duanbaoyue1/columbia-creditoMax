@@ -240,7 +240,7 @@ export default {
                     this.$toast('Solicitud enviada con éxito');
                     setTimeout(res => {
                       this.innerJump('loan-success-multi', { systemTime: this.getLocalSystemTimeStamp() });
-                      this.sendEventTrackData({ leaveBy: 1 });
+                      this.sendEventTrackData({ leaveBy: 1, page: 'home' });
                     }, 1000);
                   }
                 }
@@ -321,7 +321,7 @@ export default {
           } else {
             this.btnTips = 'Casi:99%';
             this.actionCallback = () => {
-              this.sendEventTrackData({ leaveBy: 1 });
+              this.sendEventTrackData({ leaveBy: 1, page: 'home' });
               this.innerJump('loan-confirm', { orderId: this.appMode.orderId });
             };
           }
