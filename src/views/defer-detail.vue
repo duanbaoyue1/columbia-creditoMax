@@ -75,7 +75,6 @@ export default {
       fixed: true,
       title: 'Detalles del pedido',
       backCallback: () => {
-        this.sendEventTrackData({ page: 'payment' });
         this.goAppBack();
       },
     });
