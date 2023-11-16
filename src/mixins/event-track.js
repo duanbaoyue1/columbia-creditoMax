@@ -1,4 +1,5 @@
 import axios from 'axios';
+const DATA_API_HOST = process.env.VUE_APP_UPLOAD_DATA_APIPREFIX;
 
 const PAGE_MAP = {
   home: {
@@ -72,8 +73,6 @@ const ORDER_STATUS_LIST = {
   101: '8', // 结清-有逾期
   110: '9', // 废弃订单
 };
-
-const DATA_API_HOST = process.env.VUE_APP_UPLOAD_DATA_APIPREFIX;
 
 export default {
   data() {

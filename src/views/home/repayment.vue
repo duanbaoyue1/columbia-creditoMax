@@ -39,8 +39,6 @@ export default {
   },
   beforeRouteLeave(to, from, next) {
     if (['home', 'mine'].includes(to.name)) {
-      this.updateTrackerData({ key: 'productId', value: '' });
-      this.updateTrackerData({ key: 'status', value: '' });
       this.sendEventTrackData({});
     }
     next();
