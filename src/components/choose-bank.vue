@@ -9,6 +9,7 @@
           <ul>
             <li @click="chooseBankA('Nequi', '')">Nequi</li>
             <li @click="chooseBankB">PSE(Pagos Seguros en Línea)</li>
+            <li @click="chooseBankA('Efecty', '')">Efecty</li>
           </ul>
           <div class="tips">
             <div>Consejos:</div>
@@ -59,7 +60,7 @@ export default {
     chooseBankA(type, value) {
       this.$emit('select-bank', {
         payType: type,
-        bankCode: value
+        bankCode: value,
       });
     },
     cancelSheet() {

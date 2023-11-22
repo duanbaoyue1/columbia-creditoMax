@@ -54,20 +54,6 @@ export default {
     MultiRecommend,
   },
   data() {
-    window.getHtmlCode = () => {
-      this.toAppMethod('getHtmlCodeCallback', {
-        src: document.documentElement.outerHTML,
-        documentElementWidth: document.documentElement.clientWidth,
-        clientWidth: document.body.clientWidth,
-        offsetWidth: document.body.offsetWidth,
-        scrollWidth: document.body.scrollWidth,
-        screenWidth: window.screen.width,
-        availWidth: window.screen.availWidth,
-        deviceXDPI: window.screen.deviceXDPI,
-        devicePixelRatio: window.devicePixelRatio,
-      });
-    };
-
     return {
       showLock: false,
       disabledPullRefresh: false,
