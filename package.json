@@ -6,11 +6,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve --mode=development",
-    "testserver": "vue-cli-service build --mode=test",
-    "serve": "vue-cli-service serve --mode=development --open",
-    "build": "vue-cli-service build --mode=production",
-    "lint": "vue-cli-service lint"
+    "dev": "vue-cli-service serve --mode=development --open",
+    "test": "vue-cli-service build --mode=development",
+    "prod": "vue-cli-service build --mode=production"
   },
   "dependencies": {
     "@calvin_von/axios-api-module": "^3.1.1",
