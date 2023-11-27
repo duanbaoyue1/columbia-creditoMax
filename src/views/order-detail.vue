@@ -246,11 +246,12 @@ export default {
   },
   methods: {
     goCompleteBank() {
+      this.sendEventTrackData({ leaveBy: 1 });
       this.innerJump('complete-bank', { orderId: this.orderId, from: 'mine' });
     },
     async selectBank(bank) {
       this.showPaymentTips = false;
-      // 离开
+      // 进入
       this.sendEventTrackData({ leaveBy: 1 });
 
       // 支付
@@ -261,12 +262,14 @@ export default {
     },
 
     applyDefer() {
+      this.sendEventTrackData({ leaveBy: 1 });
       this.innerJump('defer-detail', { orderId: this.orderId });
     },
     checkAgreement() {
       this.openWebview(`${this.appGlobal.apiHost}/api/h5/contract?orderNo=${this.orderId}`);
     },
     goDeferHis() {
+      this.sendEventTrackData({ leaveBy: 1 });
       this.innerJump('defer-history', { orderId: this.orderId, productId: this.detail.productId, orderStatus: this.detail.orderStatus });
     },
     async getDeferTimes() {
