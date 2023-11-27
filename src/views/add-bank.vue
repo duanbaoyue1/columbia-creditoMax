@@ -188,7 +188,7 @@ export default {
         let saveData = {
           accountNumber: this.editData.accountNumber,
           bank: this.selectBank.text,
-          bankCode: this.selectBank.value,
+          // bankCode: this.selectBank.value,
           name: this.editData.userName,
         };
 
