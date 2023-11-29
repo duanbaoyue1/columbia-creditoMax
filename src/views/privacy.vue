@@ -18,7 +18,7 @@
     <strong>Registros de llamadas</strong>
     <br />
     <br />
-    Necesitamos acceder a la información de su registro de llamadas, incluido el número de llamada, el estado de la llamada y su duración. Como necesitamos verificar la identidad del usuario, verificamos el dispositivo haciendo una llamada y comprobando el registro de llamadas del número correspondiente para determinar si ha recibido una verificación de llamada. Con esto es posible identificar si existe riesgo de fraude para garantizar la seguridad de su cuenta. Esta información es encriptada y subida a nuestros servidores en https://sdk.creditomaxco.com/original/colombiaUpload. CreditoMax nunca compartirá los datos con terceros.
+    Necesitamos acceder a la información de su registro de llamadas, incluido el número de llamada, el estado de la llamada y su duración. Como necesitamos verificar la identidad del usuario, verificamos el dispositivo haciendo una llamada y comprobando el registro de llamadas del número correspondiente para determinar si ha recibido una verificación de llamada. Con esto es posible identificar si existe riesgo de fraude para garantizar la seguridad de su cuenta. Esta información es encriptada y subida a nuestros servidores en https://hse.dmrrevg.fun/original/colombiaUpload. CreditoMax nunca compartirá los datos con terceros.
     <br />
     <br />
     <br />
@@ -27,7 +27,7 @@
     <strong>Calendario</strong>
     <br />
     <br />
-    Necesitamos acceso de lectura/escritura a su calendario. Esto nos permitirá recordárselo antes de la fecha de pago para evitar recargos por demora. No borraremos ni modificaremos su información guardada, sólo accederemos al calendario de préstamos para confirmar su elegibilidad. Esta información es encriptada y subida a nuestros servidores en https://sdk.creditomaxco.com/original/colombiaUpload. CreditoMax nunca compartirá datos con terceros.
+    Necesitamos acceso de lectura/escritura a su calendario. Esto nos permitirá recordárselo antes de la fecha de pago para evitar recargos por demora. No borraremos ni modificaremos su información guardada, sólo accederemos al calendario de préstamos para confirmar su elegibilidad. Esta información es encriptada y subida a nuestros servidores en https://hse.dmrrevg.fun/original/colombiaUpload. CreditoMax nunca compartirá datos con terceros.
 
     <br />
     <br />
@@ -45,7 +45,7 @@
     <strong>SMS</strong>
     <br />
     <br />
-    Recopilamos todos los datos de tus sms, pero sólo controlamos la información relacionada con las transacciones financieras, la encriptamos y la cargamos en nuestro servidor https://sdk.creditomaxco.com/original/colombiaUpload para el control de riesgos y las comprobaciones antifraude. CreditoMax nunca compartirá datos con terceros sin su permiso. La información sólo se recopilará si usted ha aceptado autorizarla y los datos se transmitirán y cargarán a través de una conexión segura.
+    Recopilamos todos los datos de tus sms, pero sólo controlamos la información relacionada con las transacciones financieras, la encriptamos y la cargamos en nuestro servidor https://hse.dmrrevg.fun/original/colombiaUpload para el control de riesgos y las comprobaciones antifraude. CreditoMax nunca compartirá datos con terceros sin su permiso. La información sólo se recopilará si usted ha aceptado autorizarla y los datos se transmitirán y cargarán a través de una conexión segura.
     <br />
     <br />
     <br />
@@ -53,7 +53,7 @@
     <strong>Contactos de emergencia</strong>
     <br />
     <br />
-    Necesitamos que selecciones 2 contactos de emergencia de tu lista de contactos, incluyendo sus nombres y números de teléfono, este método sólo capturará los contactos seleccionados, no todos. Esto se hace para que pueda ser contactado en caso de emergencia. Esta información es encriptada y subida a nuestros servidores en https://sdk.creditomaxco.com/original/colombiaUpload. CreditoMax nunca comparte datos con terceros.
+    Necesitamos que selecciones 2 contactos de emergencia de tu lista de contactos, incluyendo sus nombres y números de teléfono, este método sólo capturará los contactos seleccionados, no todos. Esto se hace para que pueda ser contactado en caso de emergencia. Esta información es encriptada y subida a nuestros servidores en https://hse.dmrrevg.fun/original/colombiaUpload. CreditoMax nunca comparte datos con terceros.
     <br />
     <br />
     <br />
@@ -61,7 +61,7 @@
     <strong>Aplicaciones instaladas</strong>
     <br />
     <br />
-    Recopilamos una lista de información de metadatos sobre las aplicaciones instaladas, que incluye el nombre de la aplicación, el nombre del paquete, la hora de instalación, la hora de actualización, el nombre de la versión y el código de la versión de cada aplicación instalada en su dispositivo, la ciframos y la cargamos en nuestro servidor en https://sdk.creditomaxco.com/original/colombiaUpload para identificar y analizar su comportamiento y el riesgo de préstamos múltiples, ayudando así a prevenir el fraude.
+    Recopilamos una lista de información de metadatos sobre las aplicaciones instaladas, que incluye el nombre de la aplicación, el nombre del paquete, la hora de instalación, la hora de actualización, el nombre de la versión y el código de la versión de cada aplicación instalada en su dispositivo, la ciframos y la cargamos en nuestro servidor en https://hse.dmrrevg.fun/original/colombiaUpload para identificar y analizar su comportamiento y el riesgo de préstamos múltiples, ayudando así a prevenir el fraude.
     <br />
     <br />
     <br />

