@@ -121,7 +121,7 @@
     <strong>8. Modificación de los términos y condiciones</strong>
     <br />
     <br />
-    CreditoMax podrá modificar los términos y condiciones en cualquier momento haciendo públicos los términos y condiciones modificados en la aplicación o en el sitio web. Si el usuario no se opone, se considerará que acepta los nuevos términos y condiciones. Si el usuario se opone a los cambios realizados, deberá enviarlos en un plazo de 5 días por correo electrónico a la siguiente cuenta: creditomax01@outlook.com
+    CreditoMax podrá modificar los términos y condiciones en cualquier momento haciendo públicos los términos y condiciones modificados en la aplicación o en el sitio web. Si el usuario no se opone, se considerará que acepta los nuevos términos y condiciones. Si el usuario se opone a los cambios realizados, deberá enviarlos en un plazo de 5 días por correo electrónico a la siguiente cuenta: contacto@creditomaxco.com
     <br />
     <br />
     <br />
@@ -137,7 +137,7 @@
     <strong>10. Datos de contacto</strong>
     <br />
     <br />
-    Correo electrónico: creditomax01@outlook.com
+    Correo electrónico: contacto@creditomaxco.com
     <br />
     <br />
     Horario de atención al público: De lunes a sábado de 10:00 a 19:00

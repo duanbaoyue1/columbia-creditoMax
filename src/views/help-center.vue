@@ -31,7 +31,7 @@
 export default {
   data() {
     return {
-      feedEmail: 'creditomax01@outlook.com',
+      feedEmail: 'contacto@creditomaxco.com',
       questions: [
         {
           desc: '¿Cómo puedo obtener un préstamo instantáneo?',
