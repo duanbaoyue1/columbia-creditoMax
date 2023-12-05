@@ -120,7 +120,7 @@
     Si tiene alguna pregunta o sugerencia sobre esta política de privacidad, no dude en ponerse en contacto con nosotros en
     <br />
     <br />
-    Correo electrónico: contacto@creditomaxco.com
+    Correo electrónico: creditomax01@outlook.com
   </div>
 </template>
 
