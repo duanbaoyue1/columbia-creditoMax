@@ -4,13 +4,11 @@ import router from './router';
 import store from './store';
 import request from '@/utils/request';
 Vue.prototype.$http = request;
-import cookieFun from './utils/cookieFun.js'; // 封装cookieFun的js
 import 'amfe-flexible';
 
 import mIcon from '@/components/m-icon.vue';
 Vue.component('m-icon', mIcon);
 
-// Vue.prototype.$cookieFun = cookieFun;
 import '@/assets/css/index.scss';
 Vue.config.productionTip = false;
 
@@ -40,5 +38,5 @@ Vue.mixin(syncData);
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  render: h => h(App),
 }).$mount('#app');

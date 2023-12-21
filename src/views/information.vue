@@ -132,10 +132,6 @@ export default {
       try {
         this.eventTracker('basic_submit');
         let saveData = { ...this.editData };
-        // if (!this.validateEmail(saveData.email)) {
-        //   this.$toast('Please enter the correct email address.');
-        //   return;
-        // }
         let data = await this.$http.post(`/api/user/basicInfo/save`, saveData);
         if (data.returnCode == 2000) {
           this.eventTracker('basic_submit_success');

@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { mapState, mapActions } from 'vuex';
-import { dateFormat } from '@/utils/mUtils';
 window.isInitSyncData = false;
 window.syncDataResolve = null;
 window.syncDataReject = null;
